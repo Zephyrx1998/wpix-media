@@ -111,7 +111,15 @@ const VerticalsSection = () => {
                   </ul>
                 </div>
 
-                <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                <Button 
+                  variant="outline" 
+                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
+                  onClick={() => {
+                    if (vertical.name === "WCF") {
+                      window.location.href = "/wcf";
+                    }
+                  }}
+                >
                   Learn More About {vertical.name}
                 </Button>
               </div>
