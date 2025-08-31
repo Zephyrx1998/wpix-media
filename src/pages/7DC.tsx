@@ -1,0 +1,238 @@
+import React from 'react';
+import { Palette, Layers, Smartphone, Monitor, Package, Users, Star, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from 'react-router-dom';
+
+const SevenDC = () => {
+  const navigate = useNavigate();
+
+  const services = [
+    {
+      icon: Palette,
+      title: "Brand Identity Creation",
+      items: ["Logo Design", "Typography & Color System", "Brand Guidelines Kit"]
+    },
+    {
+      icon: Layers,
+      title: "Graphic Design",
+      items: ["Posters & Brochures", "Banners & Social Media Creatives", "Packaging Design"]
+    },
+    {
+      icon: Smartphone,
+      title: "Digital Brand Presence",
+      items: ["Social Media Kits & Templates", "Collateral Design"]
+    },
+    {
+      icon: Monitor,
+      title: "UI/UX Design",
+      items: ["Website Interfaces", "Mobile App Design", "User Experience Optimization"]
+    }
+  ];
+
+  const portfolioItems = [
+    { id: 1, title: "Startup Logo", category: "Brand Identity" },
+    { id: 2, title: "E-commerce Packaging", category: "Packaging" },
+    { id: 3, title: "Social Media Kit", category: "Digital Design" },
+    { id: 4, title: "Corporate Brochure", category: "Print Design" },
+    { id: 5, title: "App Interface", category: "UI/UX" },
+    { id: 6, title: "Brand Guidelines", category: "Brand Identity" },
+    { id: 7, title: "Product Catalog", category: "Graphic Design" },
+    { id: 8, title: "Website Design", category: "Digital" }
+  ];
+
+  const clients = [
+    "TATA", "Reliance", "Flipkart", "Zomato", "OYO", "Paytm", "Swiggy", "BigBasket"
+  ];
+
+  const testimonials = [
+    {
+      text: "7DC gave our startup a premium identity that helped us stand out in a crowded market.",
+      author: "Executive Director",
+      company: "Kelly Louren"
+    },
+    {
+      text: "The team understood our vision perfectly and delivered a brand identity that exceeded our expectations.",
+      author: "Marketing Head",
+      company: "Tech Innovation"
+    },
+    {
+      text: "Professional, creative, and detail-oriented. Our brand transformation was remarkable.",
+      author: "Founder",
+      company: "Fashion Forward"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">7</span>
+              </div>
+              <div>
+                <div className="font-bold text-foreground">7DC</div>
+                <div className="text-xs text-muted-foreground">7 Design Corp</div>
+              </div>
+            </div>
+            <Button variant="outline" onClick={() => navigate('/')}>
+              Back to Main Site
+            </Button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 bg-gradient-to-b from-accent/10 to-background">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
+              Your Brand, <span className="text-primary">Our Blueprint.</span>
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              From logo to complete digital identity, we craft brands that stand out, connect, and leave a lasting impression.
+            </p>
+            <div className="bg-card rounded-2xl p-6 shadow-soft border border-primary/10 mb-8">
+              <div className="grid md:grid-cols-3 gap-4 items-center">
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-4 aspect-square flex items-center justify-center">
+                  <Palette className="h-12 w-12 text-primary" />
+                </div>
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-4 aspect-square flex items-center justify-center">
+                  <Layers className="h-12 w-12 text-primary" />
+                </div>
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-4 aspect-square flex items-center justify-center">
+                  <Monitor className="h-12 w-12 text-primary" />
+                </div>
+              </div>
+            </div>
+            <Button 
+              variant="hero" 
+              size="lg" 
+              className="group"
+              onClick={() => navigate('/#contact')}
+            >
+              Start Your Branding Journey
+              <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-16 bg-accent/20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Our Services</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <div key={index} className="bg-card rounded-2xl p-6 shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300 group">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <IconComponent className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-3 text-foreground">{service.title}</h3>
+                  <ul className="space-y-2">
+                    {service.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="flex items-start gap-2">
+                        <div className="w-1 h-1 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-muted-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Showcase */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-6 text-foreground">Portfolio Showcase</h2>
+            <Button variant="outline" className="group">
+              View Full Portfolio
+              <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {portfolioItems.map((item) => (
+              <div key={item.id} className="bg-card rounded-xl overflow-hidden shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300 cursor-pointer group">
+                <div className="aspect-square bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                  <Palette className="h-12 w-12 text-primary/60 group-hover:text-primary transition-colors" />
+                </div>
+                <div className="p-4">
+                  <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground">{item.category}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Clientele Section */}
+      <section className="py-16 bg-accent/20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Trusted by Leading Brands</h2>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {clients.map((client, index) => (
+              <div key={index} className="bg-card px-6 py-3 rounded-lg shadow-soft border border-primary/10">
+                <span className="text-foreground font-medium">{client}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client Feedback Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">What Our Clients Say</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-card rounded-2xl p-6 shadow-soft border border-primary/10">
+                <div className="flex items-center gap-2 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 text-primary fill-current" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground mb-4 italic">"{testimonial.text}"</p>
+                <div className="border-t border-border pt-4">
+                  <div className="font-semibold text-foreground">{testimonial.author}</div>
+                  <div className="text-sm text-muted-foreground">{testimonial.company}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-16 bg-gradient-to-r from-primary/5 to-primary-dark/5">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-foreground">
+            Let's Build a Brand That Lasts.
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Ready to transform your brand identity and make a lasting impression?
+          </p>
+          <Button 
+            variant="hero" 
+            size="lg" 
+            className="group"
+            onClick={() => navigate('/#contact')}
+          >
+            Start Your Branding Journey
+            <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Button>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default SevenDC;

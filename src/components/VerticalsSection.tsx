@@ -117,6 +117,8 @@ const VerticalsSection = () => {
                   onClick={() => {
                     if (vertical.name === "WCF") {
                       window.location.href = "/wcf";
+                    } else if (vertical.name === "7DC") {
+                      window.location.href = "/7dc";
                     }
                   }}
                 >
