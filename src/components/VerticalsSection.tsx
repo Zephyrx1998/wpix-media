@@ -121,6 +121,8 @@ const VerticalsSection = () => {
                       window.location.href = "/7dc";
                     } else if (vertical.name === "AVER") {
                       window.location.href = "/aver";
+                    } else if (vertical.name === "VYBE") {
+                      window.location.href = "/vybe";
                     }
                   }}
                 >

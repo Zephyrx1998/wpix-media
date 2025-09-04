@@ -8,6 +8,7 @@ import AIToolkit from "./pages/AIToolkit";
 import WCF from "./pages/WCF";
 import SevenDC from "./pages/7DC";
 import AVER from "./pages/AVER";
+import VYBE from "./pages/VYBE";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/wcf" element={<WCF />} />
           <Route path="/7dc" element={<SevenDC />} />
           <Route path="/aver" element={<AVER />} />
+          <Route path="/vybe" element={<VYBE />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
