@@ -24,8 +24,12 @@ const VYBE = () => {
     { title: 'Lead Generation Funnel', description: 'High-converting sales funnel' }
   ];
 
-  const clients = [
-    'TATA', 'LG', 'AI Sensy', 'Amazon Fire TV', 'Meta Man', 'Husqvarna', 'Nasher Miles', 'Nike', 'Adidas'
+  const clientLogos = [
+    { name: "Waldorf Astoria", logo: "/lovable-uploads/1bfc63c2-2f24-4cca-8b3a-3a9ca701d18e.png" },
+    { name: "Netflix", logo: "/lovable-uploads/3b742dbc-264c-4be9-875c-2c9ba0001ec7.png" },
+    { name: "Choice Hotels", logo: "/lovable-uploads/e0916b03-cbaf-4877-a725-df30e8228106.png" },
+    { name: "WeWork", logo: "/lovable-uploads/64ca5ac2-f24a-44e6-b6bf-62179c2c82ee.png" },
+    { name: "VMware", logo: "/lovable-uploads/d68f43b8-b91d-4989-8149-cc3d20ebfabd.png" }
   ];
 
   const testimonials = [
@@ -243,9 +247,13 @@ const VYBE = () => {
           
           <div className="overflow-hidden">
             <div className="flex animate-scroll gap-12 items-center">
-              {[...clients, ...clients].map((client, index) => (
-                <div key={index} className="flex-shrink-0 text-2xl font-bold text-muted-foreground hover:text-primary transition-colors duration-300">
-                  {client}
+              {[...clientLogos, ...clientLogos].map((client, index) => (
+                <div key={index} className="flex-shrink-0 w-32 h-16 flex items-center justify-center">
+                  <img 
+                    src={client.logo} 
+                    alt={client.name}
+                    className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  />
                 </div>
               ))}
             </div>
