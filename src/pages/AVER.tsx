@@ -135,26 +135,64 @@ const AVER = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Our <span className="text-green-500">Immersive Portfolio</span>
+              Our <span className="text-green-500">360° VR Experiences</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Explore our collection of AR experiences and VR walkthroughs that have transformed brands.
+              Immerse yourself in our virtual tours and experience spaces like never before.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {portfolioItems.map((item, index) => (
-              <div 
-                key={index}
-                className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-8 shadow-soft border border-green-500/10 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 group cursor-pointer"
-              >
-                <div className="w-full h-48 bg-gradient-to-br from-green-500/20 to-emerald-600/20 rounded-2xl mb-6 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <Eye className="h-12 w-12 text-green-500" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
-                <span className="text-green-500 font-medium">{item.type}</span>
+          <div className="grid lg:grid-cols-3 gap-8 mb-12">
+            {/* Commercial Real Estate */}
+            <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 shadow-soft border border-green-500/10 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
+              <h3 className="text-xl font-bold text-foreground mb-4 text-center">Commercial Real Estate</h3>
+              <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-green-500/20">
+                <iframe
+                  src="https://my.matterport.com/show/?m=yDjxY8J8xZ6&log=0&help=0&nt=0&play=0&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=1&kb=1&lp=0&title=0&tourcta=1&vr=1"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="xr-spatial-tracking"
+                  className="rounded-2xl"
+                ></iframe>
               </div>
-            ))}
+              <p className="text-muted-foreground text-center mt-4">Explore premium commercial spaces in immersive detail</p>
+            </div>
+
+            {/* Travel Hospitality */}
+            <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 shadow-soft border border-green-500/10 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
+              <h3 className="text-xl font-bold text-foreground mb-4 text-center">Travel Hospitality</h3>
+              <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-green-500/20">
+                <iframe
+                  src="https://my.matterport.com/show/?m=Hx7t1MsKi3W&log=0&help=0&nt=0&play=0&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=1&kb=1&lp=0&title=1&tourcta=1&vr=1"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="xr-spatial-tracking"
+                  className="rounded-2xl"
+                ></iframe>
+              </div>
+              <p className="text-muted-foreground text-center mt-4">Experience luxury hospitality venues virtually</p>
+            </div>
+
+            {/* Residential Villa */}
+            <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 shadow-soft border border-green-500/10 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
+              <h3 className="text-xl font-bold text-foreground mb-4 text-center">Residential Villa</h3>
+              <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-green-500/20">
+                <iframe
+                  src="https://my.matterport.com/show/?m=jm5WwEA3HUN&log=0&help=0&nt=0&play=1&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=0&kb=1&lp=0&title=0&tourcta=1&vr=1"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="xr-spatial-tracking"
+                  className="rounded-2xl"
+                ></iframe>
+              </div>
+              <p className="text-muted-foreground text-center mt-4">Tour beautiful residential properties in stunning detail</p>
+            </div>
           </div>
 
           <div className="text-center">
