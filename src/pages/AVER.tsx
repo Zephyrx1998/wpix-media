@@ -216,11 +216,11 @@ const AVER = () => {
           </div>
 
           <div className="relative overflow-hidden">
-            <div className="flex animate-scroll-left">
-              {[...clientLogos, ...clientLogos].map((client, index) => (
+            <div className="flex animate-scroll-left whitespace-nowrap">
+              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
                 <div 
                   key={index}
-                  className="flex-shrink-0 mx-8 w-32 h-16 bg-card rounded-xl border border-green-500/10 flex items-center justify-center shadow-soft hover:shadow-medium hover:border-green-500/30 transition-all duration-300"
+                  className="flex-shrink-0 mx-8 w-40 h-20 bg-card rounded-xl border border-green-500/10 flex items-center justify-center shadow-soft hover:shadow-medium hover:border-green-500/30 transition-all duration-300 p-4"
                 >
                   <img 
                     src={client.logo} 

@@ -246,9 +246,9 @@ const VYBE = () => {
           </div>
           
           <div className="overflow-hidden">
-            <div className="flex animate-scroll gap-12 items-center">
-              {[...clientLogos, ...clientLogos].map((client, index) => (
-                <div key={index} className="flex-shrink-0 w-32 h-16 flex items-center justify-center">
+            <div className="flex animate-scroll whitespace-nowrap">
+              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
+                <div key={index} className="flex-shrink-0 mx-8 w-32 h-16 flex items-center justify-center">
                   <img 
                     src={client.logo} 
                     alt={client.name}

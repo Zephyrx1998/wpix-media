@@ -202,34 +202,18 @@ const WCF = () => {
       <section className="py-16 bg-accent/20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Trusted by Brands Across Industries</h2>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {clientLogos.map((client, index) => (
-              <div key={index} className="bg-card px-6 py-4 rounded-lg shadow-soft border border-primary/10 w-40 h-20 flex items-center justify-center">
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Client Feedback Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">What Our Clients Say</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-card rounded-2xl p-6 shadow-soft border border-primary/10">
-                <p className="text-muted-foreground mb-4 italic">"{testimonial.text}"</p>
-                <div className="border-t border-border pt-4">
-                  <div className="font-semibold text-foreground">{testimonial.author}</div>
-                  <div className="text-sm text-muted-foreground">{testimonial.company}</div>
+          <div className="overflow-hidden">
+            <div className="flex animate-scroll whitespace-nowrap">
+              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
+                <div key={index} className="bg-card px-6 py-4 rounded-lg shadow-soft border border-primary/10 w-40 h-20 flex items-center justify-center flex-shrink-0 mx-4">
+                  <img 
+                    src={client.logo} 
+                    alt={client.name}
+                    className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
