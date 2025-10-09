@@ -40,14 +40,42 @@ const WCF = () => {
   ];
 
   const portfolioItems = [
-    { id: 1, title: "Brand Commercial", category: "TV Ad" },
-    { id: 2, title: "Product Launch", category: "Digital" },
-    { id: 3, title: "Corporate Story", category: "Brand Film" },
-    { id: 4, title: "Social Reel", category: "Social Media" },
-    { id: 5, title: "Influencer Campaign", category: "UGC" },
-    { id: 6, title: "Tech Startup", category: "Explainer" },
-    { id: 7, title: "FMCG Commercial", category: "TV Ad" },
-    { id: 8, title: "Fashion Brand", category: "Lifestyle" }
+    { 
+      id: 1, 
+      title: "Brand Commercial", 
+      category: "TV Ad",
+      videoUrl: "https://drive.google.com/file/d/16C6Xmt7biCXGI7OW58_dbHoIsLQPEjiu/preview"
+    },
+    { 
+      id: 2, 
+      title: "Tech Startup", 
+      category: "Explainer",
+      videoUrl: "https://drive.google.com/file/d/1bqmShQNXw6w2x2Z99za0s5sIgLAc7Q0Y/preview"
+    },
+    { 
+      id: 3, 
+      title: "Influencer Campaign", 
+      category: "UGC",
+      videoUrl: "https://drive.google.com/file/d/1T7kwssyvYFVIb7fu00sJLOYZ93RS2x3C/preview"
+    },
+    { 
+      id: 4, 
+      title: "Social Reels", 
+      category: "Social Media",
+      videoUrl: "https://drive.google.com/file/d/1b5MX68KLY5X1hP78lwfwtqBy45YeFG3y/preview"
+    },
+    { 
+      id: 5, 
+      title: "Product Launch", 
+      category: "Digital",
+      videoUrl: "https://drive.google.com/file/d/1sKpjwKD92FcLoqdowJqMiyYl-R6EoUNi/preview"
+    },
+    { 
+      id: 6, 
+      title: "Real-estate", 
+      category: "Brand Film",
+      videoUrl: "https://drive.google.com/file/d/1t5krFPS_O3TBT8hwJl0ObL32242SnHyS/preview"
+    }
   ];
 
   const clientLogos = [
@@ -182,11 +210,16 @@ const WCF = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Our Work in Action</h2>
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioItems.map((item) => (
-              <div key={item.id} className="bg-card rounded-xl overflow-hidden shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300 cursor-pointer group">
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <Video className="h-12 w-12 text-primary/60 group-hover:text-primary transition-colors" />
+              <div key={item.id} className="bg-card rounded-2xl overflow-hidden shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300">
+                <div className="aspect-video bg-background">
+                  <iframe
+                    src={item.videoUrl}
+                    className="w-full h-full"
+                    allow="autoplay"
+                    allowFullScreen
+                  />
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
