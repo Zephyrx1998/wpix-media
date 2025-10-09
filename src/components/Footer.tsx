@@ -20,7 +20,7 @@ const Footer = () => {
               Designing for Now. Building for Tomorrow.
             </p>
             <p className="text-background/60 text-xs">
-              360° Creative-Tech Agency delivering end-to-end brand solutions.
+              Full Spectrum Creative-Tech Agency delivering end-to-end brand solutions.
             </p>
           </div>
 

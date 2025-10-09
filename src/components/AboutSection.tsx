@@ -18,7 +18,7 @@ const AboutSection = () => {
           <div>
             <h3 className="text-3xl font-bold mb-6 text-foreground">Our Story</h3>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              WPIX Media is a 360° Creative-Tech Agency delivering end-to-end brand solutions across design, marketing, technology, and storytelling. We combine creative excellence with data-driven strategies to help brands grow, engage, and dominate their markets.
+              WPIX Media is a Full Spectrum Creative-Tech Agency delivering end-to-end brand solutions across design, marketing, technology, and storytelling. We combine creative excellence with data-driven strategies to help brands grow, engage, and dominate their markets.
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center gap-3">
