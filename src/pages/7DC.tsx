@@ -161,7 +161,11 @@ const SevenDC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-6 text-foreground">Portfolio Showcase</h2>
-            <Button variant="outline" className="group">
+            <Button 
+              variant="outline" 
+              className="group"
+              onClick={() => window.open('https://drive.google.com/drive/folders/1YnRrs8mczG3jLMiRngWcPnH97ijrgk2h?usp=drive_link', '_blank', 'noopener,noreferrer')}
+            >
               View Full Portfolio
               <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
