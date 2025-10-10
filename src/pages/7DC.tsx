@@ -2,6 +2,12 @@ import React from 'react';
 import { Palette, Layers, Smartphone, Monitor, Package, Users, Star, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
+import startupLogo from '@/assets/portfolio/startup-logo.jpg';
+import socialMediaKit from '@/assets/portfolio/social-media-kit.png';
+import corporateBrochure from '@/assets/portfolio/corporate-brochure.png';
+import appInterface from '@/assets/portfolio/app-interface.png';
+import brandGuidelines from '@/assets/portfolio/brand-guidelines.png';
+import packagingDesign from '@/assets/portfolio/packaging-design.jpg';
 
 const SevenDC = () => {
   const navigate = useNavigate();
@@ -30,14 +36,12 @@ const SevenDC = () => {
   ];
 
   const portfolioItems = [
-    { id: 1, title: "Startup Logo", category: "Brand Identity" },
-    { id: 2, title: "E-commerce Packaging", category: "Packaging" },
-    { id: 3, title: "Social Media Kit", category: "Digital Design" },
-    { id: 4, title: "Corporate Brochure", category: "Print Design" },
-    { id: 5, title: "App Interface", category: "UI/UX" },
-    { id: 6, title: "Brand Guidelines", category: "Brand Identity" },
-    { id: 7, title: "Product Catalog", category: "Graphic Design" },
-    { id: 8, title: "Website Design", category: "Digital" }
+    { id: 1, title: "Startup Logo", category: "Brand Identity", image: startupLogo },
+    { id: 2, title: "Social Media Kit", category: "Digital Design", image: socialMediaKit },
+    { id: 3, title: "Corporate Brochure", category: "Print Design", image: corporateBrochure },
+    { id: 4, title: "App Interface", category: "UI/UX", image: appInterface },
+    { id: 5, title: "Brand Guidelines", category: "Brand Identity", image: brandGuidelines },
+    { id: 6, title: "Packaging Design", category: "Packaging", image: packagingDesign }
   ];
 
   const clientLogos = [
@@ -162,11 +166,15 @@ const SevenDC = () => {
               <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioItems.map((item) => (
-              <div key={item.id} className="bg-card rounded-xl overflow-hidden shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300 cursor-pointer group">
-                <div className="aspect-square bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <Palette className="h-12 w-12 text-primary/60 group-hover:text-primary transition-colors" />
+              <div key={item.id} className="bg-card rounded-2xl overflow-hidden shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300 cursor-pointer group">
+                <div className="aspect-square overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
