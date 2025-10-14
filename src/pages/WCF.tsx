@@ -79,11 +79,18 @@ const WCF = () => {
   ];
 
   const clientLogos = [
-    { name: "Waldorf Astoria", logo: "/lovable-uploads/1bfc63c2-2f24-4cca-8b3a-3a9ca701d18e.png" },
-    { name: "Netflix", logo: "/lovable-uploads/3b742dbc-264c-4be9-875c-2c9ba0001ec7.png" },
-    { name: "Choice Hotels", logo: "/lovable-uploads/e0916b03-cbaf-4877-a725-df30e8228106.png" },
-    { name: "WeWork", logo: "/lovable-uploads/64ca5ac2-f24a-44e6-b6bf-62179c2c82ee.png" },
-    { name: "VMware", logo: "/lovable-uploads/d68f43b8-b91d-4989-8149-cc3d20ebfabd.png" }
+    { name: "Srinivasa Jewellers", logo: "/lovable-uploads/srinivasa-jewellers.png" },
+    { name: "Trendio", logo: "/lovable-uploads/trendio.png" },
+    { name: "Husqvarna", logo: "/lovable-uploads/husqvarna.png" },
+    { name: "Kelly Louren", logo: "/lovable-uploads/kelly-louren.png" },
+    { name: "Nextrack", logo: "/lovable-uploads/nextrack.png" },
+    { name: "ShednAway", logo: "/lovable-uploads/shednaway.png" },
+    { name: "Natural Olera", logo: "/lovable-uploads/natural-olera.png" },
+    { name: "Hot! Momo", logo: "/lovable-uploads/hot-momo.png" },
+    { name: "Hot Pizza", logo: "/lovable-uploads/hot-pizza.png" },
+    { name: "Hot Burger", logo: "/lovable-uploads/hot-burger.png" },
+    { name: "Similipal Prakruti Niwas", logo: "/lovable-uploads/similipal-prakruti.jpg" },
+    { name: "HV", logo: "/lovable-uploads/hv-logo.jpg" }
   ];
 
   const testimonials = [
