@@ -54,7 +54,9 @@ const SevenDC = () => {
     { name: "Natural Olera", logo: "/lovable-uploads/natural-olera.png" },
     { name: "Hot! Momo", logo: "/lovable-uploads/hot-momo.png" },
     { name: "Hot Pizza", logo: "/lovable-uploads/hot-pizza.png" },
-    { name: "Hot Burger", logo: "/lovable-uploads/hot-burger.png" }
+    { name: "Hot Burger", logo: "/lovable-uploads/hot-burger.png" },
+    { name: "Similipal Prakruti Niwas", logo: "/lovable-uploads/similipal-prakruti.jpg" },
+    { name: "HV", logo: "/lovable-uploads/hv-logo.jpg" }
   ];
 
   const testimonials = [
