@@ -19,9 +19,7 @@ const VYBE = () => {
   ];
 
   const websites = [
-    { title: 'E-commerce Landing Page', description: 'Conversion-optimized design' },
-    { title: 'Campaign Microsite', description: 'Interactive brand experience' },
-    { title: 'Lead Generation Funnel', description: 'High-converting sales funnel' }
+    { title: 'Campaign Microsite', description: 'Interactive brand experience' }
   ];
 
   const clientLogos = [
