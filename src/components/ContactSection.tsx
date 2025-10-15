@@ -45,11 +45,11 @@ const ContactSection = () => {
                 <div>
                   <div className="font-semibold text-foreground">Phone</div>
                   <div className="space-y-1">
-                    <a href="tel:+919454560032" className="text-primary hover:text-primary-dark transition-colors block">
-                      +91 94545 60032 <span className="text-xs text-muted-foreground">(Primary)</span>
-                    </a>
                     <a href="tel:+918249695463" className="text-primary hover:text-primary-dark transition-colors block">
-                      +91 82496 95463
+                      +91 82496 95463 <span className="text-xs text-muted-foreground">(Primary)</span>
+                    </a>
+                    <a href="tel:+919454560032" className="text-primary hover:text-primary-dark transition-colors block">
+                      +91 94545 60032
                     </a>
                   </div>
                 </div>
@@ -137,7 +137,7 @@ const ContactSection = () => {
                   variant="outline" 
                   size="lg" 
                   className="w-full"
-                  onClick={() => window.open('tel:+919454560032', '_blank')}
+                  onClick={() => window.open('tel:+918249695463', '_blank')}
                 >
                   Call Now for Free Consultation
                 </Button>

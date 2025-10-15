@@ -296,7 +296,7 @@ const AVER = () => {
                 variant="outline" 
                 size="lg"
                 className="border-green-500/30 text-green-500 hover:bg-green-500 hover:text-white"
-                onClick={() => window.location.href = 'tel:+919454560032'}
+                onClick={() => window.location.href = 'tel:+918249695463'}
               >
                 <Phone className="h-5 w-5 mr-2" />
                 Call Now
