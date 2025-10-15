@@ -56,10 +56,7 @@ const VerticalsSection = () => {
         "Social Media Management & Strategy",
         "Performance Marketing (Meta, Google, LinkedIn Ads)",
         "Influencer Marketing & UGC Campaigns",
-        "Website Development & Landing Pages (Growth-Focused)",
-        "SEO & Content Marketing",
-        "Online Reputation Management (ORM)",
-        "Lead Generation Funnels & E-commerce Growth"
+        "Website Development & Landing Pages (Growth-Focused)"
       ],
       color: "from-primary to-primary-light"
     }
