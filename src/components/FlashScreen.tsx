@@ -38,9 +38,9 @@ const FlashScreen = () => {
             className="flex flex-col items-center gap-4"
           >
             <img
-              src="/lovable-uploads/hv-logo.jpg"
+              src="/lovable-uploads/wpix-logo.png"
               alt="WPIX Media"
-              className="w-32 h-32 rounded-full shadow-2xl"
+              className="w-48 h-auto shadow-2xl"
             />
             <motion.h1
               initial={{ y: 20, opacity: 0 }}
