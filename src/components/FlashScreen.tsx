@@ -29,27 +29,18 @@ const FlashScreen = () => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-gradient-to-br from-primary to-primary-dark"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-white"
         >
           <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
+            initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="flex flex-col items-center gap-4"
           >
             <img
               src="/lovable-uploads/wpix-logo.png"
               alt="WPIX Media"
-              className="w-48 h-auto shadow-2xl"
+              className="w-64 h-auto"
             />
-            <motion.h1
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-4xl font-bold text-white"
-            >
-              WPIX Media
-            </motion.h1>
           </motion.div>
         </motion.div>
       )}
