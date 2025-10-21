@@ -11,6 +11,8 @@ import SevenDC from "./pages/7DC";
 import AVER from "./pages/AVER";
 import VYBE from "./pages/VYBE";
 import NotFound from "./pages/NotFound";
+import AdminLeads from "./pages/AdminLeads";
+import AdminLogin from "./pages/AdminLogin";
 import FlashScreen from "@/components/FlashScreen";
 import ThemeToggle from "@/components/ThemeToggle";
 import Chatbot from "@/components/Chatbot";
@@ -34,6 +36,8 @@ const App = () => (
             <Route path="/7dc" element={<SevenDC />} />
             <Route path="/aver" element={<AVER />} />
             <Route path="/vybe" element={<VYBE />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/admin-leads" element={<AdminLeads />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

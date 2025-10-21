@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.75.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -13,10 +14,15 @@ serve(async (req) => {
   try {
     const { messages } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY");
 
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
+
+    // Initialize Supabase client
+    const supabase = createClient(SUPABASE_URL!, SUPABASE_ANON_KEY!);
 
     const systemPrompt = `WPIX AI Chatbot - Core Identity
 
@@ -165,6 +171,45 @@ Remember: Be conversational, helpful, and always guide users toward taking actio
 
     const data = await response.json();
     const aiResponse = data.choices[0].message.content;
+
+    // Check if lead information is being collected
+    const lastUserMessage = messages[messages.length - 1]?.content || "";
+    const containsEmail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/.test(lastUserMessage);
+    
+    if (containsEmail) {
+      // Extract lead information
+      const emailMatch = lastUserMessage.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+      const email = emailMatch ? emailMatch[0] : null;
+      
+      // Try to extract name and other info from conversation
+      let name = null;
+      let brandName = null;
+      let projectType = null;
+      
+      // Look for name patterns in recent messages
+      for (let i = messages.length - 1; i >= Math.max(0, messages.length - 5); i--) {
+        const msg = messages[i].content;
+        if (messages[i].role === "user") {
+          // Simple name detection - words that look like names
+          const words = msg.split(/\s+/);
+          if (words.length >= 2 && words[0].length > 2 && /^[A-Z][a-z]+/.test(words[0])) {
+            name = words.slice(0, 2).join(" ");
+          }
+        }
+      }
+      
+      // Save lead to database
+      if (email) {
+        await supabase.from("leads").insert({
+          name,
+          email,
+          brand_name: brandName,
+          project_type: projectType,
+          message: lastUserMessage,
+          conversation_data: messages,
+        });
+      }
+    }
 
     return new Response(
       JSON.stringify({ response: aiResponse }),
