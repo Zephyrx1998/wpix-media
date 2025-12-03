@@ -1,23 +1,27 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, ArrowRight, MessageCircle } from "lucide-react";
+import { ScrollReveal } from "@/hooks/useScrollReveal";
 
 const ContactSection = () => {
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-accent/20 to-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Let's Build <span className="text-primary">Something Amazing</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Ready to take your brand to the next level? Get in touch with our team and let's discuss how we can help you achieve your goals.
-          </p>
-        </div>
+        <ScrollReveal animation="fade-up">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+              Let's Build <span className="text-primary">Something Amazing</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Ready to take your brand to the next level? Get in touch with our team and let's discuss how we can help you achieve your goals.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <ScrollReveal animation="fade-right">
+            <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold mb-6 text-foreground">Get in Touch</h3>
               <p className="text-muted-foreground mb-8 leading-relaxed">
@@ -76,10 +80,12 @@ const ContactSection = () => {
                 <span>Free Strategy Session Included</span>
               </div>
             </div>
-          </div>
+            </div>
+          </ScrollReveal>
 
           {/* Contact Form / CTA */}
-          <div className="bg-card rounded-3xl p-8 shadow-medium border border-primary/10">
+          <ScrollReveal animation="fade-left" delay={200}>
+            <div className="bg-card rounded-3xl p-8 shadow-medium border border-primary/10">
             <h3 className="text-2xl font-bold mb-6 text-foreground">Start Your Project</h3>
             
             <div className="space-y-6">
@@ -143,7 +149,8 @@ const ContactSection = () => {
                 </Button>
               </div>
             </div>
-          </div>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
