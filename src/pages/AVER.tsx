@@ -2,69 +2,82 @@ import React from 'react';
 import { ArrowRight, Smartphone, Globe, Eye, Camera, Users, Star, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-
 const AVER = () => {
-  const services = [
-    {
-      title: "AR Interactive Ads",
-      icon: Smartphone,
-      features: [
-        "Image-based & marker-based interactive ads",
-        "Filters & immersive ad campaigns for Instagram, Snapchat, and webAR",
-        "Engaging, shareable formats to boost brand recall"
-      ]
-    },
-    {
-      title: "VR / 360° Virtual Tours",
-      icon: Globe,
-      features: [
-        "Real-estate: Flats, Villas, Commercial Spaces, Showrooms",
-        "Hospitality: Hotels, Resorts, Farmhouses",
-        "Education & Tourism walkthroughs",
-        "Created using Matterport, Insta360, Ricoh Theta for high-quality immersive experiences"
-      ]
-    }
-  ];
-
-  const portfolioItems = [
-    { title: "AR Product Launch Campaign", type: "AR Interactive" },
-    { title: "Luxury Villa Virtual Tour", type: "360° VR" },
-    { title: "Restaurant AR Menu", type: "AR Interactive" },
-    { title: "Resort Virtual Walkthrough", type: "360° VR" },
-    { title: "Automotive AR Showroom", type: "AR Interactive" },
-    { title: "Educational Campus Tour", type: "360° VR" }
-  ];
-
-  const clientLogos = [
-    { name: "Srinivasa Jewellers", logo: "/lovable-uploads/srinivasa-jewellers.png" },
-    { name: "Trendio", logo: "/lovable-uploads/trendio.png" },
-    { name: "Husqvarna", logo: "/lovable-uploads/husqvarna.png" },
-    { name: "Kelly Louren", logo: "/lovable-uploads/kelly-louren.png" },
-    { name: "Nextrack", logo: "/lovable-uploads/nextrack.png" },
-    { name: "ShednAway", logo: "/lovable-uploads/shednaway.png" },
-    { name: "Natural Olera", logo: "/lovable-uploads/natural-olera.png" },
-    { name: "Hot! Momo", logo: "/lovable-uploads/hot-momo.png" },
-    { name: "Hot Pizza", logo: "/lovable-uploads/hot-pizza.png" },
-    { name: "Hot Burger", logo: "/lovable-uploads/hot-burger.png" },
-    { name: "Similipal Prakruti Niwas", logo: "/lovable-uploads/similipal-prakruti.jpg" },
-    { name: "HV", logo: "/lovable-uploads/hv-logo.jpg" }
-  ];
-
-  const testimonials = [
-    {
-      quote: "AVER's virtual tour helped us close deals faster by giving customers a real feel of the property.",
-      author: "Real Estate Director",
-      company: "Premium Homes"
-    },
-    {
-      quote: "The AR campaign created by AVER increased our engagement rates by 300%. Truly immersive experiences!",
-      author: "Marketing Head",
-      company: "Tech Innovation"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const services = [{
+    title: "AR Interactive Ads",
+    icon: Smartphone,
+    features: ["Image-based & marker-based interactive ads", "Filters & immersive ad campaigns for Instagram, Snapchat, and webAR", "Engaging, shareable formats to boost brand recall"]
+  }, {
+    title: "VR / 360° Virtual Tours",
+    icon: Globe,
+    features: ["Real-estate: Flats, Villas, Commercial Spaces, Showrooms", "Hospitality: Hotels, Resorts, Farmhouses", "Education & Tourism walkthroughs", "Created using Matterport, Insta360, Ricoh Theta for high-quality immersive experiences"]
+  }];
+  const portfolioItems = [{
+    title: "AR Product Launch Campaign",
+    type: "AR Interactive"
+  }, {
+    title: "Luxury Villa Virtual Tour",
+    type: "360° VR"
+  }, {
+    title: "Restaurant AR Menu",
+    type: "AR Interactive"
+  }, {
+    title: "Resort Virtual Walkthrough",
+    type: "360° VR"
+  }, {
+    title: "Automotive AR Showroom",
+    type: "AR Interactive"
+  }, {
+    title: "Educational Campus Tour",
+    type: "360° VR"
+  }];
+  const clientLogos = [{
+    name: "Srinivasa Jewellers",
+    logo: "/lovable-uploads/srinivasa-jewellers.png"
+  }, {
+    name: "Trendio",
+    logo: "/lovable-uploads/trendio.png"
+  }, {
+    name: "Husqvarna",
+    logo: "/lovable-uploads/husqvarna.png"
+  }, {
+    name: "Kelly Louren",
+    logo: "/lovable-uploads/kelly-louren.png"
+  }, {
+    name: "Nextrack",
+    logo: "/lovable-uploads/nextrack.png"
+  }, {
+    name: "ShednAway",
+    logo: "/lovable-uploads/shednaway.png"
+  }, {
+    name: "Natural Olera",
+    logo: "/lovable-uploads/natural-olera.png"
+  }, {
+    name: "Hot! Momo",
+    logo: "/lovable-uploads/hot-momo.png"
+  }, {
+    name: "Hot Pizza",
+    logo: "/lovable-uploads/hot-pizza.png"
+  }, {
+    name: "Hot Burger",
+    logo: "/lovable-uploads/hot-burger.png"
+  }, {
+    name: "Similipal Prakruti Niwas",
+    logo: "/lovable-uploads/similipal-prakruti.jpg"
+  }, {
+    name: "HV",
+    logo: "/lovable-uploads/hv-logo.jpg"
+  }];
+  const testimonials = [{
+    quote: "AVER's virtual tour helped us close deals faster by giving customers a real feel of the property.",
+    author: "Real Estate Director",
+    company: "Premium Homes"
+  }, {
+    quote: "The AR campaign created by AVER increased our engagement rates by 300%. Truly immersive experiences!",
+    author: "Marketing Head",
+    company: "Tech Innovation"
+  }];
+  return <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-background via-accent/10 to-background overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.1),transparent_50%)]"></div>
@@ -88,12 +101,7 @@ const AVER = () => {
                 <p className="text-muted-foreground">Immersive virtual walkthroughs</p>
               </div>
             </div>
-            <Button 
-              variant="hero" 
-              size="lg"
-              className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-green-500/25"
-              onClick={() => window.location.href = '/#contact'}
-            >
+            <Button variant="hero" size="lg" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-green-500/25" onClick={() => window.location.href = '/#contact'}>
               Work With Us <ArrowRight className="h-5 w-5 ml-2" />
             </Button>
           </div>
@@ -114,9 +122,8 @@ const AVER = () => {
 
           <div className="grid md:grid-cols-2 gap-12">
             {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Card key={index} className="bg-card/80 backdrop-blur-sm border-green-500/20 hover:border-green-500/40 transition-all duration-300 group">
+            const IconComponent = service.icon;
+            return <Card key={index} className="bg-card/80 backdrop-blur-sm border-green-500/20 hover:border-green-500/40 transition-all duration-300 group">
                   <CardContent className="p-8">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -125,17 +132,14 @@ const AVER = () => {
                       <h3 className="text-2xl font-bold text-foreground">{service.title}</h3>
                     </div>
                     <ul className="space-y-3">
-                      {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-3">
+                      {service.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                           <span className="text-muted-foreground leading-relaxed">{feature}</span>
-                        </li>
-                      ))}
+                        </li>)}
                     </ul>
                   </CardContent>
-                </Card>
-              );
-            })}
+                </Card>;
+          })}
           </div>
         </div>
       </section>
@@ -157,15 +161,7 @@ const AVER = () => {
             <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 shadow-soft border border-green-500/10 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
               <h3 className="text-xl font-bold text-foreground mb-4 text-center">Commercial Real Estate</h3>
               <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-green-500/20">
-                <iframe
-                  src="https://my.matterport.com/show/?m=yDjxY8J8xZ6&log=0&help=0&nt=0&play=0&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=1&kb=1&lp=0&title=0&tourcta=1&vr=1"
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="xr-spatial-tracking"
-                  className="rounded-2xl"
-                ></iframe>
+                <iframe src="https://my.matterport.com/show/?m=yDjxY8J8xZ6&log=0&help=0&nt=0&play=0&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=1&kb=1&lp=0&title=0&tourcta=1&vr=1" width="100%" height="100%" frameBorder="0" allowFullScreen allow="xr-spatial-tracking" className="rounded-2xl"></iframe>
               </div>
               <p className="text-muted-foreground text-center mt-4">Explore premium commercial spaces in immersive detail</p>
             </div>
@@ -174,15 +170,7 @@ const AVER = () => {
             <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 shadow-soft border border-green-500/10 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
               <h3 className="text-xl font-bold text-foreground mb-4 text-center">Travel Hospitality</h3>
               <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-green-500/20">
-                <iframe
-                  src="https://my.matterport.com/show/?m=Hx7t1MsKi3W&log=0&help=0&nt=0&play=0&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=1&kb=1&lp=0&title=1&tourcta=1&vr=1"
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="xr-spatial-tracking"
-                  className="rounded-2xl"
-                ></iframe>
+                <iframe src="https://my.matterport.com/show/?m=Hx7t1MsKi3W&log=0&help=0&nt=0&play=0&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=1&kb=1&lp=0&title=1&tourcta=1&vr=1" width="100%" height="100%" frameBorder="0" allowFullScreen allow="xr-spatial-tracking" className="rounded-2xl"></iframe>
               </div>
               <p className="text-muted-foreground text-center mt-4">Experience luxury hospitality venues virtually</p>
             </div>
@@ -191,24 +179,14 @@ const AVER = () => {
             <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 shadow-soft border border-green-500/10 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
               <h3 className="text-xl font-bold text-foreground mb-4 text-center">Residential Villa</h3>
               <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-green-500/20">
-                <iframe
-                  src="https://my.matterport.com/show/?m=jm5WwEA3HUN&log=0&help=0&nt=0&play=1&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=0&kb=1&lp=0&title=0&tourcta=1&vr=1"
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="xr-spatial-tracking"
-                  className="rounded-2xl"
-                ></iframe>
+                <iframe src="https://my.matterport.com/show/?m=jm5WwEA3HUN&log=0&help=0&nt=0&play=1&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=0&kb=1&lp=0&title=0&tourcta=1&vr=1" width="100%" height="100%" frameBorder="0" allowFullScreen allow="xr-spatial-tracking" className="rounded-2xl"></iframe>
               </div>
               <p className="text-muted-foreground text-center mt-4">Tour beautiful residential properties in stunning detail</p>
             </div>
           </div>
 
           <div className="text-center">
-            <Button variant="outline" size="lg" className="border-green-500/30 text-green-500 hover:bg-green-500 hover:text-white">
-              View Full AR/VR Work <ArrowRight className="h-5 w-5 ml-2" />
-            </Button>
+            
           </div>
         </div>
       </section>
@@ -224,18 +202,9 @@ const AVER = () => {
 
           <div className="relative overflow-hidden">
             <div className="flex animate-scroll-left whitespace-nowrap">
-              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
-                <div 
-                  key={index}
-                  className="flex-shrink-0 mx-8 w-40 h-20 bg-card rounded-xl border border-green-500/10 flex items-center justify-center shadow-soft hover:shadow-medium hover:border-green-500/30 transition-all duration-300 p-4"
-                >
-                  <img 
-                    src={client.logo} 
-                    alt={client.name}
-                    className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                  />
-                </div>
-              ))}
+              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => <div key={index} className="flex-shrink-0 mx-8 w-40 h-20 bg-card rounded-xl border border-green-500/10 flex items-center justify-center shadow-soft hover:shadow-medium hover:border-green-500/30 transition-all duration-300 p-4">
+                  <img src={client.logo} alt={client.name} className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>)}
             </div>
           </div>
         </div>
@@ -251,13 +220,10 @@ const AVER = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-card/80 backdrop-blur-sm border-green-500/20 hover:border-green-500/40 transition-all duration-300">
+            {testimonials.map((testimonial, index) => <Card key={index} className="bg-card/80 backdrop-blur-sm border-green-500/20 hover:border-green-500/40 transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-green-500 text-green-500" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-green-500 text-green-500" />)}
                   </div>
                   <blockquote className="text-lg text-muted-foreground mb-6 leading-relaxed italic">
                     "{testimonial.quote}"
@@ -267,8 +233,7 @@ const AVER = () => {
                     <div className="text-green-500 font-medium">{testimonial.company}</div>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -284,20 +249,10 @@ const AVER = () => {
               Transform your brand with immersive AR and VR experiences that captivate, engage, and convert.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="hero" 
-                size="lg"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-green-500/25"
-                onClick={() => window.location.href = '/#contact'}
-              >
+              <Button variant="hero" size="lg" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-green-500/25" onClick={() => window.location.href = '/#contact'}>
                 Let's Create Your AR/VR Experience <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-green-500/30 text-green-500 hover:bg-green-500 hover:text-white"
-                onClick={() => window.location.href = 'tel:+918249695463'}
-              >
+              <Button variant="outline" size="lg" className="border-green-500/30 text-green-500 hover:bg-green-500 hover:text-white" onClick={() => window.location.href = 'tel:+918249695463'}>
                 <Phone className="h-5 w-5 mr-2" />
                 Call Now
               </Button>
@@ -305,8 +260,6 @@ const AVER = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default AVER;
