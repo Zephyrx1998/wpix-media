@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Camera, Video, FileVideo, Zap, Users, Award, Film } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const WCF = () => {
   const navigate = useNavigate();
@@ -39,44 +40,32 @@ const WCF = () => {
     }
   ];
 
-  const portfolioItems = [
-    { 
-      id: 1, 
-      title: "Brand Commercial", 
-      category: "TV Ad",
-      videoUrl: "https://drive.google.com/file/d/16C6Xmt7biCXGI7OW58_dbHoIsLQPEjiu/preview"
-    },
-    { 
-      id: 2, 
-      title: "Tech Startup", 
-      category: "Explainer",
-      videoUrl: "https://drive.google.com/file/d/1bqmShQNXw6w2x2Z99za0s5sIgLAc7Q0Y/preview"
-    },
-    { 
-      id: 3, 
-      title: "Influencer Campaign", 
-      category: "UGC",
-      videoUrl: "https://drive.google.com/file/d/1T7kwssyvYFVIb7fu00sJLOYZ93RS2x3C/preview"
-    },
-    { 
-      id: 4, 
-      title: "Social Reels", 
-      category: "Social Media",
-      videoUrl: "https://drive.google.com/file/d/1b5MX68KLY5X1hP78lwfwtqBy45YeFG3y/preview"
-    },
-    { 
-      id: 5, 
-      title: "Product Launch", 
-      category: "Digital",
-      videoUrl: "https://drive.google.com/file/d/1sKpjwKD92FcLoqdowJqMiyYl-R6EoUNi/preview"
-    },
-    { 
-      id: 6, 
-      title: "Real-estate", 
-      category: "Brand Film",
-      videoUrl: "https://drive.google.com/file/d/1t5krFPS_O3TBT8hwJl0ObL32242SnHyS/preview"
-    }
-  ];
+  const portfolioCategories = {
+    "Social Media Reels": [
+      { id: 1, title: "Social Reel 1", videoUrl: "https://drive.google.com/file/d/1R25ZtAfQsCXOJEG3poR5gYAA3Sp68x_r/preview" },
+      { id: 2, title: "Social Reel 2", videoUrl: "https://drive.google.com/file/d/1Gj2xDY3S9UDwUQm9VoA1WW_BqyHY4yTo/preview" },
+      { id: 3, title: "Social Reel 3", videoUrl: "https://drive.google.com/file/d/1t-Qs2uiG-VoKPmA-r5xaOInTo3s3NWtN/preview" },
+      { id: 4, title: "Social Reel 4", videoUrl: "https://drive.google.com/file/d/14D1f4yAgvV8JU3jCHpXA61cZru9Upacu/preview" },
+      { id: 5, title: "Social Reel 5", videoUrl: "https://drive.google.com/file/d/14M1yJ4GoFbsidxhr48uDe9SMTGlYTZc5/preview" },
+      { id: 6, title: "Social Reel 6", videoUrl: "https://drive.google.com/file/d/1akRnZVu9xW5yOpmikyMISXF0VZrRCB14/preview" },
+    ],
+    "Ad Film/TVC": [
+      { id: 1, title: "Ad Film 1", videoUrl: "https://drive.google.com/file/d/16C6Xmt7biCXGI7OW58_dbHoIsLQPEjiu/preview" },
+      { id: 2, title: "Ad Film 2", videoUrl: "https://drive.google.com/file/d/1sV7xMkmxvWCjc2d27HuWcIK0CtWB6cxq/preview" },
+    ],
+    "Real Estate": [
+      { id: 1, title: "Real Estate 1", videoUrl: "https://drive.google.com/file/d/1Pr8nDZHLQ1-r9f7PnMx3s8mHogAUY_lA/preview" },
+      { id: 2, title: "Real Estate 2", videoUrl: "https://drive.google.com/file/d/1t5krFPS_O3TBT8hwJl0ObL32242SnHyS/preview" },
+    ],
+    "UGC": [
+      { id: 1, title: "UGC 1", videoUrl: "https://drive.google.com/file/d/18aci0v-zVaYk-8VP5_A1hJ4O2cNn3dbv/preview" },
+      { id: 2, title: "UGC 2", videoUrl: "https://drive.google.com/file/d/1T7kwssyvYFVIb7fu00sJLOYZ93RS2x3C/preview" },
+      { id: 3, title: "UGC 3", videoUrl: "https://drive.google.com/file/d/1K4E2hf6tdKiabEa0xsOh6zASmXMTionI/preview" },
+    ],
+    "Corporate": [
+      { id: 1, title: "Corporate Film", videoUrl: "https://drive.google.com/file/d/1_X8Uc9l2SZbMQ_gndBGcVk12gaLHf0hO/preview" },
+    ],
+  };
 
   const clientLogos = [
     { name: "Srinivasa Jewellers", logo: "/lovable-uploads/srinivasa-jewellers.png" },
@@ -217,24 +206,40 @@ const WCF = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Our Work in Action</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioItems.map((item) => (
-              <div key={item.id} className="bg-card rounded-2xl overflow-hidden shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300">
-                <div className="aspect-video bg-background">
-                  <iframe
-                    src={item.videoUrl}
-                    className="w-full h-full"
-                    allow="autoplay"
-                    allowFullScreen
-                  />
+          <Tabs defaultValue="Social Media Reels" className="w-full">
+            <TabsList className="flex flex-wrap justify-center gap-2 mb-8 bg-transparent h-auto">
+              {Object.keys(portfolioCategories).map((category) => (
+                <TabsTrigger
+                  key={category}
+                  value={category}
+                  className="px-4 py-2 rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                >
+                  {category}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            {Object.entries(portfolioCategories).map(([category, items]) => (
+              <TabsContent key={category} value={category}>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {items.map((item) => (
+                    <div key={item.id} className="bg-card rounded-2xl overflow-hidden shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300">
+                      <div className="aspect-video bg-background">
+                        <iframe
+                          src={item.videoUrl}
+                          className="w-full h-full"
+                          allow="autoplay"
+                          allowFullScreen
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-semibold text-foreground">{item.title}</h4>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="p-4">
-                  <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground">{item.category}</p>
-                </div>
-              </div>
+              </TabsContent>
             ))}
-          </div>
+          </Tabs>
         </div>
       </section>
 
