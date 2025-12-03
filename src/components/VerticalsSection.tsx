@@ -1,6 +1,7 @@
 import React from 'react';
 import { Palette, Box, Camera, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ScrollReveal } from "@/hooks/useScrollReveal";
 
 const VerticalsSection = () => {
   const verticals = [
@@ -65,23 +66,25 @@ const VerticalsSection = () => {
   return (
     <section id="verticals" className="py-20 bg-gradient-to-b from-accent/20 to-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Our <span className="text-primary">Verticals</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Four specialized arms working together to deliver comprehensive brand solutions across every aspect of your business growth.
-          </p>
-        </div>
+        <ScrollReveal animation="fade-up">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+              Our <span className="text-primary">Verticals</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Four specialized arms working together to deliver comprehensive brand solutions across every aspect of your business growth.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {verticals.map((vertical, index) => {
             const IconComponent = vertical.icon;
             return (
-              <div 
-                key={vertical.name}
-                className="bg-card rounded-3xl p-8 shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300 group"
-              >
+              <ScrollReveal key={vertical.name} animation="fade-up" delay={index * 100}>
+                <div 
+                  className="bg-card rounded-3xl p-8 shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300 group h-full"
+                >
                 <div className="flex items-start gap-6 mb-6">
                   <div className={`w-16 h-16 bg-gradient-to-br ${vertical.color} rounded-2xl flex items-center justify-center shadow-soft group-hover:scale-110 transition-transform duration-300`}>
                     <IconComponent className="h-8 w-8 text-primary-foreground" />
@@ -125,7 +128,8 @@ const VerticalsSection = () => {
                 >
                   Learn More About {vertical.name}
                 </Button>
-              </div>
+                </div>
+              </ScrollReveal>
             );
           })}
         </div>
