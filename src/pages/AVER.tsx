@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Smartphone, Globe, Eye, Camera, Users, Star, Phone, Mail } from 'lucide-react';
+import AVERPricingSection from '@/components/AVERPricingSection';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 const AVER = () => {
@@ -237,6 +238,9 @@ const AVER = () => {
           </div>
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <AVERPricingSection />
 
       {/* Call to Action Section */}
       <section className="py-20 bg-gradient-to-br from-green-500/10 via-emerald-600/10 to-green-500/10">
