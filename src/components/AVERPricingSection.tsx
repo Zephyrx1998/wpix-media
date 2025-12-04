@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Minus, Lightbulb, Calculator, Building, UtensilsCrossed, Hotel } from 'lucide-react';
+import { Check, Minus, Lightbulb, Calculator, Building, UtensilsCrossed, Hotel, Home } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -20,7 +20,7 @@ interface PricingPackage {
 const packages: PricingPackage[] = [
   {
     name: "Starter",
-    subtitle: "Small Businesses",
+    subtitle: "Small Spaces",
     oneTimeBase: 25000,
     monthlyFee: 2000,
     features: [
@@ -31,8 +31,9 @@ const packages: PricingPackage[] = [
       "Customer Support"
     ],
     bestFor: [
-      "Small shops",
-      "Single offices",
+      "Small Shops & Boutiques",
+      "Single Offices",
+      "Apartments & Flats",
       "Up to 2,000 sqft"
     ]
   },
@@ -55,13 +56,14 @@ const packages: PricingPackage[] = [
       "Restaurants & Cafes",
       "Real Estate Offices",
       "Retail Chains",
+      "Villas & Homes",
       "2,000-5,000 sqft"
     ],
     isPopular: true
   },
   {
     name: "Premium",
-    subtitle: "Luxury Brands",
+    subtitle: "Luxury Properties",
     oneTimeBase: 25000,
     oneTimePerSqft: 10,
     monthlyFee: 3500,
@@ -76,9 +78,10 @@ const packages: PricingPackage[] = [
       "Social Media Assets"
     ],
     bestFor: [
-      "Luxury Hotels",
+      "Luxury Hotels & Resorts",
       "Premium Restaurants",
       "Corporate Offices",
+      "Luxury Villas & Bungalows",
       "5,000+ sqft"
     ]
   }
@@ -139,6 +142,7 @@ const formatCurrency = (amount: number): string => {
 const AVERPricingSection = () => {
   const [sqft, setSqft] = useState<string>('');
   const [selectedPackage, setSelectedPackage] = useState<string>('');
+  const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('yearly');
   const [calculatedPrice, setCalculatedPrice] = useState<{
     oneTime: number;
     monthly: number;
@@ -171,6 +175,26 @@ const AVERPricingSection = () => {
     });
   };
 
+  const getDisplayPrice = (pkg: PricingPackage) => {
+    if (billingPeriod === 'monthly') {
+      return {
+        primary: formatCurrency(pkg.monthlyFee),
+        period: '/month',
+        secondary: pkg.oneTimePerSqft 
+          ? `+ ${formatCurrency(pkg.oneTimeBase)}+ one-time setup` 
+          : `+ ${formatCurrency(pkg.oneTimeBase)} one-time setup`
+      };
+    } else {
+      const annual = pkg.monthlyFee * 12;
+      const year1Total = pkg.oneTimeBase + annual;
+      return {
+        primary: formatCurrency(year1Total) + (pkg.oneTimePerSqft ? '+' : ''),
+        period: '/year (Year 1)',
+        secondary: `Then ${formatCurrency(annual)}/year`
+      };
+    }
+  };
+
   const getYear1Total = (pkg: PricingPackage): string => {
     const baseTotal = pkg.oneTimeBase + (pkg.monthlyFee * 12);
     if (pkg.oneTimePerSqft) {
@@ -190,13 +214,38 @@ const AVERPricingSection = () => {
     <section className="py-20 bg-gradient-to-b from-background to-accent/10">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
             Our <span className="text-green-500">Pricing Plans</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Choose the package that fits your business
           </p>
+
+          {/* Billing Toggle */}
+          <div className="inline-flex items-center bg-card border border-green-500/20 rounded-full p-1 gap-1">
+            <button
+              onClick={() => setBillingPeriod('monthly')}
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                billingPeriod === 'monthly'
+                  ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setBillingPeriod('yearly')}
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                billingPeriod === 'yearly'
+                  ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Yearly
+              <span className="ml-2 text-xs bg-white/20 px-2 py-0.5 rounded-full">Best Value</span>
+            </button>
+          </div>
         </div>
 
         {/* Key Message Banner */}
@@ -224,7 +273,9 @@ const AVERPricingSection = () => {
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {packages.map((pkg, index) => (
+          {packages.map((pkg, index) => {
+            const displayPrice = getDisplayPrice(pkg);
+            return (
             <Card 
               key={index} 
               className={`relative bg-card border-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ${
@@ -245,33 +296,20 @@ const AVERPricingSection = () => {
               </CardHeader>
               
               <CardContent className="p-6">
-                {/* Pricing */}
+                {/* Pricing - Tab Based */}
                 <div className="space-y-3 mb-6 pb-6 border-b border-green-500/20">
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">One-Time:</span>
-                    <span className="font-bold text-green-500">
-                      {pkg.oneTimePerSqft ? `${formatCurrency(pkg.oneTimeBase)}+` : formatCurrency(pkg.oneTimeBase)}
-                    </span>
+                  <div className="text-center">
+                    <span className="text-3xl font-bold text-green-500">{displayPrice.primary}</span>
+                    <span className="text-sm text-muted-foreground">{displayPrice.period}</span>
                   </div>
-                  {pkg.oneTimePerSqft && (
-                    <p className="text-xs text-muted-foreground text-right">
-                      ({formatCurrency(pkg.oneTimeBase)} + ₹{pkg.oneTimePerSqft}/sqft)
+                  <p className="text-xs text-muted-foreground text-center">
+                    {displayPrice.secondary}
+                  </p>
+                  {billingPeriod === 'monthly' && pkg.oneTimePerSqft && (
+                    <p className="text-xs text-muted-foreground text-center">
+                      (Base + ₹{pkg.oneTimePerSqft}/sqft over 2,000 sqft)
                     </p>
                   )}
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Monthly:</span>
-                    <span className="font-bold text-foreground">{formatCurrency(pkg.monthlyFee)}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Annual:</span>
-                    <span className="font-medium text-foreground">{formatCurrency(pkg.monthlyFee * 12)}</span>
-                  </div>
-                  <div className="pt-3 border-t border-dashed border-green-500/30">
-                    <div className="flex justify-between items-center">
-                      <span className="font-semibold text-foreground">YEAR 1 TOTAL:</span>
-                      <span className="text-xl font-bold text-green-500">{getYear1Total(pkg)}</span>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Features */}
@@ -310,7 +348,8 @@ const AVERPricingSection = () => {
                 </Button>
               </CardContent>
             </Card>
-          ))}
+            );
+          })}
         </div>
 
         {/* Price Calculator */}
