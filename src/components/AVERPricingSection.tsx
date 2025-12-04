@@ -223,7 +223,7 @@ const AVERPricingSection = () => {
           </p>
 
           {/* Billing Toggle */}
-          <div className="inline-flex items-center bg-card border border-green-500/20 rounded-full p-1 gap-1">
+          <div className="relative inline-flex items-center bg-card border border-green-500/20 rounded-full p-1 gap-1">
             <button
               onClick={() => setBillingPeriod('monthly')}
               className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
@@ -236,15 +236,22 @@ const AVERPricingSection = () => {
             </button>
             <button
               onClick={() => setBillingPeriod('yearly')}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 relative ${
                 billingPeriod === 'yearly'
                   ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
               Yearly
-              <span className="ml-2 text-xs bg-white/20 px-2 py-0.5 rounded-full">Best Value</span>
+              {billingPeriod === 'yearly' && (
+                <span className="ml-2 text-xs bg-white/20 px-2 py-0.5 rounded-full">Save 2 Months</span>
+              )}
             </button>
+            {billingPeriod !== 'yearly' && (
+              <Badge className="absolute -top-3 -right-3 bg-orange-500 text-white text-xs border-0 animate-pulse">
+                Save 2 Months!
+              </Badge>
+            )}
           </div>
         </div>
 
