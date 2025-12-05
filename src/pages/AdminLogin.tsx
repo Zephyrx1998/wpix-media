@@ -30,14 +30,8 @@ const AdminLogin = () => {
       if (error) throw error;
 
       if (data.user) {
-        // Automatically assign admin role to the first user (sambit@wpixmedia.com)
-        if (email === "sambit@wpixmedia.com") {
-          await supabase.from("user_roles").insert({
-            user_id: data.user.id,
-            role: "admin",
-          });
-        }
-
+        // Note: Admin roles must be assigned through the database directly by an existing admin.
+        // Client-side role assignment is blocked by RLS policies for security.
         toast({
           title: "Success",
           description: "Account created successfully. You can now login.",
