@@ -19,7 +19,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-md z-50 border-b border-primary/10 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-[hsl(var(--glass-border))]">
       <div className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link to="/" className="flex items-center gap-3">
@@ -77,10 +77,10 @@ const Navigation = () => {
           )}
           <Link 
             to="/ai-toolkit"
-            className={`px-3 py-1 rounded-md transition-colors ${
+            className={`px-3 py-1.5 rounded-lg transition-all duration-300 ${
               location.pathname === '/ai-toolkit' 
-                ? 'bg-primary text-primary-foreground' 
-                : 'text-primary hover:bg-primary/10'
+                ? 'bg-primary text-primary-foreground shadow-[var(--glass-shadow)]' 
+                : 'text-primary hover:bg-[hsl(var(--glass-bg))] hover:backdrop-blur-md'
             }`}
           >
             AI Toolkit
@@ -101,7 +101,7 @@ const Navigation = () => {
 
         {/* Mobile Menu Button */}
         <Button
-          variant="ghost"
+          variant="glass"
           size="icon"
           className="md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -111,7 +111,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-background border-b border-primary/10 md:hidden">
+          <div className="absolute top-full left-0 right-0 glass-panel border-b border-[hsl(var(--glass-border))] md:hidden">
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
               {isHomePage ? (
                 <>

@@ -78,7 +78,7 @@ const Chatbot = () => {
             <Button
               onClick={() => setIsOpen(true)}
               size="lg"
-              className="rounded-full w-16 h-16 shadow-2xl bg-primary hover:bg-primary-dark transition-all duration-300 hover:scale-110"
+              className="rounded-full w-16 h-16 bg-primary hover:bg-primary-dark shadow-[var(--glass-shadow-hover)] hover:shadow-[0_20px_60px_-12px_hsl(var(--primary)/0.4)] transition-all duration-300 hover:scale-110"
             >
               <MessageCircle className="h-7 w-7" />
             </Button>
@@ -98,10 +98,10 @@ const Chatbot = () => {
             }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-6 right-6 w-96 max-w-[calc(100vw-3rem)] bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-6 right-6 w-96 max-w-[calc(100vw-3rem)] rounded-2xl z-50 flex flex-col overflow-hidden bg-[hsl(var(--glass-bg))] backdrop-blur-xl border border-[hsl(var(--glass-border))] shadow-[var(--glass-shadow-hover),var(--glass-inset)]"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-border bg-primary text-primary-foreground">
+            <div className="flex items-center justify-between p-4 border-b border-[hsl(var(--glass-border))] bg-primary/90 backdrop-blur-md text-primary-foreground">
               <div className="flex items-center gap-2">
                 <MessageCircle className="h-5 w-5" />
                 <h3 className="font-semibold">WPIX Assistant</h3>
@@ -111,7 +111,7 @@ const Chatbot = () => {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsMinimized(!isMinimized)}
-                  className="h-8 w-8 text-primary-foreground hover:bg-primary-dark"
+                  className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
                 >
                   <Minimize2 className="h-4 w-4" />
                 </Button>
@@ -119,7 +119,7 @@ const Chatbot = () => {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsOpen(false)}
-                  className="h-8 w-8 text-primary-foreground hover:bg-primary-dark"
+                  className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -141,8 +141,8 @@ const Chatbot = () => {
                         <div
                           className={`max-w-[80%] rounded-2xl px-4 py-2 ${
                             message.role === "user"
-                              ? "bg-primary text-primary-foreground"
-                              : "bg-muted text-foreground"
+                              ? "bg-primary text-primary-foreground shadow-[var(--glass-shadow)]"
+                              : "bg-[hsl(var(--glass-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] text-foreground shadow-[var(--glass-inset)]"
                           }`}
                         >
                           <p className="text-sm">{message.content}</p>
@@ -151,7 +151,7 @@ const Chatbot = () => {
                     ))}
                     {isLoading && (
                       <div className="flex justify-start">
-                        <div className="bg-muted rounded-2xl px-4 py-2">
+                        <div className="bg-[hsl(var(--glass-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] rounded-2xl px-4 py-2 shadow-[var(--glass-inset)]">
                           <div className="flex gap-1">
                             <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
                             <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-100" />
@@ -164,7 +164,7 @@ const Chatbot = () => {
                 </ScrollArea>
 
                 {/* Input */}
-                <div className="p-4 border-t border-border">
+                <div className="p-4 border-t border-[hsl(var(--glass-border))]">
                   <div className="flex gap-2">
                     <Input
                       value={input}
