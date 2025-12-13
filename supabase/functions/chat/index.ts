@@ -2,10 +2,57 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.75.1";
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
+// Allowed origins for CORS - restrict to production domain
+const ALLOWED_ORIGINS = [
+  "https://spfrnjfqibluulttomvm.lovableproject.com",
+  "https://wpixmedia.com",
+  "https://www.wpixmedia.com",
+];
+
+// Simple in-memory rate limiting (per IP, 10 requests per minute)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_REQUESTS = 10;
+const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
+
+function checkRateLimit(ip: string): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true };
+  }
+  
+  if (record.count >= RATE_LIMIT_REQUESTS) {
+    const retryAfter = Math.ceil((record.resetTime - now) / 1000);
+    return { allowed: false, retryAfter };
+  }
+  
+  record.count++;
+  return { allowed: true };
+}
+
+// Cleanup old rate limit entries periodically (every 5 minutes)
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, record] of rateLimitMap.entries()) {
+    if (now > record.resetTime) {
+      rateLimitMap.delete(ip);
+    }
+  }
+}, 300000);
+
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.some(allowed => 
+    origin === allowed || origin.endsWith('.lovableproject.com')
+  ) ? origin : ALLOWED_ORIGINS[0];
+  
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+  };
+}
 
 // Input validation schema
 const messageSchema = z.object({
@@ -16,8 +63,33 @@ const messageSchema = z.object({
 const messagesSchema = z.array(messageSchema).max(50, "Too many messages in conversation");
 
 serve(async (req) => {
+  const origin = req.headers.get("origin");
+  const corsHeaders = getCorsHeaders(origin);
+  
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Get client IP for rate limiting
+  const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                   req.headers.get("cf-connecting-ip") || 
+                   "unknown";
+  
+  // Check rate limit
+  const rateLimitResult = checkRateLimit(clientIP);
+  if (!rateLimitResult.allowed) {
+    console.log(`Rate limit exceeded for IP: ${clientIP}`);
+    return new Response(
+      JSON.stringify({ error: "Too many requests. Please try again later." }),
+      { 
+        status: 429, 
+        headers: { 
+          ...corsHeaders, 
+          "Content-Type": "application/json",
+          "Retry-After": String(rateLimitResult.retryAfter || 60)
+        } 
+      }
+    );
   }
 
   try {
@@ -28,7 +100,7 @@ serve(async (req) => {
     if (!validationResult.success) {
       console.error("Validation error:", validationResult.error.errors);
       return new Response(
-        JSON.stringify({ error: "Invalid message format", details: validationResult.error.errors }),
+        JSON.stringify({ error: "Invalid message format" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -239,7 +311,7 @@ Remember: Be conversational, helpful, and always guide users toward taking actio
   } catch (error) {
     console.error("Chat error:", error);
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
+      JSON.stringify({ error: "An error occurred. Please try again." }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
