@@ -13,8 +13,6 @@ import VYBE from "./pages/VYBE";
 import NotFound from "./pages/NotFound";
 import AdminLeads from "./pages/AdminLeads";
 import AdminLogin from "./pages/AdminLogin";
-import FlashScreen from "@/components/FlashScreen";
-import ThemeToggle from "@/components/ThemeToggle";
 import Chatbot from "@/components/Chatbot";
 
 const queryClient = new QueryClient();
@@ -25,8 +23,6 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <FlashScreen />
-        <ThemeToggle />
         <Chatbot />
         <BrowserRouter>
           <Routes>
