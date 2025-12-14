@@ -68,10 +68,8 @@ const AdminLeads = () => {
 
   const fetchLeads = async () => {
     try {
-      const { data, error } = await supabase
-        .from("leads")
-        .select("*")
-        .order("created_at", { ascending: false });
+      // Use the secure RPC function that decrypts PII fields server-side
+      const { data, error } = await supabase.rpc("get_decrypted_leads");
 
       if (error) throw error;
       setLeads(data || []);

@@ -20,10 +20,12 @@ export type Database = {
           conversation_data: Json | null
           created_at: string | null
           email: string | null
+          email_encrypted: string | null
           id: string
           message: string | null
           name: string | null
           phone: string | null
+          phone_encrypted: string | null
           project_type: string | null
           status: string | null
         }
@@ -32,10 +34,12 @@ export type Database = {
           conversation_data?: Json | null
           created_at?: string | null
           email?: string | null
+          email_encrypted?: string | null
           id?: string
           message?: string | null
           name?: string | null
           phone?: string | null
+          phone_encrypted?: string | null
           project_type?: string | null
           status?: string | null
         }
@@ -44,10 +48,12 @@ export type Database = {
           conversation_data?: Json | null
           created_at?: string | null
           email?: string | null
+          email_encrypted?: string | null
           id?: string
           message?: string | null
           name?: string | null
           phone?: string | null
+          phone_encrypted?: string | null
           project_type?: string | null
           status?: string | null
         }
@@ -76,6 +82,23 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      decrypt_pii: { Args: { ciphertext: string }; Returns: string }
+      encrypt_pii: { Args: { plaintext: string }; Returns: string }
+      get_decrypted_leads: {
+        Args: never
+        Returns: {
+          brand_name: string
+          conversation_data: Json
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string
+          project_type: string
+          status: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
