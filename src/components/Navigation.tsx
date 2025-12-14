@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useTheme } from "next-themes";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
 
   const scrollToSection = (sectionId: string) => {
     if (isHomePage) {
@@ -85,6 +91,15 @@ const Navigation = () => {
           >
             AI Toolkit
           </Link>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="text-foreground hover:text-primary"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </Button>
           <Button 
             variant="hero" 
             size="sm"
@@ -166,6 +181,13 @@ const Navigation = () => {
               >
                 AI Toolkit
               </Link>
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 text-left text-foreground hover:text-primary transition-colors"
+              >
+                {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+              </button>
               <Button 
                 variant="hero" 
                 size="sm"
