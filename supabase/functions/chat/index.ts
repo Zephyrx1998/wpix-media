@@ -42,16 +42,28 @@ setInterval(() => {
   }
 }, 300000);
 
+// Spam detection patterns
+const SPAM_PATTERNS = /viagra|casino|crypto|lottery|click here|free money|make money fast|weight loss|bitcoin trading/i;
+
 function getCorsHeaders(origin: string | null): Record<string, string> {
-  const allowedOrigin = origin && ALLOWED_ORIGINS.some(allowed => 
-    origin === allowed || origin.endsWith('.lovableproject.com')
-  ) ? origin : ALLOWED_ORIGINS[0];
+  // Exact match only - no wildcards for security
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) 
+    ? origin 
+    : ALLOWED_ORIGINS[0];
   
   return {
     "Access-Control-Allow-Origin": allowedOrigin,
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
   };
+}
+
+// Strip HTML tags to prevent stored XSS
+function stripHtml(text: string): string {
+  return text
+    .replace(/<script[^>]*>.*?<\/script>/gi, '') // Remove script tags and content
+    .replace(/<[^>]*>/g, '') // Remove all HTML tags
+    .trim();
 }
 
 // Input validation schema
@@ -106,6 +118,16 @@ serve(async (req) => {
     }
     
     const messages = validationResult.data;
+    
+    // Check for spam patterns in user messages
+    const userMessages = messages.filter(m => m.role === "user").map(m => m.content).join(" ");
+    if (SPAM_PATTERNS.test(userMessages)) {
+      console.log(`Spam detected from IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: "Invalid message content" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
     const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY");
@@ -286,20 +308,26 @@ Remember: Be conversational, helpful, and always guide users toward taking actio
           // Simple name detection - words that look like names
           const words = msg.split(/\s+/);
           if (words.length >= 2 && words[0].length > 2 && /^[A-Z][a-z]+/.test(words[0])) {
-            name = words.slice(0, 2).join(" ");
+            name = stripHtml(words.slice(0, 2).join(" "));
           }
         }
       }
       
-      // Save lead to database
+      // Save lead to database with sanitized content
       if (email) {
+        // Sanitize conversation data to prevent stored XSS
+        const sanitizedMessages = messages.map(m => ({
+          ...m,
+          content: stripHtml(m.content)
+        }));
+        
         await supabase.from("leads").insert({
           name,
-          email,
-          brand_name: brandName,
-          project_type: projectType,
-          message: lastUserMessage,
-          conversation_data: messages,
+          email: email.toLowerCase().trim(),
+          brand_name: brandName ? stripHtml(brandName) : null,
+          project_type: projectType ? stripHtml(projectType) : null,
+          message: stripHtml(lastUserMessage),
+          conversation_data: sanitizedMessages,
         });
       }
     }
