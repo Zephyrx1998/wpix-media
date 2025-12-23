@@ -22,7 +22,7 @@ const packages: PricingPackage[] = [
     name: "Starter",
     subtitle: "Small Spaces",
     oneTimeBase: 25000,
-    monthlyFee: 2000,
+    monthlyFee: 3000,
     features: [
       "360° Virtual Tour",
       "Website Embed",
@@ -42,7 +42,7 @@ const packages: PricingPackage[] = [
     subtitle: "Growing Businesses",
     oneTimeBase: 25000,
     oneTimePerSqft: 10,
-    monthlyFee: 3000,
+    monthlyFee: 3500,
     features: [
       "All Starter features",
       "Professional Floor Plan",
@@ -66,7 +66,7 @@ const packages: PricingPackage[] = [
     subtitle: "Luxury Properties",
     oneTimeBase: 25000,
     oneTimePerSqft: 10,
-    monthlyFee: 3500,
+    monthlyFee: 4000,
     features: [
       "All Professional features",
       "Quarterly Photo Update",
@@ -89,8 +89,8 @@ const packages: PricingPackage[] = [
 
 const comparisonData = [
   { feature: "Property Size", starter: "Up to 2K sqft", professional: "2K-5K sqft", premium: "5K+ sqft" },
-  { feature: "Monthly Fee", starter: "₹2,000", professional: "₹3,000", premium: "₹3,500" },
-  { feature: "Year 1 Cost", starter: "~₹49K", professional: "~₹76K+", premium: "~₹107K+" },
+  { feature: "Monthly Fee", starter: "₹3,000", professional: "₹3,500", premium: "₹4,000" },
+  { feature: "Year 1 Cost", starter: "~₹61K", professional: "~₹82K+", premium: "~₹113K+" },
   { feature: "360° Tour", starter: true, professional: true, premium: true },
   { feature: "Floor Plan", starter: false, professional: true, premium: true },
   { feature: "Analytics", starter: "Basic", professional: "Advanced", premium: "Advanced" },
@@ -105,9 +105,9 @@ const realExamples = [
     package: "Starter",
     sqft: 1000,
     oneTime: 25000,
-    monthly: 2000,
-    year1Total: 49000,
-    year2Plus: 24000
+    monthly: 3000,
+    year1Total: 61000,
+    year2Plus: 36000
   },
   {
     title: "3,500 sqft Restaurant",
@@ -115,9 +115,9 @@ const realExamples = [
     package: "Professional",
     sqft: 3500,
     oneTime: 40000,
-    monthly: 3000,
-    year1Total: 76000,
-    year2Plus: 36000
+    monthly: 3500,
+    year1Total: 82000,
+    year2Plus: 42000
   },
   {
     title: "6,000 sqft Hotel",
@@ -125,9 +125,9 @@ const realExamples = [
     package: "Premium",
     sqft: 6000,
     oneTime: 65000,
-    monthly: 3500,
-    year1Total: 107000,
-    year2Plus: 42000
+    monthly: 4000,
+    year1Total: 113000,
+    year2Plus: 48000
   }
 ];
 
@@ -268,7 +268,7 @@ const AVERPricingSection = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-4 w-4 text-green-500" />
-                  <span><strong>MONTHLY FEE:</strong> Keep your tour live & updated (₹2,000-3,500/month)</span>
+                  <span><strong>MONTHLY FEE:</strong> Keep your tour live & updated (₹3,000-4,000/month)</span>
                 </li>
               </ul>
               <p className="mt-3 font-medium text-foreground">
