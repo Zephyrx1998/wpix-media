@@ -3,19 +3,12 @@ import { ArrowRight, Globe, Eye, Camera, Users, Star, Phone, Mail, Play } from '
 import AVERPricingSection from '@/components/AVERPricingSection';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-
 const AVER = () => {
   const services = [{
     title: "VR / 360° Virtual Tours",
     icon: Globe,
-    features: [
-      "Real-estate: Flats, Villas, Commercial Spaces, Showrooms",
-      "Hospitality: Hotels, Resorts, Farmhouses",
-      "Education & Tourism walkthroughs",
-      "Created using Matterport, Insta360, Ricoh Theta for high-quality immersive experiences"
-    ]
+    features: ["Real-estate: Flats, Villas, Commercial Spaces, Showrooms", "Hospitality: Hotels, Resorts, Farmhouses", "Education & Tourism walkthroughs", "Created using Matterport, Insta360, Ricoh Theta for high-quality immersive experiences"]
   }];
-
   const clientLogos = [{
     name: "Srinivasa Jewellers",
     logo: "/lovable-uploads/srinivasa-jewellers.png"
@@ -53,7 +46,6 @@ const AVER = () => {
     name: "HV",
     logo: "/lovable-uploads/hv-logo.jpg"
   }];
-
   const testimonials = [{
     quote: "AVER's virtual tour helped us close deals faster by giving customers a real feel of the property.",
     author: "Real Estate Director",
@@ -63,9 +55,7 @@ const AVER = () => {
     author: "Marketing Head",
     company: "Tech Innovation"
   }];
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-background via-accent/10 to-background overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.1),transparent_50%)]"></div>
@@ -106,14 +96,7 @@ const AVER = () => {
           <div className="max-w-4xl mx-auto">
             <div className="relative rounded-3xl overflow-hidden border border-green-500/20 shadow-xl shadow-green-500/10">
               <div className="aspect-video">
-                <iframe
-                  src="https://www.youtube.com/embed/-5SEIe4bA8M?rel=0&modestbranding=1"
-                  title="How VR 360 Virtual Tour Works - WPIX Media Tutorial"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full"
-                ></iframe>
+                <iframe src="https://www.youtube.com/embed/-5SEIe4bA8M?rel=0&modestbranding=1" title="How VR 360 Virtual Tour Works - WPIX Media Tutorial" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className="w-full h-full"></iframe>
               </div>
             </div>
             <p className="text-center text-muted-foreground mt-6">
@@ -137,9 +120,8 @@ const AVER = () => {
 
           <div className="max-w-2xl mx-auto">
             {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Card key={index} className="bg-card/80 backdrop-blur-sm border-green-500/20 hover:border-green-500/40 transition-all duration-300 group">
+            const IconComponent = service.icon;
+            return <Card key={index} className="bg-card/80 backdrop-blur-sm border-green-500/20 hover:border-green-500/40 transition-all duration-300 group">
                   <CardContent className="p-8">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -148,17 +130,14 @@ const AVER = () => {
                       <h3 className="text-2xl font-bold text-foreground">{service.title}</h3>
                     </div>
                     <ul className="space-y-3">
-                      {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-3">
+                      {service.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                           <span className="text-muted-foreground leading-relaxed">{feature}</span>
-                        </li>
-                      ))}
+                        </li>)}
                     </ul>
                   </CardContent>
-                </Card>
-              );
-            })}
+                </Card>;
+          })}
           </div>
         </div>
       </section>
@@ -178,7 +157,7 @@ const AVER = () => {
           <div className="grid lg:grid-cols-3 gap-8 mb-12">
             {/* Commercial Real Estate */}
             <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 shadow-soft border border-green-500/10 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
-              <h3 className="text-xl font-bold text-foreground mb-4 text-center">Commercial Real Estate</h3>
+              <h3 className="text-xl font-bold text-foreground mb-4 text-center">Educational Institution</h3>
               <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-green-500/20">
                 <iframe src="https://my.matterport.com/show/?m=PvNtnccxW4r&play=1&brand=0" width="100%" height="100%" frameBorder="0" allowFullScreen allow="xr-spatial-tracking" className="rounded-2xl"></iframe>
               </div>
@@ -217,11 +196,9 @@ const AVER = () => {
 
           <div className="relative overflow-hidden">
             <div className="flex animate-scroll-left whitespace-nowrap">
-              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
-                <div key={index} className="flex-shrink-0 mx-8 w-40 h-20 bg-card rounded-xl border border-green-500/10 flex items-center justify-center shadow-soft hover:shadow-medium hover:border-green-500/30 transition-all duration-300 p-4">
+              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => <div key={index} className="flex-shrink-0 mx-8 w-40 h-20 bg-card rounded-xl border border-green-500/10 flex items-center justify-center shadow-soft hover:shadow-medium hover:border-green-500/30 transition-all duration-300 p-4">
                   <img src={client.logo} alt={client.name} className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -237,13 +214,10 @@ const AVER = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-card/80 backdrop-blur-sm border-green-500/20 hover:border-green-500/40 transition-all duration-300">
+            {testimonials.map((testimonial, index) => <Card key={index} className="bg-card/80 backdrop-blur-sm border-green-500/20 hover:border-green-500/40 transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-green-500 text-green-500" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-green-500 text-green-500" />)}
                   </div>
                   <blockquote className="text-lg text-muted-foreground mb-6 leading-relaxed italic">
                     "{testimonial.quote}"
@@ -253,8 +227,7 @@ const AVER = () => {
                     <div className="text-green-500 font-medium">{testimonial.company}</div>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -284,8 +257,6 @@ const AVER = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default AVER;
