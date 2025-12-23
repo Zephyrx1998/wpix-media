@@ -168,7 +168,7 @@ const AVER = () => {
             <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 shadow-soft border border-green-500/10 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
               <h3 className="text-xl font-bold text-foreground mb-4 text-center">Travel Hospitality</h3>
               <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-green-500/20">
-                <iframe src="https://my.matterport.com/show/?m=PvNtnccxW4r&play=1&brand=0" width="100%" height="100%" frameBorder="0" allowFullScreen allow="xr-spatial-tracking" className="rounded-2xl"></iframe>
+                <iframe src="https://my.matterport.com/show/?m=vP3MtKxs35G&play=1&brand=0" width="100%" height="100%" frameBorder="0" allowFullScreen allow="xr-spatial-tracking" className="rounded-2xl"></iframe>
               </div>
               <p className="text-muted-foreground text-center mt-4">Experience luxury hospitality venues virtually</p>
             </div>
