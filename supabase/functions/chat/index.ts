@@ -314,6 +314,8 @@ Remember: Be conversational, helpful, and always guide users toward taking actio
       }
       
       // Save lead to database with sanitized content
+      // Note: email and phone columns have been dropped - data is encrypted via trigger
+      // when inserting to email_encrypted and phone_encrypted columns
       if (email) {
         // Sanitize conversation data to prevent stored XSS
         const sanitizedMessages = messages.map(m => ({
@@ -321,9 +323,18 @@ Remember: Be conversational, helpful, and always guide users toward taking actio
           content: stripHtml(m.content)
         }));
         
+        // Use the service role client for encryption
+        const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+        const adminClient = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
+        
+        // Call the encrypt_pii function to encrypt email before storing
+        const { data: encryptedEmail } = await adminClient.rpc('encrypt_pii', { 
+          plaintext: email.toLowerCase().trim() 
+        });
+        
         await supabase.from("leads").insert({
           name,
-          email: email.toLowerCase().trim(),
+          email_encrypted: encryptedEmail,
           brand_name: brandName ? stripHtml(brandName) : null,
           project_type: projectType ? stripHtml(projectType) : null,
           message: stripHtml(lastUserMessage),

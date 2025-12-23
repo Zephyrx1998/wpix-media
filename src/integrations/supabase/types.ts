@@ -19,12 +19,10 @@ export type Database = {
           brand_name: string | null
           conversation_data: Json | null
           created_at: string | null
-          email: string | null
           email_encrypted: string | null
           id: string
           message: string | null
           name: string | null
-          phone: string | null
           phone_encrypted: string | null
           project_type: string | null
           status: string | null
@@ -33,12 +31,10 @@ export type Database = {
           brand_name?: string | null
           conversation_data?: Json | null
           created_at?: string | null
-          email?: string | null
           email_encrypted?: string | null
           id?: string
           message?: string | null
           name?: string | null
-          phone?: string | null
           phone_encrypted?: string | null
           project_type?: string | null
           status?: string | null
@@ -47,12 +43,10 @@ export type Database = {
           brand_name?: string | null
           conversation_data?: Json | null
           created_at?: string | null
-          email?: string | null
           email_encrypted?: string | null
           id?: string
           message?: string | null
           name?: string | null
-          phone?: string | null
           phone_encrypted?: string | null
           project_type?: string | null
           status?: string | null
