@@ -6,6 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useChatSounds } from "@/hooks/useChatSounds";
 import ChatMessage from "./ChatMessage";
 
 interface Message {
@@ -28,7 +29,9 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const prevMessagesLengthRef = useRef(messages.length);
   const { toast } = useToast();
+  const { playWelcomeSound, playSendSound, playReceiveSound, playOpenSound, playCloseSound } = useChatSounds();
 
   // Welcome animation - triggers once per session
   useEffect(() => {
@@ -37,11 +40,12 @@ const Chatbot = () => {
     if (!hasSeenWelcome && !isOpen) {
       const showTimer = setTimeout(() => {
         setShowWelcome(true);
+        playWelcomeSound();
       }, 1500); // Delay before showing welcome
 
       return () => clearTimeout(showTimer);
     }
-  }, []);
+  }, [playWelcomeSound]);
 
   // Handle welcome collapse animation
   useEffect(() => {
@@ -80,6 +84,27 @@ const Chatbot = () => {
     }
   }, [messages]);
 
+  // Play receive sound when new assistant message arrives
+  useEffect(() => {
+    if (messages.length > prevMessagesLengthRef.current) {
+      const lastMessage = messages[messages.length - 1];
+      if (lastMessage.role === "assistant" && messages.length > 1) {
+        playReceiveSound();
+      }
+    }
+    prevMessagesLengthRef.current = messages.length;
+  }, [messages, playReceiveSound]);
+
+  const handleOpenChat = () => {
+    setIsOpen(true);
+    playOpenSound();
+  };
+
+  const handleCloseChat = () => {
+    setIsOpen(false);
+    playCloseSound();
+  };
+
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
 
@@ -87,6 +112,7 @@ const Chatbot = () => {
     setInput("");
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
+    playSendSound();
 
     try {
       const { data, error } = await supabase.functions.invoke("chat", {
@@ -181,7 +207,7 @@ const Chatbot = () => {
             className="fixed bottom-6 right-6 z-50"
           >
             <Button
-              onClick={() => setIsOpen(true)}
+              onClick={handleOpenChat}
               size="lg"
               className="rounded-full w-16 h-16 bg-primary hover:bg-primary-dark shadow-[var(--glass-shadow-hover)] hover:shadow-[0_20px_60px_-12px_hsl(var(--primary)/0.4)] transition-all duration-300 hover:scale-110"
             >
@@ -224,7 +250,7 @@ const Chatbot = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleCloseChat}
                   className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
                 >
                   <X className="h-4 w-4" />
