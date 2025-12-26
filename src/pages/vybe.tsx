@@ -12,10 +12,10 @@ const VYBE = () => {
   ];
 
   const influencers = [
-    { name: 'Sarah Chen', handle: '@sarahcreates', platform: 'Instagram', followers: '125K' },
-    { name: 'Tech Mike', handle: '@techmike', platform: 'YouTube', followers: '89K' },
-    { name: 'Style Guru', handle: '@styleguru', platform: 'Instagram', followers: '200K' },
-    { name: 'Food Explorer', handle: '@foodexplorer', platform: 'YouTube', followers: '150K' }
+    { name: 'DefiniteOfficial', handle: '@DefiniteOfficial', platform: 'YouTube', followers: '76.2K', link: 'https://www.youtube.com/@DefiniteOfficial' },
+    { name: 'Beat The Hunger', handle: '@beatthehunger_', platform: 'Instagram', followers: '112K', link: 'https://www.instagram.com/beatthehunger_' },
+    { name: 'Mera Pittara', handle: '@Merapittara', platform: 'YouTube', followers: '277K', link: 'https://www.youtube.com/@Merapittara' },
+    { name: 'Vikin.ing', handle: '@vikin.ing', platform: 'Instagram', followers: '232K', link: 'https://www.instagram.com/vikin.ing' }
   ];
 
   const websites = [
@@ -203,8 +203,14 @@ const VYBE = () => {
           
           <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {influencers.map((influencer, index) => (
-              <div key={index} className="bg-card rounded-2xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-medium text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-4 flex items-center justify-center">
+              <a 
+                key={index} 
+                href={influencer.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-card rounded-2xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-medium text-center group cursor-pointer"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
                   {influencer.platform === 'Instagram' ? 
                     <Instagram className="h-8 w-8 text-primary-foreground" /> :
                     <Youtube className="h-8 w-8 text-primary-foreground" />
@@ -212,8 +218,8 @@ const VYBE = () => {
                 </div>
                 <h4 className="font-bold text-foreground mb-1">{influencer.name}</h4>
                 <p className="text-sm text-primary mb-2">{influencer.handle}</p>
-                <p className="text-xs text-muted-foreground">{influencer.followers} followers</p>
-              </div>
+                <p className="text-xs text-muted-foreground">{influencer.followers} {influencer.platform === 'YouTube' ? 'subscribers' : 'followers'}</p>
+              </a>
             ))}
           </div>
         </div>
