@@ -19,7 +19,7 @@ const VYBE = () => {
   ];
 
   const websites = [
-    { title: 'Campaign Microsite', description: 'Interactive brand experience' }
+    { title: 'Campaign Microsite', description: 'Interactive brand experience', image: '/lovable-uploads/campaign-microsite.webp' }
   ];
 
   const clientLogos = [
@@ -243,8 +243,18 @@ const VYBE = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {websites.map((website, index) => (
               <div key={index} className="bg-card rounded-2xl overflow-hidden border border-primary/10 hover:shadow-medium transition-all duration-300 group">
-                <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                  <div className="text-4xl text-muted-foreground">🖥️</div>
+                <div className="aspect-video overflow-hidden">
+                  {website.image ? (
+                    <img 
+                      src={website.image} 
+                      alt={website.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+                      <div className="text-4xl text-muted-foreground">🖥️</div>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <h4 className="font-bold text-foreground mb-2">{website.title}</h4>
