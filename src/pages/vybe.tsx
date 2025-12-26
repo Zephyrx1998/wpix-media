@@ -12,10 +12,10 @@ const VYBE = () => {
   ];
 
   const influencers = [
-    { name: 'DefiniteOfficial', handle: '@DefiniteOfficial', platform: 'YouTube', followers: '76.2K', link: 'https://www.youtube.com/@DefiniteOfficial' },
-    { name: 'Beat The Hunger', handle: '@beatthehunger_', platform: 'Instagram', followers: '112K', link: 'https://www.instagram.com/beatthehunger_' },
-    { name: 'Mera Pittara', handle: '@Merapittara', platform: 'YouTube', followers: '277K', link: 'https://www.youtube.com/@Merapittara' },
-    { name: 'Vikin.ing', handle: '@vikin.ing', platform: 'Instagram', followers: '232K', link: 'https://www.instagram.com/vikin.ing' }
+    { name: 'DefiniteOfficial', handle: '@DefiniteOfficial', platform: 'YouTube', followers: '76.2K', link: 'https://www.youtube.com/@DefiniteOfficial', image: '/lovable-uploads/influencer-definite.png' },
+    { name: 'Beat The Hunger', handle: '@beatthehunger_', platform: 'Instagram', followers: '112K', link: 'https://www.instagram.com/beatthehunger_', image: '/lovable-uploads/influencer-beatthehunger.png' },
+    { name: 'Mera Pittara', handle: '@Merapittara', platform: 'YouTube', followers: '277K', link: 'https://www.youtube.com/@Merapittara', image: '/lovable-uploads/influencer-merapittara.png' },
+    { name: 'Vikin.ing', handle: '@vikin.ing', platform: 'Instagram', followers: '232K', link: 'https://www.instagram.com/vikin.ing', image: '/lovable-uploads/influencer-vikin.png' }
   ];
 
   const websites = [
@@ -208,12 +208,19 @@ const VYBE = () => {
                 href={influencer.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-card rounded-2xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-medium text-center group cursor-pointer"
+                className="bg-card rounded-2xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-medium text-center group cursor-pointer relative"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 rounded-full mx-auto mb-4 overflow-hidden ring-2 ring-primary/30 group-hover:ring-primary transition-all group-hover:scale-110">
+                  <img 
+                    src={influencer.image} 
+                    alt={influencer.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute top-2 right-2 w-6 h-6 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
                   {influencer.platform === 'Instagram' ? 
-                    <Instagram className="h-8 w-8 text-primary-foreground" /> :
-                    <Youtube className="h-8 w-8 text-primary-foreground" />
+                    <Instagram className="h-3 w-3 text-primary-foreground" /> :
+                    <Youtube className="h-3 w-3 text-primary-foreground" />
                   }
                 </div>
                 <h4 className="font-bold text-foreground mb-1">{influencer.name}</h4>
