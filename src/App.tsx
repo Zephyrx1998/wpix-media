@@ -10,6 +10,7 @@ import WCF from "./pages/wcf";
 import SevenDC from "./pages/7dc";
 import AVER from "./pages/aver";
 import VYBE from "./pages/vybe";
+import Fellowship from "./pages/Fellowship";
 import NotFound from "./pages/NotFound";
 import AdminLeads from "./pages/AdminLeads";
 import AdminLogin from "./pages/AdminLogin";
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/7dc" element={<SevenDC />} />
             <Route path="/aver" element={<AVER />} />
             <Route path="/vybe" element={<VYBE />} />
+            <Route path="/fellowship" element={<Fellowship />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/admin-leads" element={<AdminLeads />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
