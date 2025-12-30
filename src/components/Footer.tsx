@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Mail, Phone } from "lucide-react";
 
 const Footer = () => {
@@ -8,7 +9,7 @@ const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-muted/30 pointer-events-none" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-3 mb-4">
@@ -47,6 +48,18 @@ const Footer = () => {
               <li>Video Content Production</li>
               <li>Performance Marketing</li>
               <li>Social Media Management</li>
+            </ul>
+          </div>
+
+          {/* Programs */}
+          <div>
+            <h3 className="font-bold mb-4 text-foreground">Programs</h3>
+            <ul className="space-y-2 text-sm text-foreground/80">
+              <li>
+                <Link to="/fellowship" className="hover:text-primary transition-colors">
+                  WPIX Learn & Earn Fellowship
+                </Link>
+              </li>
             </ul>
           </div>
 
