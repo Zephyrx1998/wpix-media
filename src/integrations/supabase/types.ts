@@ -14,6 +14,123 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_posts: {
+        Row: {
+          author_id: string | null
+          content: string
+          cover_image_url: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          is_published: boolean
+          published_at: string | null
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          content: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          is_published?: boolean
+          published_at?: string | null
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          content?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          is_published?: boolean
+          published_at?: string | null
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      contact_leads: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          email_encrypted: string | null
+          id: string
+          message: string | null
+          name: string
+          page_source: string | null
+          phone_encrypted: string | null
+          service_interested: string | null
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          email_encrypted?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          page_source?: string | null
+          phone_encrypted?: string | null
+          service_interested?: string | null
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          email_encrypted?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          page_source?: string | null
+          phone_encrypted?: string | null
+          service_interested?: string | null
+        }
+        Relationships: []
+      }
+      fellowship_applications: {
+        Row: {
+          city: string | null
+          created_at: string
+          email_encrypted: string | null
+          experience_level: string | null
+          full_name: string
+          id: string
+          motivation: string | null
+          phone_encrypted: string | null
+          skill_interest: string | null
+        }
+        Insert: {
+          city?: string | null
+          created_at?: string
+          email_encrypted?: string | null
+          experience_level?: string | null
+          full_name: string
+          id?: string
+          motivation?: string | null
+          phone_encrypted?: string | null
+          skill_interest?: string | null
+        }
+        Update: {
+          city?: string | null
+          created_at?: string
+          email_encrypted?: string | null
+          experience_level?: string | null
+          full_name?: string
+          id?: string
+          motivation?: string | null
+          phone_encrypted?: string | null
+          skill_interest?: string | null
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           brand_name: string | null
@@ -53,6 +170,36 @@ export type Database = {
         }
         Relationships: []
       }
+      page_views: {
+        Row: {
+          created_at: string
+          id: string
+          page_path: string
+          page_title: string | null
+          referrer: string | null
+          session_id: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          page_path: string
+          page_title?: string | null
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          page_path?: string
+          page_title?: string | null
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -78,6 +225,34 @@ export type Database = {
     Functions: {
       decrypt_pii: { Args: { ciphertext: string }; Returns: string }
       encrypt_pii: { Args: { plaintext: string }; Returns: string }
+      get_decrypted_contact_leads: {
+        Args: never
+        Returns: {
+          company_name: string
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          page_source: string
+          phone: string
+          service_interested: string
+        }[]
+      }
+      get_decrypted_fellowship_applications: {
+        Args: never
+        Returns: {
+          city: string
+          created_at: string
+          email: string
+          experience_level: string
+          full_name: string
+          id: string
+          motivation: string
+          phone: string
+          skill_interest: string
+        }[]
+      }
       get_decrypted_leads: {
         Args: never
         Returns: {
