@@ -60,6 +60,11 @@ const Footer = () => {
                   WPIX Learn & Earn Fellowship
                 </Link>
               </li>
+              <li>
+                <Link to="/blog" className="hover:text-primary transition-colors">
+                  Blog
+                </Link>
+              </li>
             </ul>
           </div>
 
