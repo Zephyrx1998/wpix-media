@@ -148,11 +148,10 @@ const BlogPost = () => {
             )}
 
             {/* Content */}
-            <div className="prose prose-lg max-w-none">
-              <div className="text-foreground/80 leading-relaxed whitespace-pre-wrap">
-                {post.content}
-              </div>
-            </div>
+            <div 
+              className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-foreground/80 prose-strong:text-foreground prose-a:text-primary prose-blockquote:border-primary prose-blockquote:text-muted-foreground"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
 
             {/* Footer */}
             <footer className="mt-12 pt-8 border-t border-border">
