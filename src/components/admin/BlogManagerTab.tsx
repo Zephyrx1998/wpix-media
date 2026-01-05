@@ -10,9 +10,10 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { format } from "date-fns";
-import { Plus, FileText, Pencil, Trash2, Image } from "lucide-react";
+import { Plus, FileText, Pencil, Trash2, Image, Eye, Edit3 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { RichTextEditor } from "./RichTextEditor";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface BlogPost {
   id: string;
@@ -42,6 +43,7 @@ export const BlogManagerTab = () => {
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [editorMode, setEditorMode] = useState<"write" | "preview">("write");
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -87,6 +89,7 @@ export const BlogManagerTab = () => {
     });
     setImageFile(null);
     setEditingPost(null);
+    setEditorMode("write");
   };
 
   const openEditDialog = (post: BlogPost) => {
@@ -247,12 +250,39 @@ export const BlogManagerTab = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label>Content *</Label>
-                <RichTextEditor
-                  content={formData.content}
-                  onChange={(content) => setFormData({ ...formData, content })}
-                  placeholder="Start writing your blog content..."
-                />
+                <div className="flex items-center justify-between">
+                  <Label>Content *</Label>
+                  <Tabs value={editorMode} onValueChange={(v) => setEditorMode(v as "write" | "preview")} className="h-8">
+                    <TabsList className="h-8 p-0.5">
+                      <TabsTrigger value="write" className="h-7 px-3 text-xs gap-1.5">
+                        <Edit3 className="h-3 w-3" />
+                        Write
+                      </TabsTrigger>
+                      <TabsTrigger value="preview" className="h-7 px-3 text-xs gap-1.5">
+                        <Eye className="h-3 w-3" />
+                        Preview
+                      </TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+                </div>
+                {editorMode === "write" ? (
+                  <RichTextEditor
+                    content={formData.content}
+                    onChange={(content) => setFormData({ ...formData, content })}
+                    placeholder="Start writing your blog content..."
+                  />
+                ) : (
+                  <div className="border rounded-lg p-6 min-h-[300px] bg-white">
+                    {formData.content ? (
+                      <article 
+                        className="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-base prose-p:leading-relaxed prose-a:text-primary prose-a:underline prose-blockquote:border-l-4 prose-blockquote:border-muted-foreground prose-blockquote:pl-4 prose-blockquote:italic"
+                        dangerouslySetInnerHTML={{ __html: formData.content }}
+                      />
+                    ) : (
+                      <p className="text-muted-foreground italic">No content to preview. Start writing in the Write tab.</p>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="tags">Tags (comma-separated)</Label>
