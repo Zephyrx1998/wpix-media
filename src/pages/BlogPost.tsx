@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2, Eye } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 
@@ -19,6 +19,7 @@ interface BlogPost {
   cover_image_url: string | null;
   published_at: string | null;
   created_at: string;
+  view_count: number;
 }
 
 const BlogPost = () => {
@@ -32,6 +33,20 @@ const BlogPost = () => {
       fetchPost();
     }
   }, [slug]);
+
+  // Track view when post is loaded
+  useEffect(() => {
+    if (post?.id) {
+      const trackView = async () => {
+        try {
+          await supabase.rpc('increment_blog_view', { post_id: post.id });
+        } catch (error) {
+          console.debug('View tracking error:', error);
+        }
+      };
+      trackView();
+    }
+  }, [post?.id]);
 
   const fetchPost = async () => {
     try {
@@ -119,7 +134,7 @@ const BlogPost = () => {
               </h1>
               
               <div className="flex items-center justify-between flex-wrap gap-4">
-                <div className="flex items-center gap-4 text-muted-foreground">
+                <div className="flex items-center gap-4 text-muted-foreground flex-wrap">
                   <span className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
                     {format(new Date(post.published_at || post.created_at), "MMMM dd, yyyy")}
@@ -127,6 +142,10 @@ const BlogPost = () => {
                   <span className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
                     {getReadingTime(post.content)} min read
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Eye className="h-4 w-4" />
+                    {(post.view_count + 1).toLocaleString()} views
                   </span>
                 </div>
                 <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2">
