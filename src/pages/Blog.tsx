@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ArrowRight, Clock, Eye } from "lucide-react";
+import { Calendar, ArrowRight, Clock } from "lucide-react";
 import { format } from "date-fns";
 import { ScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -117,10 +117,6 @@ const Blog = () => {
                           <span className="flex items-center gap-1">
                             <Clock className="h-4 w-4" />
                             {getReadingTime(post.content)} min read
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Eye className="h-4 w-4" />
-                            {post.view_count.toLocaleString()} views
                           </span>
                         </div>
                         <h2 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
