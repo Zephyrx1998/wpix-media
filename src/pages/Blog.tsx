@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ArrowRight, Clock } from "lucide-react";
+import { Calendar, ArrowRight, Clock, Eye } from "lucide-react";
 import { format } from "date-fns";
 import { ScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -19,6 +19,7 @@ interface BlogPost {
   cover_image_url: string | null;
   published_at: string | null;
   created_at: string;
+  view_count: number;
 }
 
 const Blog = () => {
@@ -108,7 +109,7 @@ const Blog = () => {
                         </div>
                       )}
                       <CardContent className="p-6">
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
                           <span className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
                             {format(new Date(post.published_at || post.created_at), "MMM dd, yyyy")}
@@ -116,6 +117,10 @@ const Blog = () => {
                           <span className="flex items-center gap-1">
                             <Clock className="h-4 w-4" />
                             {getReadingTime(post.content)} min read
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Eye className="h-4 w-4" />
+                            {post.view_count.toLocaleString()} views
                           </span>
                         </div>
                         <h2 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
