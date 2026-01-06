@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, ArrowLeft, Share2, Eye } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 
@@ -142,10 +142,6 @@ const BlogPost = () => {
                   <span className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
                     {getReadingTime(post.content)} min read
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Eye className="h-4 w-4" />
-                    {(post.view_count + 1).toLocaleString()} views
                   </span>
                 </div>
                 <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2">
