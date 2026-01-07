@@ -78,11 +78,15 @@ const Chatbot = () => {
     }
   }, [isOpen, showWelcome]);
 
+  // Auto-scroll to bottom when messages change
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      const scrollableElement = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
+      if (scrollableElement) {
+        scrollableElement.scrollTop = scrollableElement.scrollHeight;
+      }
     }
-  }, [messages]);
+  }, [messages, isLoading]);
 
   // Play receive sound when new assistant message arrives
   useEffect(() => {
