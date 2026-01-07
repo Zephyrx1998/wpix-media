@@ -276,11 +276,23 @@ const Chatbot = () => {
                     ))}
                     {isLoading && (
                       <div className="flex justify-start">
-                        <div className="bg-[hsl(var(--glass-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] rounded-2xl px-4 py-2 shadow-[var(--glass-inset)]">
-                          <div className="flex gap-1">
-                            <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
-                            <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-100" />
-                            <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-200" />
+                        <div className="bg-[hsl(var(--glass-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] rounded-2xl px-4 py-3 shadow-[var(--glass-inset)]">
+                          <div className="flex items-center gap-1.5">
+                            <motion.div
+                              className="w-2 h-2 bg-primary rounded-full"
+                              animate={{ y: [0, -6, 0] }}
+                              transition={{ duration: 0.6, repeat: Infinity, ease: "easeInOut" }}
+                            />
+                            <motion.div
+                              className="w-2 h-2 bg-primary rounded-full"
+                              animate={{ y: [0, -6, 0] }}
+                              transition={{ duration: 0.6, repeat: Infinity, ease: "easeInOut", delay: 0.15 }}
+                            />
+                            <motion.div
+                              className="w-2 h-2 bg-primary rounded-full"
+                              animate={{ y: [0, -6, 0] }}
+                              transition={{ duration: 0.6, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                            />
                           </div>
                         </div>
                       </div>
