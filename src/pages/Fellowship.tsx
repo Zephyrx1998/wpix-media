@@ -102,7 +102,7 @@ const Fellowship = () => {
     { icon: Briefcase, text: 'Anyone serious about learning and building a career' }
   ];
 
-  const ApplicationForm = () => (
+  const applicationFormContent = (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="name">Name *</Label>
@@ -222,7 +222,7 @@ const Fellowship = () => {
                   <DialogHeader>
                     <DialogTitle>Fellowship Application</DialogTitle>
                   </DialogHeader>
-                  <ApplicationForm />
+                  {applicationFormContent}
                 </DialogContent>
               </Dialog>
             </div>
@@ -414,7 +414,7 @@ const Fellowship = () => {
                   <DialogHeader>
                     <DialogTitle>Fellowship Application</DialogTitle>
                   </DialogHeader>
-                  <ApplicationForm />
+                  {applicationFormContent}
                 </DialogContent>
               </Dialog>
             </div>
