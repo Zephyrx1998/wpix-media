@@ -105,16 +105,17 @@ export const FellowshipTab = () => {
           />
         </div>
         <Select value={skillFilter} onValueChange={setSkillFilter}>
-          <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder="Filter by skill" />
+          <SelectTrigger className="w-[220px]">
+            <SelectValue placeholder="Filter by area" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Skills</SelectItem>
-            <SelectItem value="design">Design</SelectItem>
-            <SelectItem value="video">Video Editing</SelectItem>
-            <SelectItem value="marketing">Marketing</SelectItem>
-            <SelectItem value="social">Social Media</SelectItem>
-            <SelectItem value="tech">Tech</SelectItem>
+            <SelectItem value="all">All Areas</SelectItem>
+            <SelectItem value="Social Media & Content">Social Media & Content</SelectItem>
+            <SelectItem value="Video Editing & Motion">Video Editing & Motion</SelectItem>
+            <SelectItem value="Graphic & Brand Design">Graphic & Brand Design</SelectItem>
+            <SelectItem value="Performance Marketing">Performance Marketing</SelectItem>
+            <SelectItem value="Project Coordination">Project Coordination</SelectItem>
+            <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
       </div>

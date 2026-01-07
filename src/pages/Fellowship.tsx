@@ -7,10 +7,20 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowRight, GraduationCap, Users, Briefcase, CheckCircle, Calendar, Award, Lightbulb, TrendingUp, Video, Palette, BarChart3, ClipboardList, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { ScrollReveal } from "@/hooks/useScrollReveal";
+
+const areaOfInterestOptions = [
+  { value: 'social-media-content', label: 'Social Media & Content' },
+  { value: 'video-editing-motion', label: 'Video Editing & Motion Graphics' },
+  { value: 'graphic-brand-design', label: 'Graphic & Brand Design' },
+  { value: 'performance-marketing', label: 'Performance Marketing' },
+  { value: 'project-coordination', label: 'Project Coordination' },
+  { value: 'other', label: 'Other' }
+];
 
 const Fellowship = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -20,6 +30,7 @@ const Fellowship = () => {
     email: '',
     phone: '',
     areaOfInterest: '',
+    otherInterest: '',
     reason: ''
   });
 
@@ -28,24 +39,31 @@ const Fellowship = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleSelectChange = (value: string) => {
+    setFormData(prev => ({ ...prev, areaOfInterest: value, otherInterest: value !== 'other' ? '' : prev.otherInterest }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const skillInterest = formData.areaOfInterest === 'other' 
+      ? formData.otherInterest 
+      : areaOfInterestOptions.find(opt => opt.value === formData.areaOfInterest)?.label || formData.areaOfInterest;
+
     try {
-      const { error } = await supabase.from('leads').insert({
-        name: formData.name,
+      const { error } = await supabase.from('fellowship_applications').insert({
+        full_name: formData.name,
         email_encrypted: formData.email,
         phone_encrypted: formData.phone,
-        project_type: `Fellowship - ${formData.areaOfInterest}`,
-        message: formData.reason,
-        status: 'new'
+        skill_interest: skillInterest,
+        motivation: formData.reason
       });
 
       if (error) throw error;
 
       toast.success("Application submitted successfully! We'll be in touch soon.");
-      setFormData({ name: '', email: '', phone: '', areaOfInterest: '', reason: '' });
+      setFormData({ name: '', email: '', phone: '', areaOfInterest: '', otherInterest: '', reason: '' });
       setIsDialogOpen(false);
     } catch (error) {
       toast.error("Failed to submit application. Please try again.");
@@ -126,16 +144,33 @@ const Fellowship = () => {
       </div>
       <div className="space-y-2">
         <Label htmlFor="areaOfInterest">Area of Interest *</Label>
-        <Input
-          id="areaOfInterest"
-          name="areaOfInterest"
-          value={formData.areaOfInterest}
-          onChange={handleInputChange}
-          required
-          placeholder="e.g., Video Editing, Graphic Design"
-          className="bg-background"
-        />
+        <Select value={formData.areaOfInterest} onValueChange={handleSelectChange} required>
+          <SelectTrigger className="bg-background">
+            <SelectValue placeholder="Select your area of interest" />
+          </SelectTrigger>
+          <SelectContent>
+            {areaOfInterestOptions.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
+      {formData.areaOfInterest === 'other' && (
+        <div className="space-y-2">
+          <Label htmlFor="otherInterest">Please specify *</Label>
+          <Input
+            id="otherInterest"
+            name="otherInterest"
+            value={formData.otherInterest}
+            onChange={handleInputChange}
+            required
+            placeholder="Describe your area of interest"
+            className="bg-background"
+          />
+        </div>
+      )}
       <div className="space-y-2">
         <Label htmlFor="reason">Why do you want to join? *</Label>
         <Textarea
