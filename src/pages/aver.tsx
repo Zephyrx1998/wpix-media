@@ -1,30 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { ArrowRight, Globe, Eye, Camera, Users, Star, Phone, Mail, Play } from 'lucide-react';
 import AVERPricingSection from '@/components/AVERPricingSection';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 const AVER = () => {
-  const videoRef = useRef<HTMLDivElement>(null);
-  const [isVideoVisible, setIsVideoVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVideoVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
   const services = [{
     title: "VR / 360° Virtual Tours",
     icon: Globe,
@@ -114,25 +94,18 @@ const AVER = () => {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto" ref={videoRef}>
+          <div className="max-w-4xl mx-auto">
             <div className="relative rounded-3xl overflow-hidden border border-green-500/20 shadow-xl shadow-green-500/10">
               <div className="aspect-video bg-black">
-                {isVideoVisible ? (
-                  <iframe 
-                    src="https://drive.google.com/file/d/1bqmShQNXw6w2x2Z99za0s5sIgLAc7Q0Y/preview?autoplay=1" 
-                    title="How VR 360 Virtual Tour Works - WPIX Media Tutorial" 
-                    frameBorder="0" 
-                    allow="autoplay; encrypted-media" 
-                    allowFullScreen 
-                    className="w-full h-full"
-                  ></iframe>
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center animate-pulse">
-                      <Play className="w-8 h-8 text-green-500" />
-                    </div>
-                  </div>
-                )}
+                <iframe 
+                  src="https://drive.google.com/file/d/1bqmShQNXw6w2x2Z99za0s5sIgLAc7Q0Y/preview" 
+                  title="How VR 360 Virtual Tour Works - WPIX Media Tutorial" 
+                  frameBorder="0" 
+                  allow="autoplay; encrypted-media" 
+                  allowFullScreen 
+                  className="w-full h-full"
+                  loading="eager"
+                ></iframe>
               </div>
             </div>
             <p className="text-center text-muted-foreground mt-6">
