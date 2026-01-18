@@ -95,8 +95,15 @@ const AVER = () => {
 
           <div className="max-w-4xl mx-auto">
             <div className="relative rounded-3xl overflow-hidden border border-green-500/20 shadow-xl shadow-green-500/10">
-              <div className="aspect-video">
-                <iframe src="https://www.youtube.com/embed/-5SEIe4bA8M?rel=0&modestbranding=1" title="How VR 360 Virtual Tour Works - WPIX Media Tutorial" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className="w-full h-full"></iframe>
+              <div className="aspect-video bg-black">
+                <iframe 
+                  src="https://drive.google.com/file/d/1bqmShQNXw6w2x2Z99za0s5sIgLAc7Q0Y/preview" 
+                  title="How VR 360 Virtual Tour Works - WPIX Media Tutorial" 
+                  frameBorder="0" 
+                  allow="autoplay; encrypted-media" 
+                  allowFullScreen 
+                  className="w-full h-full"
+                ></iframe>
               </div>
             </div>
             <p className="text-center text-muted-foreground mt-6">
