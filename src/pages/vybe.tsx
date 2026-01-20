@@ -12,7 +12,7 @@ const VYBE = () => {
   ];
 
   const influencers = [
-    { name: 'DefiniteOfficial', handle: '@DefiniteOfficial', platform: 'YouTube', followers: '76.2K', link: 'https://www.youtube.com/@DefiniteOfficial', image: '/lovable-uploads/influencer-definite.png' },
+    { name: 'DefiniteOfficial', handle: '@DefiniteOfficial', platform: 'YouTube', followers: '76.2K', link: 'https://www.youtube.com/@DefiniteOfficial', image: '/lovable-uploads/definite-official-logo.jpg' },
     { name: 'Beat The Hunger', handle: '@beatthehunger_', platform: 'Instagram', followers: '112K', link: 'https://www.instagram.com/beatthehunger_', image: '/lovable-uploads/influencer-beatthehunger.png' },
     { name: 'Mera Pittara', handle: '@Merapittara', platform: 'YouTube', followers: '277K', link: 'https://www.youtube.com/@Merapittara', image: '/lovable-uploads/influencer-merapittara.png' },
     { name: 'Vikin.ing', handle: '@vikin.ing', platform: 'Instagram', followers: '232K', link: 'https://www.instagram.com/vikin.ing', image: '/lovable-uploads/influencer-vikin.png' }
