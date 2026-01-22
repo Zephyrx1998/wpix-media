@@ -174,7 +174,7 @@ const SevenDC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-6 text-foreground">Portfolio Showcase</h2>
-            <Button variant="outline" className="group" onClick={() => window.open('https://drive.google.com/file/d/13T0dMf3Es9b5afedL_naLF1GtNS7BXDA/view?usp=sharing', '_blank', 'noopener,noreferrer')}>
+            <Button variant="outline" className="group" onClick={() => window.open('https://drive.google.com/file/d/1zxOcgBU1msSq1Jjprv-7Vzzf7kfMNCgv/view?usp=sharing', '_blank', 'noopener,noreferrer')}>
               View Full Portfolio
               <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
