@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, Linkedin, Instagram } from "lucide-react";
+import { Mail, Phone, Linkedin, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -104,12 +104,21 @@ const Footer = () => {
                 </a>
                 <a 
                   href="https://www.instagram.com/wpixmedia" 
-                  target="_blank"
+                  target="_blank" 
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg bg-[hsl(var(--glass-bg))] border border-[hsl(var(--glass-border))] hover:bg-primary hover:text-primary-foreground transition-all"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-4 w-4" />
+                </a>
+                <a 
+                  href="https://youtube.com/@wpixone" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[hsl(var(--glass-bg))] border border-[hsl(var(--glass-border))] hover:bg-primary hover:text-primary-foreground transition-all"
+                  aria-label="YouTube"
+                >
+                  <Youtube className="h-4 w-4" />
                 </a>
                 <a 
                   href="https://www.x.com/wpixmedia/" 
