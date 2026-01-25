@@ -103,8 +103,8 @@ const Footer = () => {
                   <Linkedin className="h-4 w-4" />
                 </a>
                 <a 
-                  href="https://www.instagram.com/wpixmedia/" 
-                  target="_blank" 
+                  href="https://www.instagram.com/wpixmedia" 
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg bg-[hsl(var(--glass-bg))] border border-[hsl(var(--glass-border))] hover:bg-primary hover:text-primary-foreground transition-all"
                   aria-label="Instagram"
