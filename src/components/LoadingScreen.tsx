@@ -2,23 +2,38 @@ import React from 'react';
 
 const LoadingScreen = () => {
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-background">
-      <div className="relative w-[200px] h-[200px] animate-[rotate-move_2s_ease-in-out_infinite]" style={{ filter: 'url(#goo)' }}>
-        {/* Dot 3 - Primary Dark */}
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-background overflow-hidden">
+      {/* Wrapper to handle centering separately from rotation */}
+      <div className="flex items-center justify-center">
         <div 
-          className="absolute w-[70px] h-[70px] rounded-full top-0 bottom-0 left-0 right-0 m-auto animate-[dot-3-move_2s_ease_infinite,index_6s_ease_infinite]"
-          style={{ backgroundColor: 'hsl(153, 80%, 25%)' }}
-        />
-        {/* Dot 2 - Primary */}
-        <div 
-          className="absolute w-[70px] h-[70px] rounded-full top-0 bottom-0 left-0 right-0 m-auto animate-[dot-2-move_2s_ease_infinite,index_6s_-4s_ease_infinite]"
-          style={{ backgroundColor: 'hsl(153, 65%, 35%)' }}
-        />
-        {/* Dot 1 - Primary Light */}
-        <div 
-          className="absolute w-[70px] h-[70px] rounded-full top-0 bottom-0 left-0 right-0 m-auto animate-[dot-1-move_2s_ease_infinite,index_6s_-2s_ease_infinite]"
-          style={{ backgroundColor: 'hsl(153, 45%, 55%)' }}
-        />
+          className="relative w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px]" 
+          style={{ filter: 'url(#goo)', animation: 'rotate-move 2s ease-in-out infinite' }}
+        >
+          {/* Dot 3 - Primary Dark */}
+          <div 
+            className="absolute w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[70px] md:h-[70px] rounded-full top-0 bottom-0 left-0 right-0 m-auto"
+            style={{ 
+              backgroundColor: 'hsl(153, 80%, 25%)',
+              animation: 'dot-3-move 2s ease infinite, index 6s ease infinite'
+            }}
+          />
+          {/* Dot 2 - Primary */}
+          <div 
+            className="absolute w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[70px] md:h-[70px] rounded-full top-0 bottom-0 left-0 right-0 m-auto"
+            style={{ 
+              backgroundColor: 'hsl(153, 65%, 35%)',
+              animation: 'dot-2-move 2s ease infinite, index 6s -4s ease infinite'
+            }}
+          />
+          {/* Dot 1 - Primary Light */}
+          <div 
+            className="absolute w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[70px] md:h-[70px] rounded-full top-0 bottom-0 left-0 right-0 m-auto"
+            style={{ 
+              backgroundColor: 'hsl(153, 45%, 55%)',
+              animation: 'dot-1-move 2s ease infinite, index 6s -2s ease infinite'
+            }}
+          />
+        </div>
       </div>
 
       {/* SVG Filter for Gooey Effect */}
@@ -63,9 +78,10 @@ const LoadingScreen = () => {
         }
 
         @keyframes rotate-move {
-          55% { transform: translate(-50%, -50%) rotate(0deg); }
-          80% { transform: translate(-50%, -50%) rotate(360deg); }
-          100% { transform: translate(-50%, -50%) rotate(360deg); }
+          0% { transform: rotate(0deg); }
+          55% { transform: rotate(0deg); }
+          80% { transform: rotate(360deg); }
+          100% { transform: rotate(360deg); }
         }
 
         @keyframes index {
