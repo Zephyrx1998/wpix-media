@@ -183,7 +183,7 @@ const Navigation = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[320px] bg-background border-l border-border z-50 md:hidden shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[320px] glass-panel z-50 md:hidden"
             >
               <div className="flex flex-col h-full">
                 {/* Header */}

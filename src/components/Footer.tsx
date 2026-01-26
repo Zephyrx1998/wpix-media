@@ -4,9 +4,9 @@ import { Mail, Phone, Linkedin, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative py-8 sm:py-12 bg-[hsl(var(--glass-bg))] backdrop-blur-xl border-t border-[hsl(var(--glass-border))]">
+    <footer className="relative py-8 sm:py-12 glass-panel">
       {/* Gradient overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-muted/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-muted/20 pointer-events-none" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8">
@@ -106,7 +106,7 @@ const Footer = () => {
                   href="https://www.linkedin.com/company/wpix-media/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-[hsl(var(--glass-bg))] border border-[hsl(var(--glass-border))] hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground transition-all touch-manipulation"
+                  className="p-2 rounded-xl glass hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground transition-all touch-manipulation"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
@@ -115,7 +115,7 @@ const Footer = () => {
                   href="https://www.instagram.com/wpixmedia" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-[hsl(var(--glass-bg))] border border-[hsl(var(--glass-border))] hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground transition-all touch-manipulation"
+                  className="p-2 rounded-xl glass hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground transition-all touch-manipulation"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
@@ -124,7 +124,7 @@ const Footer = () => {
                   href="https://youtube.com/@wpixone" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-[hsl(var(--glass-bg))] border border-[hsl(var(--glass-border))] hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground transition-all touch-manipulation"
+                  className="p-2 rounded-xl glass hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground transition-all touch-manipulation"
                   aria-label="YouTube"
                 >
                   <Youtube className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
@@ -133,7 +133,7 @@ const Footer = () => {
                   href="https://www.x.com/wpixmedia/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-[hsl(var(--glass-bg))] border border-[hsl(var(--glass-border))] hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground transition-all touch-manipulation"
+                  className="p-2 rounded-xl glass hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground transition-all touch-manipulation"
                   aria-label="X (Twitter)"
                 >
                   <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 24 24" fill="currentColor">

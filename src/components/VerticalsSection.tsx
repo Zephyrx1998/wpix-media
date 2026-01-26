@@ -69,8 +69,13 @@ const VerticalsSection = () => {
   ];
 
   return (
-    <section id="verticals" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-accent/20 to-background">
-      <div className="container mx-auto px-4">
+    <section id="verticals" className="py-12 sm:py-16 md:py-20 relative overflow-hidden">
+      {/* Glass background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-accent/20 to-background pointer-events-none" />
+      <div className="absolute -top-20 left-1/4 glass-orb w-72 h-72 opacity-25"></div>
+      <div className="absolute bottom-20 -right-10 glass-orb w-56 h-56 opacity-20"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-10 sm:mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-foreground">
@@ -88,10 +93,10 @@ const VerticalsSection = () => {
             return (
               <ScrollReveal key={vertical.name} animation="fade-up" delay={index * 100}>
                 <div 
-                  className="bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-soft border border-primary/10 hover:shadow-medium transition-all duration-300 group h-full active:scale-[0.99] touch-manipulation"
+                  className="glass-card glass-shimmer p-5 sm:p-6 md:p-8 hover:scale-[1.01] active:scale-[0.99] touch-manipulation transition-transform h-full group"
                 >
                   <div className="flex items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
-                    <div className={`w-12 h-12 sm:w-14 md:w-16 sm:h-14 md:h-16 bg-gradient-to-br ${vertical.color} rounded-xl sm:rounded-2xl flex items-center justify-center shadow-soft group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
+                    <div className={`w-12 h-12 sm:w-14 md:w-16 sm:h-14 md:h-16 bg-gradient-to-br ${vertical.color} rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
                       <IconComponent className="h-6 w-6 sm:h-7 md:h-8 sm:w-7 md:w-8 text-primary-foreground" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -117,7 +122,7 @@ const VerticalsSection = () => {
                   </div>
 
                   <Button 
-                    variant="outline" 
+                    variant="glass" 
                     className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 h-11 sm:h-12 text-sm sm:text-base touch-manipulation"
                     asChild
                   >

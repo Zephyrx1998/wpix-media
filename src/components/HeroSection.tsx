@@ -13,18 +13,18 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="min-h-[100svh] flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/30 pt-16 sm:pt-20">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-48 sm:w-72 h-48 sm:h-72 bg-primary rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute top-40 right-10 w-48 sm:w-72 h-48 sm:h-72 bg-primary-light rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute -bottom-8 left-20 w-48 sm:w-72 h-48 sm:h-72 bg-primary-dark rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-500"></div>
+      {/* Glass Orb Decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="glass-orb w-64 sm:w-96 h-64 sm:h-96 top-10 -left-20 opacity-60 animate-pulse"></div>
+        <div className="glass-orb w-48 sm:w-80 h-48 sm:h-80 top-1/4 -right-16 opacity-40 animate-pulse delay-1000"></div>
+        <div className="glass-orb w-56 sm:w-72 h-56 sm:h-72 -bottom-20 left-1/4 opacity-50 animate-pulse delay-500"></div>
       </div>
 
       <div className="container mx-auto px-4 py-8 sm:py-12 md:py-20 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Badge */}
           <ScrollReveal animation="fade-down" delay={0}>
-            <div className="inline-flex items-center gap-2 bg-accent/50 backdrop-blur-sm border border-primary/20 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 glass-badge mb-6 sm:mb-8">
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
               <span className="text-xs sm:text-sm font-medium text-primary">Full Spectrum Creative-Tech Agency</span>
             </div>
@@ -58,7 +58,7 @@ const HeroSection = () => {
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
-                variant="outline" 
+                variant="glass" 
                 size="lg"
                 onClick={() => scrollToSection('contact')}
                 className="w-full sm:w-auto h-12 sm:h-auto text-base touch-manipulation"
@@ -71,19 +71,19 @@ const HeroSection = () => {
           {/* Stats */}
           <ScrollReveal animation="fade-up" delay={400}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-2xl mx-auto px-4">
-              <div className="p-3 sm:p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/10">
+              <div className="glass-stat">
                 <div className="text-2xl sm:text-3xl font-bold text-primary mb-1 sm:mb-2">4</div>
                 <div className="text-xs sm:text-sm text-muted-foreground">Specialized Verticals</div>
               </div>
-              <div className="p-3 sm:p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/10">
+              <div className="glass-stat">
                 <div className="text-2xl sm:text-3xl font-bold text-primary mb-1 sm:mb-2">360°</div>
                 <div className="text-xs sm:text-sm text-muted-foreground">Creative Solutions</div>
               </div>
-              <div className="p-3 sm:p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/10">
+              <div className="glass-stat">
                 <div className="text-2xl sm:text-3xl font-bold text-primary mb-1 sm:mb-2">100%</div>
                 <div className="text-xs sm:text-sm text-muted-foreground">Client Focused</div>
               </div>
-              <div className="p-3 sm:p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/10">
+              <div className="glass-stat">
                 <div className="text-2xl sm:text-3xl font-bold text-primary mb-1 sm:mb-2">∞</div>
                 <div className="text-xs sm:text-sm text-muted-foreground">Creative Possibilities</div>
               </div>
@@ -94,7 +94,7 @@ const HeroSection = () => {
 
       {/* Scroll Indicator - Hidden on mobile */}
       <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block">
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
+        <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center glass">
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
