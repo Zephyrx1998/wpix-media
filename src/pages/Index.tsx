@@ -5,17 +5,21 @@ import ApproachSection from "@/components/ApproachSection";
 import VerticalsSection from "@/components/VerticalsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <HeroSection />
-      <AboutSection />
-      <ApproachSection />
-      <VerticalsSection />
-      <ContactSection />
-      <Footer />
+    <div className="min-h-screen bg-background relative">
+      <ParticleBackground />
+      <div className="relative z-10">
+        <Navigation />
+        <HeroSection />
+        <AboutSection />
+        <ApproachSection />
+        <VerticalsSection />
+        <ContactSection />
+        <Footer />
+      </div>
     </div>
   );
 };
