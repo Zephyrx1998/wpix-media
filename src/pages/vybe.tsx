@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, Instagram, Youtube, BarChart3, Users, Zap, ArrowRight, Star } from 'lucide-react';
+import { TrendingUp, Instagram, Youtube, BarChart3, Users, Zap, ArrowRight, Star, Check, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const VYBE = () => {
@@ -55,6 +55,92 @@ const VYBE = () => {
     }
   ];
 
+  const packages = [
+    {
+      name: "Starter VYBE",
+      tagline: "For early-stage brands & personal brands",
+      price: "₹25,000",
+      period: "/ month",
+      color: "from-emerald-500 to-green-600",
+      borderColor: "border-emerald-500/30",
+      bgColor: "bg-emerald-500/10",
+      icon: "🟢",
+      features: [
+        "Social Media Strategy (monthly)",
+        "7 Creatives / month (posts or carousels)",
+        "3 Reels / month",
+        "Caption + hashtags",
+        "Basic performance tracking",
+        "Monthly report"
+      ],
+      bestFor: "New businesses, local brands, founders starting online"
+    },
+    {
+      name: "Growth VYBE",
+      tagline: "For brands that want reach + engagement + leads",
+      price: "₹70,000",
+      period: "/ month",
+      color: "from-blue-500 to-cyan-600",
+      borderColor: "border-blue-500/30",
+      bgColor: "bg-blue-500/10",
+      icon: "🔵",
+      popular: true,
+      features: [
+        "Detailed content & growth strategy",
+        "8 Creatives / month",
+        "8 Reels / month",
+        "Content calendar",
+        "Community management (basic DMs/comments)",
+        "Influencer shortlisting (micro-influencers)",
+        "Paid ads setup & monitoring (ad budget extra)",
+        "Monthly performance report + insights"
+      ],
+      bestFor: "D2C brands, service businesses, startups"
+    },
+    {
+      name: "Scale VYBE",
+      tagline: "For brands serious about sales & dominance",
+      price: "₹1,40,000",
+      period: "/ month",
+      color: "from-red-500 to-orange-600",
+      borderColor: "border-red-500/30",
+      bgColor: "bg-red-500/10",
+      icon: "🔴",
+      features: [
+        "Full-funnel marketing strategy",
+        "12+ Creatives / month",
+        "12 Reels / month",
+        "High-quality video editing",
+        "Performance marketing (Meta + Google)",
+        "YouTube Management",
+        "Influencer collaborations (planning + coordination)",
+        "WhatsApp & email automation setup",
+        "Conversion tracking (GA4, Pixel)",
+        "Weekly reporting + optimization calls"
+      ],
+      bestFor: "Funded startups, e-commerce, aggressive growth brands"
+    },
+    {
+      name: "Custom VYBE",
+      tagline: "Built only after a discovery call",
+      price: "Custom",
+      period: "Pricing based on scope",
+      color: "from-gray-700 to-gray-900",
+      borderColor: "border-gray-500/30",
+      bgColor: "bg-gray-500/10",
+      icon: "⚫",
+      custom: true,
+      features: [
+        "Platform-specific strategy",
+        "Ads + influencers + SEO + content",
+        "YouTube + Google",
+        "Growth experiments",
+        "Dedicated SPOC"
+      ],
+      bestFor: "Enterprise brands with unique requirements"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -106,6 +192,93 @@ const VYBE = () => {
               <Zap className="mr-2 h-5 w-5" />
               Work With Us
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Packages Section */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background"></div>
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-12 md:mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              VYBE Packages
+            </h3>
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+              <span className="font-semibold text-primary">Visibility</span> • <span className="font-semibold text-primary">Yield</span> • <span className="font-semibold text-primary">Brand</span> • <span className="font-semibold text-primary">Engagement</span>
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {packages.map((pkg, index) => (
+              <div 
+                key={index} 
+                className={`relative glass-card rounded-3xl p-6 md:p-8 ${pkg.borderColor} border-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col ${pkg.popular ? 'ring-2 ring-primary/50 shadow-primary/20 shadow-lg' : ''}`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
+                      MOST POPULAR
+                    </span>
+                  </div>
+                )}
+                
+                <div className="text-center mb-6">
+                  <span className="text-3xl mb-3 block">{pkg.icon}</span>
+                  <h4 className={`text-xl md:text-2xl font-bold bg-gradient-to-r ${pkg.color} bg-clip-text text-transparent mb-2`}>
+                    {pkg.name}
+                  </h4>
+                  <p className="text-sm text-muted-foreground leading-snug">
+                    {pkg.tagline}
+                  </p>
+                </div>
+                
+                <div className="text-center mb-6 pb-6 border-b border-border/50">
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${pkg.color} bg-clip-text text-transparent`}>
+                      {pkg.price}
+                    </span>
+                  </div>
+                  <span className="text-sm text-muted-foreground">{pkg.period}</span>
+                </div>
+                
+                <ul className="space-y-3 mb-6 flex-grow">
+                  {pkg.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-sm">
+                      <Check className={`h-4 w-4 mt-0.5 flex-shrink-0 ${pkg.popular ? 'text-primary' : 'text-muted-foreground'}`} />
+                      <span className="text-foreground/90">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className={`${pkg.bgColor} rounded-xl p-4 mb-6`}>
+                  <p className="text-xs font-medium text-foreground/80">
+                    <span className="font-semibold">Best for:</span> {pkg.bestFor}
+                  </p>
+                </div>
+                
+                <Button 
+                  variant={pkg.popular ? "hero" : "outline"}
+                  className={`w-full ${pkg.popular ? '' : 'hover:bg-primary hover:text-primary-foreground'}`}
+                  onClick={() => window.location.href = '/#contact'}
+                >
+                  {pkg.custom ? (
+                    <>
+                      <Phone className="mr-2 h-4 w-4" />
+                      Book Discovery Call
+                    </>
+                  ) : (
+                    <>
+                      Get Started
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -201,31 +374,31 @@ const VYBE = () => {
             <p className="text-lg text-muted-foreground">We connect brands with voices that matter.</p>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
             {influencers.map((influencer, index) => (
               <a 
                 key={index} 
                 href={influencer.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-card rounded-2xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-medium text-center group cursor-pointer relative"
+                className="bg-card rounded-2xl p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-medium text-center group cursor-pointer relative"
               >
-                <div className="w-16 h-16 rounded-full mx-auto mb-4 overflow-hidden ring-2 ring-primary/30 group-hover:ring-primary transition-all group-hover:scale-110">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto mb-3 md:mb-4 overflow-hidden ring-2 ring-primary/30 group-hover:ring-primary transition-all group-hover:scale-110">
                   <img 
                     src={influencer.image} 
                     alt={influencer.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute top-2 right-2 w-6 h-6 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+                <div className="absolute top-2 right-2 w-5 h-5 md:w-6 md:h-6 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
                   {influencer.platform === 'Instagram' ? 
-                    <Instagram className="h-3 w-3 text-primary-foreground" /> :
-                    <Youtube className="h-3 w-3 text-primary-foreground" />
+                    <Instagram className="h-2.5 w-2.5 md:h-3 md:w-3 text-primary-foreground" /> :
+                    <Youtube className="h-2.5 w-2.5 md:h-3 md:w-3 text-primary-foreground" />
                   }
                 </div>
-                <h4 className="font-bold text-foreground mb-1">{influencer.name}</h4>
-                <p className="text-sm text-primary mb-2">{influencer.handle}</p>
-                <p className="text-xs text-muted-foreground">{influencer.followers} {influencer.platform === 'YouTube' ? 'subscribers' : 'followers'}</p>
+                <h4 className="font-bold text-foreground mb-1 text-sm md:text-base truncate">{influencer.name}</h4>
+                <p className="text-xs md:text-sm text-primary mb-1 md:mb-2 truncate">{influencer.handle}</p>
+                <p className="text-xs text-muted-foreground">{influencer.followers}</p>
               </a>
             ))}
           </div>
