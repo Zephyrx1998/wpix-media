@@ -196,93 +196,6 @@ const VYBE = () => {
         </div>
       </section>
 
-      {/* Pricing Packages Section */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background"></div>
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12 md:mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-              VYBE Packages
-            </h3>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              <span className="font-semibold text-primary">Visibility</span> • <span className="font-semibold text-primary">Yield</span> • <span className="font-semibold text-primary">Brand</span> • <span className="font-semibold text-primary">Engagement</span>
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {packages.map((pkg, index) => (
-              <div 
-                key={index} 
-                className={`relative glass-card rounded-3xl p-6 md:p-8 ${pkg.borderColor} border-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col ${pkg.popular ? 'ring-2 ring-primary/50 shadow-primary/20 shadow-lg' : ''}`}
-              >
-                {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
-                      MOST POPULAR
-                    </span>
-                  </div>
-                )}
-                
-                <div className="text-center mb-6">
-                  <span className="text-3xl mb-3 block">{pkg.icon}</span>
-                  <h4 className={`text-xl md:text-2xl font-bold bg-gradient-to-r ${pkg.color} bg-clip-text text-transparent mb-2`}>
-                    {pkg.name}
-                  </h4>
-                  <p className="text-sm text-muted-foreground leading-snug">
-                    {pkg.tagline}
-                  </p>
-                </div>
-                
-                <div className="text-center mb-6 pb-6 border-b border-border/50">
-                  <div className="flex items-baseline justify-center gap-1">
-                    <span className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${pkg.color} bg-clip-text text-transparent`}>
-                      {pkg.price}
-                    </span>
-                  </div>
-                  <span className="text-sm text-muted-foreground">{pkg.period}</span>
-                </div>
-                
-                <ul className="space-y-3 mb-6 flex-grow">
-                  {pkg.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-sm">
-                      <Check className={`h-4 w-4 mt-0.5 flex-shrink-0 ${pkg.popular ? 'text-primary' : 'text-muted-foreground'}`} />
-                      <span className="text-foreground/90">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className={`${pkg.bgColor} rounded-xl p-4 mb-6`}>
-                  <p className="text-xs font-medium text-foreground/80">
-                    <span className="font-semibold">Best for:</span> {pkg.bestFor}
-                  </p>
-                </div>
-                
-                <Button 
-                  variant={pkg.popular ? "hero" : "outline"}
-                  className={`w-full ${pkg.popular ? '' : 'hover:bg-primary hover:text-primary-foreground'}`}
-                  onClick={() => window.location.href = '/#contact'}
-                >
-                  {pkg.custom ? (
-                    <>
-                      <Phone className="mr-2 h-4 w-4" />
-                      Book Discovery Call
-                    </>
-                  ) : (
-                    <>
-                      Get Started
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </>
-                  )}
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Social Media Management Section */}
       <section className="py-16 bg-card/30">
         <div className="container mx-auto px-4">
@@ -433,6 +346,93 @@ const VYBE = () => {
                   <h4 className="font-bold text-foreground mb-2">{website.title}</h4>
                   <p className="text-sm text-muted-foreground">{website.description}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Packages Section */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background"></div>
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-12 md:mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              VYBE Packages
+            </h3>
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+              <span className="font-semibold text-primary">Visibility</span> • <span className="font-semibold text-primary">Yield</span> • <span className="font-semibold text-primary">Brand</span> • <span className="font-semibold text-primary">Engagement</span>
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {packages.map((pkg, index) => (
+              <div 
+                key={index} 
+                className={`relative glass-card rounded-3xl p-6 md:p-8 ${pkg.borderColor} border-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col ${pkg.popular ? 'ring-2 ring-primary/50 shadow-primary/20 shadow-lg' : ''}`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
+                      MOST POPULAR
+                    </span>
+                  </div>
+                )}
+                
+                <div className="text-center mb-6">
+                  <span className="text-3xl mb-3 block">{pkg.icon}</span>
+                  <h4 className={`text-xl md:text-2xl font-bold bg-gradient-to-r ${pkg.color} bg-clip-text text-transparent mb-2`}>
+                    {pkg.name}
+                  </h4>
+                  <p className="text-sm text-muted-foreground leading-snug">
+                    {pkg.tagline}
+                  </p>
+                </div>
+                
+                <div className="text-center mb-6 pb-6 border-b border-border/50">
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${pkg.color} bg-clip-text text-transparent`}>
+                      {pkg.price}
+                    </span>
+                  </div>
+                  <span className="text-sm text-muted-foreground">{pkg.period}</span>
+                </div>
+                
+                <ul className="space-y-3 mb-6 flex-grow">
+                  {pkg.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-sm">
+                      <Check className={`h-4 w-4 mt-0.5 flex-shrink-0 ${pkg.popular ? 'text-primary' : 'text-muted-foreground'}`} />
+                      <span className="text-foreground/90">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className={`${pkg.bgColor} rounded-xl p-4 mb-6`}>
+                  <p className="text-xs font-medium text-foreground/80">
+                    <span className="font-semibold">Best for:</span> {pkg.bestFor}
+                  </p>
+                </div>
+                
+                <Button 
+                  variant={pkg.popular ? "hero" : "outline"}
+                  className={`w-full ${pkg.popular ? '' : 'hover:bg-primary hover:text-primary-foreground'}`}
+                  onClick={() => window.location.href = '/#contact'}
+                >
+                  {pkg.custom ? (
+                    <>
+                      <Phone className="mr-2 h-4 w-4" />
+                      Book Discovery Call
+                    </>
+                  ) : (
+                    <>
+                      Get Started
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
               </div>
             ))}
           </div>
