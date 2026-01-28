@@ -341,6 +341,40 @@ All colors MUST be HSL.
     -webkit-backdrop-filter: blur(40px);
   }
 
+  /* Performance-optimized background animations */
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, 20px) scale(1.05); }
+  }
+
+  @keyframes float-medium {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-20px, 15px) scale(0.95); }
+  }
+
+  @keyframes float-particle {
+    0%, 100% { 
+      transform: translateY(0);
+      opacity: 0.15;
+    }
+    50% { 
+      transform: translateY(-15px);
+      opacity: 0.4;
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 30s ease-in-out infinite;
+  }
+
+  .animate-float-medium {
+    animation: float-medium 25s ease-in-out infinite;
+  }
+
+  .animate-float-particle {
+    animation: float-particle 20s ease-in-out infinite;
+  }
+
   /* Tiptap Rich Text Editor Styles */
   .tiptap {
     outline: none;
