@@ -19,6 +19,9 @@ const areaOfInterestOptions = [
   { value: 'graphic-brand-design', label: 'Graphic & Brand Design' },
   { value: 'performance-marketing', label: 'Performance Marketing' },
   { value: 'project-coordination', label: 'Project Coordination' },
+  { value: 'rnd', label: 'R&D' },
+  { value: 'brand-communication', label: 'Brand Communication' },
+  { value: 'ai-generalist', label: 'AI Generalist' },
   { value: 'other', label: 'Other' }
 ];
 

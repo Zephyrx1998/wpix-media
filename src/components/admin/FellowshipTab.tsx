@@ -115,6 +115,9 @@ export const FellowshipTab = () => {
             <SelectItem value="Graphic & Brand Design">Graphic & Brand Design</SelectItem>
             <SelectItem value="Performance Marketing">Performance Marketing</SelectItem>
             <SelectItem value="Project Coordination">Project Coordination</SelectItem>
+            <SelectItem value="R&D">R&D</SelectItem>
+            <SelectItem value="Brand Communication">Brand Communication</SelectItem>
+            <SelectItem value="AI Generalist">AI Generalist</SelectItem>
             <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
