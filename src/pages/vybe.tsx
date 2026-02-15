@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, Instagram, Youtube, BarChart3, Users, Zap, ArrowRight, Star, Check, Phone } from 'lucide-react';
+import { TrendingUp, Instagram, Youtube, BarChart3, Users, Zap, ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const VYBE = () => {
@@ -52,92 +52,6 @@ const VYBE = () => {
       quote: "The landing pages they built converted 40% better than our previous campaigns.",
       author: "Growth Lead",
       company: "SaaS Company"
-    }
-  ];
-
-  const packages = [
-    {
-      name: "Starter VYBE",
-      tagline: "For early-stage brands & personal brands",
-      price: "₹25,000",
-      period: "/ month",
-      color: "from-emerald-500 to-green-600",
-      borderColor: "border-emerald-500/30",
-      bgColor: "bg-emerald-500/10",
-      icon: "🟢",
-      features: [
-        "Social Media Strategy (monthly)",
-        "7 Creatives / month (posts or carousels)",
-        "3 Reels / month",
-        "Caption + hashtags",
-        "Basic performance tracking",
-        "Monthly report"
-      ],
-      bestFor: "New businesses, local brands, founders starting online"
-    },
-    {
-      name: "Growth VYBE",
-      tagline: "For brands that want reach + engagement + leads",
-      price: "₹70,000",
-      period: "/ month",
-      color: "from-blue-500 to-cyan-600",
-      borderColor: "border-blue-500/30",
-      bgColor: "bg-blue-500/10",
-      icon: "🔵",
-      popular: true,
-      features: [
-        "Detailed content & growth strategy",
-        "8 Creatives / month",
-        "8 Reels / month",
-        "Content calendar",
-        "Community management (basic DMs/comments)",
-        "Influencer shortlisting (micro-influencers)",
-        "Paid ads setup & monitoring (ad budget extra)",
-        "Monthly performance report + insights"
-      ],
-      bestFor: "D2C brands, service businesses, startups"
-    },
-    {
-      name: "Scale VYBE",
-      tagline: "For brands serious about sales & dominance",
-      price: "₹1,40,000",
-      period: "/ month",
-      color: "from-red-500 to-orange-600",
-      borderColor: "border-red-500/30",
-      bgColor: "bg-red-500/10",
-      icon: "🔴",
-      features: [
-        "Full-funnel marketing strategy",
-        "12+ Creatives / month",
-        "12 Reels / month",
-        "High-quality video editing",
-        "Performance marketing (Meta + Google)",
-        "YouTube Management",
-        "Influencer collaborations (planning + coordination)",
-        "WhatsApp & email automation setup",
-        "Conversion tracking (GA4, Pixel)",
-        "Weekly reporting + optimization calls"
-      ],
-      bestFor: "Funded startups, e-commerce, aggressive growth brands"
-    },
-    {
-      name: "Custom VYBE",
-      tagline: "Built only after a discovery call",
-      price: "Custom",
-      period: "Pricing based on scope",
-      color: "from-gray-700 to-gray-900",
-      borderColor: "border-gray-500/30",
-      bgColor: "bg-gray-500/10",
-      icon: "⚫",
-      custom: true,
-      features: [
-        "Platform-specific strategy",
-        "Ads + influencers + SEO + content",
-        "YouTube + Google",
-        "Growth experiments",
-        "Dedicated SPOC"
-      ],
-      bestFor: "Enterprise brands with unique requirements"
     }
   ];
 
