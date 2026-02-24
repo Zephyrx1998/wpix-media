@@ -1,18 +1,29 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { lazy, Suspense } from "react";
 import PageTransition from "./PageTransition";
+
+// Eagerly load the home page for fast initial render
 import Index from "../pages/Index";
-import AIToolkit from "../pages/AIToolkit";
-import WCF from "../pages/wcf";
-import SevenDC from "../pages/7dc";
-import AVER from "../pages/aver";
-import VYBE from "../pages/vybe";
-import Fellowship from "../pages/Fellowship";
-import Blog from "../pages/Blog";
-import BlogPost from "../pages/BlogPost";
-import NotFound from "../pages/NotFound";
-import AdminLeads from "../pages/AdminLeads";
-import AdminLogin from "../pages/AdminLogin";
+
+// Lazy load all other pages
+const AIToolkit = lazy(() => import("../pages/AIToolkit"));
+const WCF = lazy(() => import("../pages/wcf"));
+const SevenDC = lazy(() => import("../pages/7dc"));
+const AVER = lazy(() => import("../pages/aver"));
+const VYBE = lazy(() => import("../pages/vybe"));
+const Fellowship = lazy(() => import("../pages/Fellowship"));
+const Blog = lazy(() => import("../pages/Blog"));
+const BlogPost = lazy(() => import("../pages/BlogPost"));
+const NotFound = lazy(() => import("../pages/NotFound"));
+const AdminLeads = lazy(() => import("../pages/AdminLeads"));
+const AdminLogin = lazy(() => import("../pages/AdminLogin"));
+
+const LazyFallback = () => (
+  <div className="flex items-center justify-center min-h-screen bg-background">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+  </div>
+);
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -31,89 +42,111 @@ const AnimatedRoutes = () => {
         <Route
           path="/ai-toolkit"
           element={
-            <PageTransition>
-              <AIToolkit />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <AIToolkit />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="/wcf"
           element={
-            <PageTransition>
-              <WCF />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <WCF />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="/7dc"
           element={
-            <PageTransition>
-              <SevenDC />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <SevenDC />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="/aver"
           element={
-            <PageTransition>
-              <AVER />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <AVER />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="/vybe"
           element={
-            <PageTransition>
-              <VYBE />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <VYBE />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="/fellowship"
           element={
-            <PageTransition>
-              <Fellowship />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <Fellowship />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="/blog"
           element={
-            <PageTransition>
-              <Blog />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <Blog />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="/blog/:slug"
           element={
-            <PageTransition>
-              <BlogPost />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <BlogPost />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="/admin-login"
           element={
-            <PageTransition>
-              <AdminLogin />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <AdminLogin />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="/admin-leads"
           element={
-            <PageTransition>
-              <AdminLeads />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <AdminLeads />
+              </PageTransition>
+            </Suspense>
           }
         />
         <Route
           path="*"
           element={
-            <PageTransition>
-              <NotFound />
-            </PageTransition>
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <NotFound />
+              </PageTransition>
+            </Suspense>
           }
         />
       </Routes>
