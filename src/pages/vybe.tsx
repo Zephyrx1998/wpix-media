@@ -166,7 +166,7 @@ const VYBE = () => {
             <ScrollReveal animation="fade-up" duration={800} delay={100}>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
                 <span className="bg-gradient-to-r from-primary via-primary-dark to-primary bg-clip-text text-transparent">VYBE</span>
-                <span className="text-foreground"> — Where Content</span>
+                <span className="text-foreground"> - Where Content</span>
                 <br />
                 <span className="text-foreground">Becomes </span>
                 <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Growth.</span>
