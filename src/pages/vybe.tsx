@@ -1,75 +1,56 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   TrendingUp, Instagram, Youtube, BarChart3, Users, Zap, ArrowRight,
-  Bot, Sparkles, Play, ChevronRight, Brain, Target,
+  Bot, Sparkles, Play, ChevronRight, Brain, Target, CheckCircle2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 
-/* ─────────────────────────────────────────────────────────
-   MICRO COMPONENTS
-───────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   SHARED MICRO COMPONENTS
+═══════════════════════════════════════════════════════════ */
 
 const MotionBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
     <div className="absolute -top-20 -left-10 w-72 h-72 bg-primary/6 rounded-full blur-[80px] animate-pulse" style={{ animationDuration: '6s' }} />
     <div className="absolute top-1/2 -right-10 w-56 h-56 bg-primary/4 rounded-full blur-[60px] animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
+    <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-primary/3 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '4s' }} />
   </div>
 );
 
-/** Chip / badge pill */
 const Chip = ({ icon, label }: { icon: React.ReactNode; label: string }) => (
   <div className="flex items-center gap-1.5 bg-primary/8 border border-primary/20 rounded-full px-3.5 py-1.5 text-xs font-semibold text-primary select-none">
-    {icon}
-    {label}
+    {icon}{label}
   </div>
 );
 
-/** Feature list item */
 const Feature = ({ text }: { text: string }) => (
   <li className="flex items-start gap-3">
-    <div className="mt-0.5 w-5 h-5 rounded-full bg-primary/12 flex items-center justify-center flex-shrink-0">
-      <ChevronRight className="h-3 w-3 text-primary" />
-    </div>
+    <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
     <span className="text-sm text-foreground leading-snug">{text}</span>
   </li>
 );
 
-/** Section header */
-const SectionHeader = ({
-  eyebrow, icon, title, subtitle,
-}: { eyebrow: string; icon: React.ReactNode; title: string; subtitle: React.ReactNode }) => (
-  <div className="mb-8">
-    <div className="inline-flex items-center gap-1.5 text-primary text-xs font-semibold mb-3 tracking-wide uppercase">
-      {icon} {eyebrow}
-    </div>
-    <h2 className="text-2xl font-bold text-foreground mb-2 leading-tight">{title}</h2>
-    <div className="text-sm text-muted-foreground leading-relaxed">{subtitle}</div>
-  </div>
-);
-
-/* ─── Social Card ────────────────────────────────────── */
+/* ─── Social Card ─────────────────────────────────────── */
 const SocialCard = ({ platform, label, engagement }: { platform: string; label: string; engagement: string }) => (
-  <div className="flex-shrink-0 w-48 rounded-2xl border border-border bg-card overflow-hidden shadow-[var(--shadow-soft)]">
-    <div className="aspect-[4/5] bg-gradient-to-br from-accent/80 to-muted flex flex-col items-center justify-center gap-2 relative p-4">
-      <div className="w-9 h-9 rounded-full bg-primary/15 flex items-center justify-center">
-        {platform === 'Instagram'
-          ? <Instagram className="h-4 w-4 text-primary" />
-          : <Youtube className="h-4 w-4 text-primary" />}
+  <div className="flex-shrink-0 w-44 rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
+    <div className="aspect-[4/5] bg-gradient-to-br from-accent/80 to-muted flex flex-col items-center justify-center gap-2 relative p-3">
+      <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
+        {platform === 'Instagram' ? <Instagram className="h-4 w-4 text-primary" /> : <Youtube className="h-4 w-4 text-primary" />}
       </div>
-      <p className="text-xs font-medium text-center text-foreground px-2">{label}</p>
+      <p className="text-xs font-medium text-center text-foreground px-1">{label}</p>
       <div className="absolute bottom-2 right-2 bg-primary/10 border border-primary/20 rounded-full px-2 py-0.5 text-[10px] text-primary font-semibold">{engagement}</div>
     </div>
-    <div className="p-3">
+    <div className="p-2.5">
       <div className="h-1.5 bg-muted rounded-full mb-1.5 w-4/5" />
       <div className="h-1.5 bg-muted rounded-full w-3/5" />
     </div>
   </div>
 );
 
-/* ─── YouTube Card ───────────────────────────────────── */
+/* ─── YouTube Card ────────────────────────────────────── */
 const YTCard = ({ title, views }: { title: string; views: string }) => (
-  <div className="bg-card rounded-xl border border-border overflow-hidden active:scale-[0.98] transition-transform">
+  <div className="bg-card rounded-xl border border-border overflow-hidden hover:shadow-md transition-shadow cursor-pointer">
     <div className="aspect-video bg-gradient-to-br from-accent/80 to-muted flex items-center justify-center relative">
       <div className="w-10 h-10 bg-primary/90 rounded-full flex items-center justify-center shadow">
         <Play className="h-4 w-4 text-primary-foreground ml-0.5" fill="currentColor" />
@@ -83,7 +64,7 @@ const YTCard = ({ title, views }: { title: string; views: string }) => (
   </div>
 );
 
-/* ─── AI Avatar Mock ─────────────────────────────────── */
+/* ─── AI Avatar Mock ──────────────────────────────────── */
 const AIAvatarMock = () => (
   <div className="bg-gradient-to-br from-accent/60 to-muted rounded-2xl border border-border p-6 relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-primary/3 to-transparent" />
@@ -108,7 +89,7 @@ const AIAvatarMock = () => (
   </div>
 );
 
-/* ─── Performance Mini Chart ─────────────────────────── */
+/* ─── Performance Mock ────────────────────────────────── */
 const PerfMock = () => (
   <div className="bg-card rounded-2xl border border-border p-4">
     <div className="flex items-center justify-between mb-4">
@@ -139,13 +120,12 @@ const PerfMock = () => (
   </div>
 );
 
-/* ─────────────────────────────────────────────────────────
-   SERVICE TABS (horizontal scroll tabs for mobile)
-───────────────────────────────────────────────────────── */
-const services: { id: string; tab: string; icon: React.ReactNode; eyebrow: string; title: string; subtitle: React.ReactNode; features: string[]; visual: string }[] = [
+/* ═══════════════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════════════ */
+const services = [
   {
-    id: 'social',
-    tab: 'Social',
+    id: 'social', tab: 'Social',
     icon: <Instagram className="h-4 w-4" />,
     eyebrow: 'Social Content',
     title: 'High-Engagement Social Content',
@@ -161,8 +141,7 @@ const services: { id: string; tab: string; icon: React.ReactNode; eyebrow: strin
     visual: 'social',
   },
   {
-    id: 'ip',
-    tab: 'IP & YouTube',
+    id: 'ip', tab: 'IP & YouTube',
     icon: <Youtube className="h-4 w-4" />,
     eyebrow: 'Brand IP',
     title: 'IP & Evergreen Brand Content',
@@ -178,11 +157,10 @@ const services: { id: string; tab: string; icon: React.ReactNode; eyebrow: strin
     visual: 'youtube',
   },
   {
-    id: 'ai',
-    tab: 'AI-A-UGC',
+    id: 'ai', tab: 'AI-A-UGC',
     icon: <Bot className="h-4 w-4" />,
     eyebrow: 'AI Content',
-    title: 'AI-A-UGC',
+    title: 'AI-A-UGC Engine',
     subtitle: 'Scale authentic content without depending on creators every time.',
     features: [
       'AI brand spokesperson videos',
@@ -194,8 +172,7 @@ const services: { id: string; tab: string; icon: React.ReactNode; eyebrow: strin
     visual: 'ai',
   },
   {
-    id: 'perf',
-    tab: 'Performance',
+    id: 'perf', tab: 'Performance',
     icon: <Target className="h-4 w-4" />,
     eyebrow: 'Performance',
     title: 'Growth Performance Engine',
@@ -228,18 +205,54 @@ const ytContent = [
   { title: 'Product Deep Dive — Everything You Need to Know', views: '15K' },
 ];
 
-/* ─────────────────────────────────────────────────────────
-   MAIN PAGE
-───────────────────────────────────────────────────────── */
-const VYBE = () => {
+const stats = [
+  { val: '3×', label: 'Avg Revenue Lift' },
+  { val: '6.8×', label: 'ROAS Delivered' },
+  { val: '500K+', label: 'Reach Generated' },
+];
+
+const influencers = [
+  { img: '/lovable-uploads/definite-official-logo.jpg', name: 'DefiniteOfficial', followers: '76.2K' },
+  { img: '/lovable-uploads/beatthehunger-logo.jpg', name: 'BeatTheHunger', followers: '112K' },
+  { img: '/lovable-uploads/influencer-merapittara.png', name: 'Mera Pittara', followers: '277K' },
+  { img: '/lovable-uploads/influencer-vikin.png', name: 'Vikin.ing', followers: '232K' },
+];
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICE VISUAL (shared renderer)
+═══════════════════════════════════════════════════════════ */
+const ServiceVisual = ({ visual, socialScrollRef }: { visual: string; socialScrollRef: React.RefObject<HTMLDivElement> }) => {
+  if (visual === 'social') return (
+    <div
+      className="overflow-hidden rounded-2xl"
+      style={{ maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' }}
+    >
+      <div ref={socialScrollRef} className="flex gap-3 overflow-x-hidden select-none">
+        {[...socialPosts, ...socialPosts].map((p, i) => <SocialCard key={i} {...p} />)}
+      </div>
+    </div>
+  );
+  if (visual === 'youtube') return (
+    <div className="grid grid-cols-2 gap-3">
+      {ytContent.map((v, i) => <YTCard key={i} {...v} />)}
+    </div>
+  );
+  if (visual === 'ai') return <AIAvatarMock />;
+  if (visual === 'perf') return <PerfMock />;
+  return null;
+};
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE VIEW  (< md)
+═══════════════════════════════════════════════════════════ */
+const MobileVYBE = () => {
   const [activeTab, setActiveTab] = useState(0);
   const socialScrollRef = useRef<HTMLDivElement>(null);
   const tabScrollRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll social cards
   useEffect(() => {
     const el = socialScrollRef.current;
-    if (!el) return;
+    if (!el || services[activeTab].visual !== 'social') return;
     let frame: number;
     let pos = 0;
     const scroll = () => {
@@ -252,99 +265,61 @@ const VYBE = () => {
     return () => cancelAnimationFrame(frame);
   }, [activeTab]);
 
-  // Scroll active tab into view
   useEffect(() => {
     const el = tabScrollRef.current;
     if (!el) return;
-    const activeBtn = el.children[activeTab] as HTMLElement;
-    if (activeBtn) {
-      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    }
+    const btn = el.children[activeTab] as HTMLElement;
+    btn?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   }, [activeTab]);
 
   const cur = services[activeTab];
 
   return (
-    <div
-      className="min-h-screen bg-background"
-      style={{ WebkitTapHighlightColor: 'transparent' }}
-    >
-      {/* ── HERO ───────────────────────────────────────── */}
+    <div className="min-h-[100svh] bg-background" style={{ WebkitTapHighlightColor: 'transparent' }}>
+      {/* HERO */}
       <section className="relative min-h-[100svh] flex flex-col justify-center pt-20 pb-10 px-5 overflow-hidden">
         <MotionBackground />
-
-        <div className="relative z-10 max-w-lg mx-auto w-full">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6"
-          >
+        <div className="relative z-10 w-full">
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-5">
             <Chip icon={<Sparkles className="h-3 w-3" />} label="AI-Powered Content & Growth" />
           </motion.div>
 
-          {/* Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-bold leading-tight tracking-tight mb-4"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl font-bold leading-tight tracking-tight mb-4"
           >
             <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">VYBE</span>
             <span className="text-foreground"> - Where Content<br />Becomes </span>
             <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Growth.</span>
           </motion.h1>
 
-          {/* Subheading */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm text-muted-foreground mb-8 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-sm text-muted-foreground mb-7 leading-relaxed"
           >
             An AI-powered content and performance engine built for brands that want attention, authority, and measurable growth.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col gap-3"
           >
-            <Button
-              variant="hero"
-              size="lg"
-              onClick={() => window.location.href = '/#contact'}
-              className="w-full h-14 text-base font-semibold rounded-2xl active:scale-[0.98] transition-transform"
-            >
-              <Zap className="mr-2 h-5 w-5" />
-              Build My Growth System
+            <Button variant="hero" size="lg" onClick={() => window.location.href = '/#contact'}
+              className="w-full h-14 text-base font-semibold rounded-2xl active:scale-[0.98] transition-transform">
+              <Zap className="mr-2 h-5 w-5" /> Build My Growth System
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="w-full h-12 text-sm rounded-2xl active:scale-[0.98] transition-transform"
-            >
-              Explore Services
-              <ChevronRight className="ml-1.5 h-4 w-4" />
+            <Button variant="outline" size="lg"
+              onClick={() => document.getElementById('mobile-services')?.scrollIntoView({ behavior: 'smooth' })}
+              className="w-full h-12 text-sm rounded-2xl active:scale-[0.98] transition-transform">
+              Explore Services <ChevronRight className="ml-1.5 h-4 w-4" />
             </Button>
           </motion.div>
 
-          {/* Stats row */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.5 }}
             className="grid grid-cols-3 gap-3 mt-10"
           >
-            {[
-              { val: '3×', label: 'Avg Revenue Lift' },
-              { val: '6.8×', label: 'ROAS Delivered' },
-              { val: '500K+', label: 'Reach Generated' },
-            ].map(s => (
+            {stats.map(s => (
               <div key={s.val} className="bg-card/70 border border-border rounded-2xl p-3 text-center">
                 <p className="text-lg font-bold text-primary">{s.val}</p>
                 <p className="text-[10px] text-muted-foreground leading-tight">{s.label}</p>
@@ -354,190 +329,331 @@ const VYBE = () => {
         </div>
       </section>
 
-      {/* ── WHAT IS VYBE ───────────────────────────────── */}
+      {/* WHAT IS VYBE */}
       <section className="px-5 py-10 bg-card/40 border-y border-border">
-        <div className="max-w-lg mx-auto">
-          <h2 className="text-xl font-bold text-foreground mb-3">What is VYBE?</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-            <span className="font-semibold text-foreground">VYBE (Visibility • Yield • Brand Engagement)</span> is WPIX Media's growth division focused on high-engagement storytelling, IP creation, AI-powered content systems, and performance-led distribution.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Chip icon={<Zap className="h-3 w-3" />} label="Engagement Engine" />
-            <Chip icon={<Brain className="h-3 w-3" />} label="AI Content Systems" />
-            <Chip icon={<TrendingUp className="h-3 w-3" />} label="Performance & LLM Growth" />
-          </div>
+        <h2 className="text-xl font-bold text-foreground mb-3">What is VYBE?</h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+          <span className="font-semibold text-foreground">VYBE (Visibility • Yield • Brand Engagement)</span> is WPIX Media's growth division focused on high-engagement storytelling, IP creation, AI-powered content systems, and performance-led distribution.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <Chip icon={<Zap className="h-3 w-3" />} label="Engagement Engine" />
+          <Chip icon={<Brain className="h-3 w-3" />} label="AI Content Systems" />
+          <Chip icon={<TrendingUp className="h-3 w-3" />} label="Performance & LLM Growth" />
         </div>
       </section>
 
-      {/* ── SERVICES (TABBED) ──────────────────────────── */}
-      <section id="services-section" className="py-10">
-        <div className="max-w-lg mx-auto w-full">
-          {/* Tab Bar */}
-          <div
-            ref={tabScrollRef}
-            className="flex gap-2 overflow-x-auto px-5 pb-3 hide-scrollbar"
-            style={{ scrollbarWidth: 'none' }}
+      {/* SERVICES — TABBED (app-style) */}
+      <section id="mobile-services" className="py-8">
+        {/* Horizontal tab pills */}
+        <div ref={tabScrollRef} className="flex gap-2 overflow-x-auto px-5 pb-3" style={{ scrollbarWidth: 'none' }}>
+          {services.map((s, i) => (
+            <button key={s.id} onClick={() => setActiveTab(i)}
+              className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all active:scale-95 ${
+                activeTab === i
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'bg-card border border-border text-muted-foreground'
+              }`}>
+              {s.icon}{s.tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Content panel with slide animation */}
+        <AnimatePresence mode="wait">
+          <motion.div key={cur.id}
+            initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.25 }}
+            className="px-5 pt-5"
           >
-            {services.map((s, i) => (
-              <button
-                key={s.id}
-                onClick={() => setActiveTab(i)}
-                className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all active:scale-95 ${
-                  activeTab === i
-                    ? 'bg-primary text-primary-foreground shadow-[var(--shadow-soft)]'
-                    : 'bg-card border border-border text-muted-foreground'
-                }`}
-              >
-                {s.icon}
-                {s.tab}
-              </button>
-            ))}
-          </div>
-
-          {/* Tab Content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={cur.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.25 }}
-              className="px-5 pt-5"
-            >
-              {/* Visual */}
-              <div className="mb-6">
-                {cur.visual === 'social' && (
-                  <div
-                    className="overflow-hidden rounded-2xl"
-                    style={{ maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' }}
-                  >
-                    <div ref={socialScrollRef} className="flex gap-3 overflow-x-hidden select-none">
-                      {[...socialPosts, ...socialPosts].map((p, i) => (
-                        <SocialCard key={i} {...p} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {cur.visual === 'youtube' && (
-                  <div className="grid grid-cols-2 gap-3">
-                    {ytContent.map((v, i) => <YTCard key={i} {...v} />)}
-                  </div>
-                )}
-                {cur.visual === 'ai' && <AIAvatarMock />}
-                {cur.visual === 'perf' && <PerfMock />}
-              </div>
-
-              {/* Text */}
-              <SectionHeader
-                eyebrow={cur.eyebrow}
-                icon={cur.icon}
-                title={cur.title}
-                subtitle={cur.visual === 'ai'
-                  ? <>
-                      <span className="text-primary font-medium text-xs block mb-1">AI Avatar User Generated Content</span>
-                      {cur.subtitle}
-                    </>
-                  : cur.subtitle
-                }
-              />
-              <ul className="space-y-2.5">
-                {cur.features.map(f => <Feature key={f} text={f} />)}
-              </ul>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* ── CREATOR NETWORK ─────────────────────────────── */}
-      <section className="px-5 py-10 bg-card/40 border-t border-border">
-        <div className="max-w-lg mx-auto">
-          <div className="flex items-center gap-1.5 text-primary text-[11px] font-semibold mb-3 uppercase tracking-wide">
-            <Users className="h-3.5 w-3.5" /> Creator Network
-          </div>
-          <h2 className="text-xl font-bold text-foreground mb-2">VYBE X Creator Network</h2>
-          <p className="text-sm text-muted-foreground mb-1">Access our curated micro-creator marketplace through <span className="font-semibold text-primary">VYBE X</span>.</p>
-          <p className="text-xs text-muted-foreground mb-6">Instagram Story promotions with verified 5k–50k creators.</p>
-
-          {/* Influencer avatars */}
-          <div className="flex gap-4 mb-6 overflow-x-auto hide-scrollbar pb-1">
-            {[
-              { img: '/lovable-uploads/definite-official-logo.jpg', name: 'DefiniteOfficial', followers: '76.2K' },
-              { img: '/lovable-uploads/beatthehunger-logo.jpg', name: 'BeatTheHunger', followers: '112K' },
-              { img: '/lovable-uploads/influencer-merapittara.png', name: 'Mera Pittara', followers: '277K' },
-              { img: '/lovable-uploads/influencer-vikin.png', name: 'Vikin.ing', followers: '232K' },
-            ].map((inf, i) => (
-              <div key={i} className="flex-shrink-0 flex flex-col items-center gap-1.5">
-                <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-primary/25">
-                  <img src={inf.img} alt={inf.name} className="w-full h-full object-cover" loading="lazy" />
-                </div>
-                <p className="text-[10px] font-medium text-foreground text-center w-16 truncate">{inf.name}</p>
-                <p className="text-[10px] text-primary font-semibold">{inf.followers}</p>
-              </div>
-            ))}
-            <div className="flex-shrink-0 flex flex-col items-center gap-1.5">
-              <div className="w-14 h-14 rounded-full bg-primary/8 border-2 border-dashed border-primary/25 flex items-center justify-center">
-                <span className="text-primary font-bold text-xs">+40</span>
-              </div>
-              <p className="text-[10px] text-muted-foreground">More</p>
+            <div className="mb-5">
+              <ServiceVisual visual={cur.visual} socialScrollRef={socialScrollRef} />
             </div>
-          </div>
-
-          <Button
-            variant="hero"
-            className="w-full h-12 rounded-2xl text-sm font-semibold active:scale-[0.98] transition-transform"
-            onClick={() => window.open('https://vybex.wpixmedia.com', '_blank')}
-          >
-            Explore VYBE X
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
+            <div className="inline-flex items-center gap-1.5 text-primary text-[11px] font-semibold mb-2 tracking-wide uppercase">
+              {cur.icon} {cur.eyebrow}
+            </div>
+            <h2 className="text-xl font-bold text-foreground mb-2">{cur.title}</h2>
+            <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{cur.subtitle}</p>
+            <ul className="space-y-2.5">
+              {cur.features.map(f => <Feature key={f} text={f} />)}
+            </ul>
+          </motion.div>
+        </AnimatePresence>
       </section>
 
-      {/* ── CTA ─────────────────────────────────────────── */}
+      {/* CREATOR NETWORK */}
+      <section className="px-5 py-10 bg-card/40 border-t border-border">
+        <div className="inline-flex items-center gap-1.5 text-primary text-[11px] font-semibold mb-3 uppercase tracking-wide">
+          <Users className="h-3.5 w-3.5" /> Creator Network
+        </div>
+        <h2 className="text-xl font-bold text-foreground mb-2">VYBE X Creator Network</h2>
+        <p className="text-sm text-muted-foreground mb-1">Access our curated micro-creator marketplace through <span className="font-semibold text-primary">VYBE X</span>.</p>
+        <p className="text-xs text-muted-foreground mb-6">Instagram Story promotions with verified 5k–50k creators.</p>
+        <div className="flex gap-4 mb-6 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+          {influencers.map((inf, i) => (
+            <div key={i} className="flex-shrink-0 flex flex-col items-center gap-1.5">
+              <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-primary/25">
+                <img src={inf.img} alt={inf.name} className="w-full h-full object-cover" loading="lazy" />
+              </div>
+              <p className="text-[10px] font-medium text-foreground text-center w-16 truncate">{inf.name}</p>
+              <p className="text-[10px] text-primary font-semibold">{inf.followers}</p>
+            </div>
+          ))}
+          <div className="flex-shrink-0 flex flex-col items-center gap-1.5">
+            <div className="w-14 h-14 rounded-full bg-primary/8 border-2 border-dashed border-primary/25 flex items-center justify-center">
+              <span className="text-primary font-bold text-xs">+40</span>
+            </div>
+            <p className="text-[10px] text-muted-foreground">More</p>
+          </div>
+        </div>
+        <Button variant="hero" className="w-full h-12 rounded-2xl text-sm font-semibold active:scale-[0.98] transition-transform"
+          onClick={() => window.open('https://vybex.wpixmedia.com', '_blank')}>
+          Explore VYBE X <ArrowRight className="ml-2 h-4 w-4" />
+        </Button>
+      </section>
+
+      {/* CTA BLOCK */}
       <section className="px-5 py-14 bg-gradient-to-br from-primary/8 via-background to-accent/20 border-t border-border">
-        <div className="max-w-lg mx-auto text-center">
+        <div className="text-center">
           <h2 className="text-2xl font-bold text-foreground mb-3 leading-tight">
             Ready to Build Content<br />
             <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">That Converts?</span>
           </h2>
           <p className="text-sm text-muted-foreground mb-8">Let VYBE design your engagement and growth system.</p>
-          <Button
-            variant="hero"
-            size="lg"
-            onClick={() => window.location.href = '/#contact'}
-            className="w-full h-14 text-base font-semibold rounded-2xl active:scale-[0.98] transition-transform"
-          >
-            Book a Discovery Call
-            <ArrowRight className="ml-2 h-5 w-5" />
+          <Button variant="hero" size="lg" onClick={() => window.location.href = '/#contact'}
+            className="w-full h-14 text-base font-semibold rounded-2xl active:scale-[0.98] transition-transform">
+            Book a Discovery Call <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
       </section>
 
-      {/* ── STICKY BOTTOM CTA BAR (mobile-only) ─────────── */}
-      <div
-        className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-background/90 backdrop-blur-md border-t border-border px-4 py-3 flex gap-3"
-        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}
-      >
-        <Button
-          variant="outline"
-          className="flex-1 h-11 rounded-xl text-xs font-semibold active:scale-[0.97] transition-transform"
-          onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
-        >
+      {/* STICKY BOTTOM BAR */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-t border-border px-4 py-3 flex gap-3"
+        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}>
+        <Button variant="outline" className="flex-1 h-11 rounded-xl text-xs font-semibold active:scale-[0.97] transition-transform"
+          onClick={() => document.getElementById('mobile-services')?.scrollIntoView({ behavior: 'smooth' })}>
           Explore Services
         </Button>
-        <Button
-          variant="hero"
-          className="flex-1 h-11 rounded-xl text-xs font-semibold active:scale-[0.97] transition-transform"
-          onClick={() => window.location.href = '/#contact'}
-        >
+        <Button variant="hero" className="flex-1 h-11 rounded-xl text-xs font-semibold active:scale-[0.97] transition-transform"
+          onClick={() => window.location.href = '/#contact'}>
           <Zap className="mr-1 h-3.5 w-3.5" /> Let's Build
         </Button>
       </div>
-
-      {/* Bottom spacer so sticky bar doesn't overlap content */}
-      <div className="h-20 md:hidden" />
+      <div className="h-20" />
     </div>
   );
 };
+
+/* ═══════════════════════════════════════════════════════════
+   DESKTOP VIEW  (>= md)
+═══════════════════════════════════════════════════════════ */
+const DesktopVYBE = () => {
+  const [activeService, setActiveService] = useState(0);
+  const socialScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = socialScrollRef.current;
+    if (!el || services[activeService].visual !== 'social') return;
+    let frame: number;
+    let pos = 0;
+    const scroll = () => {
+      pos += 0.4;
+      if (pos >= el.scrollWidth / 2) pos = 0;
+      el.scrollLeft = pos;
+      frame = requestAnimationFrame(scroll);
+    };
+    frame = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(frame);
+  }, [activeService]);
+
+  const cur = services[activeService];
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* ── HERO ─────────────────────────────────────────── */}
+      <section className="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden">
+        <MotionBackground />
+        <div className="relative z-10 container mx-auto px-8 xl:px-16 grid grid-cols-2 gap-16 items-center">
+          {/* Left */}
+          <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
+            <div className="mb-7">
+              <Chip icon={<Sparkles className="h-3 w-3" />} label="AI-Powered Content & Growth Division" />
+            </div>
+            <h1 className="text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] tracking-tight mb-6">
+              <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">VYBE</span>
+              <span className="text-foreground"> - Where<br />Content Becomes </span>
+              <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Growth.</span>
+            </h1>
+            <p className="text-lg text-muted-foreground mb-10 leading-relaxed max-w-lg">
+              An AI-powered content and performance engine built for brands that want attention, authority, and measurable growth.
+            </p>
+            <div className="flex gap-4">
+              <Button variant="hero" size="lg" onClick={() => window.location.href = '/#contact'}
+                className="h-14 px-8 text-base font-semibold rounded-2xl hover:scale-[1.02] transition-transform">
+                <Zap className="mr-2 h-5 w-5" /> Build My Growth System
+              </Button>
+              <Button variant="outline" size="lg"
+                onClick={() => document.getElementById('desktop-services')?.scrollIntoView({ behavior: 'smooth' })}
+                className="h-14 px-8 text-base rounded-2xl hover:scale-[1.02] transition-transform">
+                Explore Services <ChevronRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Right — stats grid */}
+          <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
+            className="grid grid-cols-2 gap-5">
+            {[
+              { val: '3×', label: 'Avg Revenue Lift', icon: <TrendingUp className="h-5 w-5 text-primary" /> },
+              { val: '6.8×', label: 'ROAS Delivered', icon: <BarChart3 className="h-5 w-5 text-primary" /> },
+              { val: '500K+', label: 'Reach Generated', icon: <Users className="h-5 w-5 text-primary" /> },
+              { val: '4', label: 'Content Engines', icon: <Brain className="h-5 w-5 text-primary" /> },
+            ].map(s => (
+              <div key={s.val} className="bg-card border border-border rounded-2xl p-6 hover:shadow-md transition-shadow">
+                <div className="mb-3">{s.icon}</div>
+                <p className="text-3xl font-bold text-primary mb-1">{s.val}</p>
+                <p className="text-sm text-muted-foreground">{s.label}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── WHAT IS VYBE ─────────────────────────────────── */}
+      <section className="bg-card/40 border-y border-border py-16">
+        <div className="container mx-auto px-8 xl:px-16">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl xl:text-4xl font-bold text-foreground mb-5">What is VYBE?</h2>
+            <p className="text-base xl:text-lg text-muted-foreground leading-relaxed mb-8">
+              <span className="font-semibold text-foreground">VYBE (Visibility • Yield • Brand Engagement)</span> is WPIX Media's growth division focused on high-engagement storytelling, IP creation, AI-powered content systems, and performance-led distribution.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Chip icon={<Zap className="h-3 w-3" />} label="Engagement Engine" />
+              <Chip icon={<Brain className="h-3 w-3" />} label="AI Content Systems" />
+              <Chip icon={<TrendingUp className="h-3 w-3" />} label="Performance & LLM Growth" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SERVICES — DESKTOP SIDEBAR LAYOUT ───────────── */}
+      <section id="desktop-services" className="py-20">
+        <div className="container mx-auto px-8 xl:px-16">
+          <div className="text-center mb-14">
+            <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3">Our Capabilities</p>
+            <h2 className="text-3xl xl:text-4xl font-bold text-foreground">Four Growth Engines in One Division</h2>
+          </div>
+
+          <div className="grid grid-cols-[280px_1fr] xl:grid-cols-[320px_1fr] gap-8 items-start">
+            {/* Sidebar nav */}
+            <div className="sticky top-28 space-y-2">
+              {services.map((s, i) => (
+                <button key={s.id} onClick={() => setActiveService(i)}
+                  className={`w-full text-left flex items-center gap-3 px-5 py-4 rounded-2xl transition-all ${
+                    activeService === i
+                      ? 'bg-primary text-primary-foreground shadow-md'
+                      : 'bg-card border border-border text-foreground hover:border-primary/40 hover:bg-accent/30'
+                  }`}>
+                  <span className={activeService === i ? 'text-primary-foreground' : 'text-primary'}>{s.icon}</span>
+                  <div>
+                    <p className="font-semibold text-sm">{s.tab}</p>
+                    <p className={`text-xs mt-0.5 ${activeService === i ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>{s.eyebrow}</p>
+                  </div>
+                  <ChevronRight className={`ml-auto h-4 w-4 transition-transform ${activeService === i ? 'rotate-90' : ''}`} />
+                </button>
+              ))}
+            </div>
+
+            {/* Content panel */}
+            <AnimatePresence mode="wait">
+              <motion.div key={cur.id}
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="bg-card border border-border rounded-3xl p-8 xl:p-10"
+              >
+                <div className="mb-8">
+                  <ServiceVisual visual={cur.visual} socialScrollRef={socialScrollRef} />
+                </div>
+                <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold mb-3 uppercase tracking-widest">
+                  {cur.icon} {cur.eyebrow}
+                </div>
+                <h3 className="text-2xl xl:text-3xl font-bold text-foreground mb-3">{cur.title}</h3>
+                <p className="text-base text-muted-foreground mb-7 leading-relaxed">{cur.subtitle}</p>
+                <ul className="grid grid-cols-2 gap-3">
+                  {cur.features.map(f => <Feature key={f} text={f} />)}
+                </ul>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CREATOR NETWORK ──────────────────────────────── */}
+      <section className="py-20 bg-card/40 border-t border-border">
+        <div className="container mx-auto px-8 xl:px-16">
+          <div className="grid grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold mb-4 uppercase tracking-widest">
+                <Users className="h-4 w-4" /> Creator Network
+              </div>
+              <h2 className="text-3xl xl:text-4xl font-bold text-foreground mb-4">VYBE X Creator Network</h2>
+              <p className="text-base text-muted-foreground mb-2 leading-relaxed">
+                Access our curated micro-creator marketplace through <span className="font-semibold text-primary">VYBE X</span>.
+              </p>
+              <p className="text-sm text-muted-foreground mb-8">Instagram Story promotions with verified 5k–50k creators.</p>
+              <Button variant="hero" size="lg"
+                onClick={() => window.open('https://vybex.wpixmedia.com', '_blank')}
+                className="h-14 px-8 text-base rounded-2xl hover:scale-[1.02] transition-transform">
+                Explore VYBE X <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-5">
+              {influencers.map((inf, i) => (
+                <div key={i} className="bg-card border border-border rounded-2xl p-5 flex items-center gap-4 hover:shadow-md transition-shadow">
+                  <img src={inf.img} alt={inf.name} className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/25 flex-shrink-0" loading="lazy" />
+                  <div>
+                    <p className="font-semibold text-sm text-foreground">{inf.name}</p>
+                    <p className="text-xs text-primary font-bold mt-0.5">{inf.followers}</p>
+                    <p className="text-[11px] text-muted-foreground mt-0.5">Verified Creator</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA BLOCK ────────────────────────────────────── */}
+      <section className="py-24 bg-gradient-to-br from-primary/8 via-background to-accent/20 border-t border-border">
+        <div className="container mx-auto px-8 xl:px-16 text-center max-w-3xl">
+          <h2 className="text-4xl xl:text-5xl font-bold text-foreground mb-5 leading-tight">
+            Ready to Build Content<br />
+            <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">That Converts?</span>
+          </h2>
+          <p className="text-lg text-muted-foreground mb-10">Let VYBE design your engagement and growth system.</p>
+          <Button variant="hero" size="lg" onClick={() => window.location.href = '/#contact'}
+            className="h-16 px-12 text-lg font-semibold rounded-2xl hover:scale-[1.02] transition-transform">
+            Book a Discovery Call <ArrowRight className="ml-3 h-5 w-5" />
+          </Button>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   ROOT — switches between desktop & mobile via CSS breakpoint
+═══════════════════════════════════════════════════════════ */
+const VYBE = () => (
+  <>
+    {/* Mobile: hidden on md+ */}
+    <div className="block md:hidden">
+      <MobileVYBE />
+    </div>
+    {/* Desktop: hidden below md */}
+    <div className="hidden md:block">
+      <DesktopVYBE />
+    </div>
+  </>
+);
 
 export default VYBE;

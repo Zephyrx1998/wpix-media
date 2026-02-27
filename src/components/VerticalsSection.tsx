@@ -55,13 +55,13 @@ const VerticalsSection = () => {
       name: "VYBE",
       fullName: "Visibility Yield Brand Engagement",
       icon: TrendingUp,
-      tagline: "Where growth meets engagement.",
-      description: "Focus on Social Media Management, Performance Marketing, Digital Growth",
+      tagline: "Where Content Becomes Growth.",
+      description: "AI-powered content, IP creation, AI-A-UGC & performance marketing",
       services: [
-        "Social Media Management & Strategy",
-        "Performance Marketing (Meta, Google, LinkedIn Ads)",
-        "Influencer Marketing & UGC Campaigns",
-        "Website Development & Landing Pages (Growth-Focused)"
+        "High-Engagement Social Content & Reels-First Strategy",
+        "IP & Evergreen Brand Content (YouTube & Series)",
+        "AI-A-UGC: AI Avatar & Multilingual Content at Scale",
+        "Performance & LLM Marketing (Meta, Google, AI-Search)"
       ],
       color: "from-primary to-primary-light",
       route: "/vybe"
