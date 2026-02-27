@@ -37,9 +37,9 @@ const LoadingScreen = () => {
       </div>
 
       {/* SVG Filter for Gooey Effect */}
-      <svg className="absolute" style={{ visibility: 'hidden', width: 0, height: 0 }}>
+      <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
         <defs>
-          <filter id="goo">
+          <filter id="goo" x="-50%" y="-50%" width="200%" height="200%" colorInterpolationFilters="sRGB">
             <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
             <feColorMatrix
               in="blur"
@@ -47,7 +47,7 @@ const LoadingScreen = () => {
               values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
               result="goo"
             />
-            <feBlend in="SourceGraphic" in2="goo" />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
           </filter>
         </defs>
       </svg>
