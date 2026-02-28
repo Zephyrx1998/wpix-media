@@ -10,12 +10,84 @@ import { motion, AnimatePresence } from 'framer-motion';
    SHARED MICRO COMPONENTS
 ═══════════════════════════════════════════════════════════ */
 
-const MotionBackground = () =>
-<div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
-    <div className="absolute -top-20 -left-10 w-72 h-72 bg-primary/6 rounded-full blur-[80px] animate-pulse" style={{ animationDuration: '6s' }} />
-    <div className="absolute top-1/2 -right-10 w-56 h-56 bg-primary/4 rounded-full blur-[60px] animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
-    <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-primary/3 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '4s' }} />
-  </div>;
+const VybeBackground = () => (
+  <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden>
+    {/* Large primary orb — top left */}
+    <div
+      className="absolute rounded-full animate-float-slow"
+      style={{
+        width: 560, height: 560,
+        background: 'radial-gradient(circle, hsl(153 65% 35% / 0.18) 0%, transparent 70%)',
+        left: '-8%', top: '-5%',
+        filter: 'blur(90px)',
+        willChange: 'transform',
+      }}
+    />
+    {/* Mid accent orb — right center */}
+    <div
+      className="absolute rounded-full animate-float-medium"
+      style={{
+        width: 420, height: 420,
+        background: 'radial-gradient(circle, hsl(153 80% 25% / 0.14) 0%, transparent 70%)',
+        right: '-5%', top: '40%',
+        filter: 'blur(100px)',
+        willChange: 'transform',
+      }}
+    />
+    {/* Small accent orb — bottom center */}
+    <div
+      className="absolute rounded-full animate-float-slow"
+      style={{
+        width: 300, height: 300,
+        background: 'radial-gradient(circle, hsl(153 45% 55% / 0.12) 0%, transparent 70%)',
+        left: '35%', bottom: '10%',
+        filter: 'blur(80px)',
+        animationDelay: '3s',
+        willChange: 'transform',
+      }}
+    />
+    {/* Mesh gradient overlay */}
+    <div
+      className="absolute inset-0 opacity-30"
+      style={{
+        background: `
+          radial-gradient(ellipse at 15% 25%, hsl(153 65% 35% / 0.07) 0%, transparent 55%),
+          radial-gradient(ellipse at 85% 75%, hsl(153 80% 25% / 0.06) 0%, transparent 55%),
+          radial-gradient(ellipse at 50% 50%, hsl(153 45% 55% / 0.04) 0%, transparent 60%)
+        `,
+      }}
+    />
+    {/* Floating particles */}
+    {[
+      { x: 12, y: 18, s: 4, dur: 22, del: 0 },
+      { x: 78, y: 8,  s: 3, dur: 28, del: 1.5 },
+      { x: 45, y: 35, s: 5, dur: 20, del: 3 },
+      { x: 88, y: 55, s: 3, dur: 25, del: 0.5 },
+      { x: 22, y: 72, s: 4, dur: 30, del: 2 },
+      { x: 60, y: 80, s: 3, dur: 24, del: 4 },
+      { x: 5,  y: 50, s: 4, dur: 26, del: 1 },
+      { x: 95, y: 25, s: 3, dur: 32, del: 2.5 },
+      { x: 35, y: 92, s: 5, dur: 21, del: 3.5 },
+      { x: 70, y: 15, s: 3, dur: 27, del: 0.8 },
+    ].map((p, i) => (
+      <div
+        key={i}
+        className="absolute rounded-full animate-float-particle"
+        style={{
+          width: p.s, height: p.s,
+          left: `${p.x}%`, top: `${p.y}%`,
+          background: 'hsl(153 65% 35% / 0.25)',
+          animationDuration: `${p.dur}s`,
+          animationDelay: `${p.del}s`,
+          willChange: 'transform, opacity',
+        }}
+      />
+    ))}
+  </div>
+);
+
+/* Kept as alias for sections that use it inline */
+const MotionBackground = () => null;
 
 
 const Chip = ({ icon, label }: {icon: React.ReactNode;label: string;}) =>
@@ -275,7 +347,8 @@ const MobileVYBE = () => {
   const cur = services[activeTab];
 
   return (
-    <div className="min-h-[100svh] bg-background" style={{ WebkitTapHighlightColor: 'transparent' }}>
+    <div className="min-h-[100svh] bg-background relative" style={{ WebkitTapHighlightColor: 'transparent' }}>
+      <VybeBackground />
       {/* HERO */}
       <section className="relative min-h-[100svh] flex flex-col justify-center pt-20 pb-10 px-5 overflow-hidden">
         <MotionBackground />
@@ -468,7 +541,8 @@ const DesktopVYBE = () => {
   const cur = services[activeService];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <VybeBackground />
       {/* ── HERO ─────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden">
         <MotionBackground />
