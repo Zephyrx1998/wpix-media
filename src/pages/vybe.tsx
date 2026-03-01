@@ -296,10 +296,10 @@ const influencers = [
 const ServiceVisual = ({ visual, socialScrollRef }: {visual: string;socialScrollRef: React.RefObject<HTMLDivElement>;}) => {
   if (visual === 'social') return (
     <div
-      className="overflow-hidden rounded-2xl"
+      className="overflow-hidden rounded-2xl w-full"
       style={{ maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' }}>
 
-      <div ref={socialScrollRef} className="flex gap-3 overflow-x-hidden select-none">
+      <div ref={socialScrollRef} className="flex gap-3 overflow-x-hidden select-none w-full">
         {[...socialPosts, ...socialPosts].map((p, i) => <SocialCard key={i} {...p} />)}
       </div>
     </div>);
@@ -642,7 +642,7 @@ const DesktopVYBE = () => {
               <motion.div key={cur.id}
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="bg-card border border-border rounded-3xl p-8 xl:p-10">
+              className="bg-card border border-border rounded-3xl p-8 xl:p-10 overflow-hidden min-w-0">
 
                 <div className="mb-8">
                   <ServiceVisual visual={cur.visual} socialScrollRef={socialScrollRef} />
