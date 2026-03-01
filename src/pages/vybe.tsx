@@ -293,14 +293,13 @@ const influencers = [
 /* ═══════════════════════════════════════════════════════════
    SERVICE VISUAL (shared renderer)
 ═══════════════════════════════════════════════════════════ */
-const ServiceVisual = ({ visual, socialScrollRef }: {visual: string;socialScrollRef: React.RefObject<HTMLDivElement>;}) => {
+const ServiceVisual = ({ visual }: {visual: string;}) => {
   if (visual === 'social') return (
     <div
       className="overflow-hidden rounded-2xl w-full"
       style={{ maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' }}>
-
-      <div ref={socialScrollRef} className="flex gap-3 overflow-x-hidden select-none w-full">
-        {[...socialPosts, ...socialPosts].map((p, i) => <SocialCard key={i} {...p} />)}
+      <div className="flex gap-3 select-none w-max animate-social-scroll">
+        {[...socialPosts, ...socialPosts, ...socialPosts].map((p, i) => <SocialCard key={i} {...p} />)}
       </div>
     </div>);
 
@@ -319,23 +318,7 @@ const ServiceVisual = ({ visual, socialScrollRef }: {visual: string;socialScroll
 ═══════════════════════════════════════════════════════════ */
 const MobileVYBE = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const socialScrollRef = useRef<HTMLDivElement>(null);
   const tabScrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = socialScrollRef.current;
-    if (!el || services[activeTab].visual !== 'social') return;
-    let frame: number;
-    let pos = 0;
-    const scroll = () => {
-      pos += 0.5;
-      if (pos >= el.scrollWidth / 2) pos = 0;
-      el.scrollLeft = pos;
-      frame = requestAnimationFrame(scroll);
-    };
-    frame = requestAnimationFrame(scroll);
-    return () => cancelAnimationFrame(frame);
-  }, [activeTab]);
 
   useEffect(() => {
     const el = tabScrollRef.current;
@@ -439,7 +422,7 @@ const MobileVYBE = () => {
           className="px-5 pt-5">
 
             <div className="mb-5">
-              <ServiceVisual visual={cur.visual} socialScrollRef={socialScrollRef} />
+              <ServiceVisual visual={cur.visual} />
             </div>
             <div className="inline-flex items-center gap-1.5 text-primary text-[11px] font-semibold mb-2 tracking-wide uppercase">
               {cur.icon} {cur.eyebrow}
@@ -521,22 +504,7 @@ const MobileVYBE = () => {
 ═══════════════════════════════════════════════════════════ */
 const DesktopVYBE = () => {
   const [activeService, setActiveService] = useState(0);
-  const socialScrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = socialScrollRef.current;
-    if (!el || services[activeService].visual !== 'social') return;
-    let frame: number;
-    let pos = 0;
-    const scroll = () => {
-      pos += 0.4;
-      if (pos >= el.scrollWidth / 2) pos = 0;
-      el.scrollLeft = pos;
-      frame = requestAnimationFrame(scroll);
-    };
-    frame = requestAnimationFrame(scroll);
-    return () => cancelAnimationFrame(frame);
-  }, [activeService]);
 
   const cur = services[activeService];
 
@@ -645,7 +613,7 @@ const DesktopVYBE = () => {
               className="bg-card border border-border rounded-3xl p-8 xl:p-10 overflow-hidden min-w-0">
 
                 <div className="mb-8">
-                  <ServiceVisual visual={cur.visual} socialScrollRef={socialScrollRef} />
+                  <ServiceVisual visual={cur.visual} />
                 </div>
                 <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold mb-3 uppercase tracking-widest">
                   {cur.icon} {cur.eyebrow}
