@@ -15,11 +15,15 @@ const LoadingScreen = () => {
       zIndex: 9999,
       overflow: 'hidden',
     }}>
-      <div style={{ filter: 'url(#goo)', position: 'relative' }}>
+      <div style={{ filter: 'url(#goo)', position: 'relative', width: '200px', height: '200px' }}>
         <div style={{
           width: '200px',
           height: '200px',
-          position: 'relative',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          margin: 'auto',
           animation: 'rotate-move 2s ease-in-out infinite',
         }}>
           {/* Dot 3 - Dark Green */}
@@ -100,9 +104,9 @@ const LoadingScreen = () => {
           100% { transform: translateY(0px) scale(1); }
         }
         @keyframes rotate-move {
-          55% { transform: rotate(0deg); }
-          80% { transform: rotate(360deg); }
-          100% { transform: rotate(360deg); }
+          55% { transform: translate(-50%, -50%) rotate(0deg); }
+          80% { transform: translate(-50%, -50%) rotate(360deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
         @keyframes index {
           0%, 100% { z-index: 3; }
