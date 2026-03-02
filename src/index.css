@@ -214,7 +214,8 @@ All colors MUST be HSL.
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid hsl(var(--glass-border));
     box-shadow: var(--glass-shadow);
-    transition: var(--transition-glass);
+    transition: box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: auto;
   }
 
   .glass::before {
@@ -257,12 +258,10 @@ All colors MUST be HSL.
     -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
   }
 
-  /* Glass Section Background */
+  /* Glass Section Background — subtle, no backdrop-filter for perf */
   .glass-section {
     @apply relative;
     background: hsl(var(--glass-bg));
-    backdrop-filter: blur(var(--glass-blur-subtle));
-    -webkit-backdrop-filter: blur(var(--glass-blur-subtle));
   }
 
   /* Glass Button */
@@ -333,12 +332,12 @@ All colors MUST be HSL.
     left: 100%;
   }
 
-  /* Floating glass orbs for background decoration */
+  /* Floating glass orbs for background decoration — NO backdrop-filter (paint cost) */
   .glass-orb {
     @apply absolute rounded-full;
-    background: radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.15), hsl(var(--primary) / 0.05));
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
+    background: radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.04));
+    filter: blur(60px);
+    will-change: transform;
   }
 
   /* Performance-optimized background animations */
@@ -365,14 +364,19 @@ All colors MUST be HSL.
 
   .animate-float-slow {
     animation: float-slow 30s ease-in-out infinite;
+    will-change: transform;
+    contain: layout style;
   }
 
   .animate-float-medium {
     animation: float-medium 25s ease-in-out infinite;
+    will-change: transform;
+    contain: layout style;
   }
 
   .animate-float-particle {
     animation: float-particle 20s ease-in-out infinite;
+    will-change: transform, opacity;
   }
 
   /* Tiptap Rich Text Editor Styles */
