@@ -11,9 +11,9 @@ interface Particle {
 }
 
 const ParticleBackground = memo(() => {
-  // Reduced to 15 particles for better performance
+  // 8 particles max for smooth GPU performance
   const particles: Particle[] = useMemo(() => 
-    Array.from({ length: 15 }, (_, i) => ({
+    Array.from({ length: 8 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -60,7 +60,6 @@ const ParticleBackground = memo(() => {
             top: `${particle.y}%`,
             animationDuration: `${particle.duration}s`,
             animationDelay: `${particle.delay}s`,
-            willChange: "transform, opacity",
           }}
         />
       ))}

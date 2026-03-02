@@ -15,9 +15,9 @@ const HeroSection = () => {
     <section id="home" className="min-h-[100svh] flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/30 pt-16 sm:pt-20">
       {/* Glass Orb Decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="glass-orb w-64 sm:w-96 h-64 sm:h-96 top-10 -left-20 opacity-60 animate-pulse"></div>
-        <div className="glass-orb w-48 sm:w-80 h-48 sm:h-80 top-1/4 -right-16 opacity-40 animate-pulse delay-1000"></div>
-        <div className="glass-orb w-56 sm:w-72 h-56 sm:h-72 -bottom-20 left-1/4 opacity-50 animate-pulse delay-500"></div>
+        <div className="glass-orb w-64 sm:w-96 h-64 sm:h-96 top-10 -left-20 opacity-60"></div>
+        <div className="glass-orb w-48 sm:w-80 h-48 sm:h-80 top-1/4 -right-16 opacity-40"></div>
+        <div className="glass-orb w-56 sm:w-72 h-56 sm:h-72 -bottom-20 left-1/4 opacity-50"></div>
       </div>
 
       <div className="container mx-auto px-4 py-8 sm:py-12 md:py-20 text-center relative z-10">
