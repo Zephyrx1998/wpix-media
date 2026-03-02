@@ -333,7 +333,7 @@ const MobileVYBE = () => {
     <div className="min-h-[100svh] bg-background relative" style={{ WebkitTapHighlightColor: 'transparent' }}>
       <VybeBackground />
       {/* HERO */}
-      <section className="relative min-h-[100svh] flex flex-col justify-center pt-20 pb-10 px-5 overflow-hidden">
+      <section className="relative flex flex-col justify-center pt-24 pb-10 px-5 overflow-hidden">
         <MotionBackground />
         <div className="relative z-10 w-full">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-5">
@@ -512,7 +512,7 @@ const DesktopVYBE = () => {
     <div className="min-h-screen bg-background relative">
       <VybeBackground />
       {/* ── HERO ─────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden">
+      <section className="relative flex items-center pt-32 pb-20 overflow-hidden">
         <MotionBackground />
         <div className="relative z-10 container mx-auto px-8 xl:px-16 grid grid-cols-2 gap-16 items-center">
           {/* Left */}
