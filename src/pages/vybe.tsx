@@ -304,6 +304,13 @@ const ytContent = [
 { title: 'Behind the Brand: A Day at [Company]', views: '31K' },
 { title: 'Product Deep Dive — Everything You Need to Know', views: '15K' }];
 
+const realYTContent = [
+  { videoId: 'rOHTabK1Wrw', title: 'How Zomato Survived Failure | Deepinder Goyal Founder Story' },
+  { videoId: 'ZvxpaklnMXI', title: 'Building a Brand – Redesigning a Business Start to Finish' },
+  { videoId: '3SNYMpjHu64', title: 'The Hidden Responsibility of a CEO - Beyond the P&L Statement' },
+  { videoId: 'hJzvVgY36Wg', title: 'Introducing The Manyavar Shaadi Show | Ft. Karan Johar' },
+];
+
 
 const stats = [
 { val: '3×', label: 'Avg Revenue Lift' },
