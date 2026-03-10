@@ -152,7 +152,7 @@ const RealYTCard = ({ videoId, title }: { videoId: string; title: string }) => (
       />
       <div className="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/10 transition-colors" />
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-11 h-11 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
+        <div className="w-11 h-11 bg-[hsl(0_72%_51%)] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
           <Play className="h-5 w-5 text-white ml-0.5" fill="currentColor" />
         </div>
       </div>
