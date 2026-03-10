@@ -135,6 +135,34 @@ const YTCard = ({ title, views }: {title: string;views: string;}) =>
     </div>
   </div>;
 
+/* ─── Real YouTube Card ───────────────────────────────── */
+const RealYTCard = ({ videoId, title }: { videoId: string; title: string }) => (
+  <a
+    href={`https://www.youtube.com/watch?v=${videoId}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all duration-200 cursor-pointer block"
+  >
+    <div className="aspect-video relative overflow-hidden">
+      <img
+        src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+        alt={title}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/10 transition-colors" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-11 h-11 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
+          <Play className="h-5 w-5 text-white ml-0.5" fill="currentColor" />
+        </div>
+      </div>
+    </div>
+    <div className="p-3">
+      <p className="text-xs font-medium text-foreground line-clamp-2 leading-snug group-hover:text-primary transition-colors">{title}</p>
+    </div>
+  </a>
+);
+
 
 /* ─── AI Avatar Mock ──────────────────────────────────── */
 const AIAvatarMock = () =>
