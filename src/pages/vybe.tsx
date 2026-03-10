@@ -135,6 +135,34 @@ const YTCard = ({ title, views }: {title: string;views: string;}) =>
     </div>
   </div>;
 
+/* ─── Real YouTube Card ───────────────────────────────── */
+const RealYTCard = ({ videoId, title }: { videoId: string; title: string }) => (
+  <a
+    href={`https://www.youtube.com/watch?v=${videoId}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all duration-200 cursor-pointer block"
+  >
+    <div className="aspect-video relative overflow-hidden">
+      <img
+        src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+        alt={title}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/10 transition-colors" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-11 h-11 bg-[hsl(0_72%_51%)] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
+          <Play className="h-5 w-5 text-white ml-0.5" fill="currentColor" />
+        </div>
+      </div>
+    </div>
+    <div className="p-3">
+      <p className="text-xs font-medium text-foreground line-clamp-2 leading-snug group-hover:text-primary transition-colors">{title}</p>
+    </div>
+  </a>
+);
+
 
 /* ─── AI Avatar Mock ──────────────────────────────────── */
 const AIAvatarMock = () =>
@@ -276,6 +304,13 @@ const ytContent = [
 { title: 'Behind the Brand: A Day at [Company]', views: '31K' },
 { title: 'Product Deep Dive — Everything You Need to Know', views: '15K' }];
 
+const realYTContent = [
+  { videoId: 'rOHTabK1Wrw', title: 'How Zomato Survived Failure | Deepinder Goyal Founder Story' },
+  { videoId: 'ZvxpaklnMXI', title: 'Building a Brand – Redesigning a Business Start to Finish' },
+  { videoId: '3SNYMpjHu64', title: 'The Hidden Responsibility of a CEO - Beyond the P&L Statement' },
+  { videoId: 'hJzvVgY36Wg', title: 'Introducing The Manyavar Shaadi Show | Ft. Karan Johar' },
+];
+
 
 const stats = [
 { val: '3×', label: 'Avg Revenue Lift' },
@@ -293,6 +328,39 @@ const influencers = [
 /* ═══════════════════════════════════════════════════════════
    SERVICE VISUAL (shared renderer)
 ═══════════════════════════════════════════════════════════ */
+const YouTubeVisual = () => {
+  const [ytTab, setYtTab] = useState<'mockup' | 'content'>('mockup');
+  return (
+    <div>
+      {/* Sub-tabs */}
+      <div className="flex gap-2 mb-4">
+        {(['mockup', 'content'] as const).map((t) => (
+          <button
+            key={t}
+            onClick={() => setYtTab(t)}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              ytTab === t
+                ? 'bg-primary text-primary-foreground shadow-sm'
+                : 'bg-muted border border-border text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            {t === 'mockup' ? <><BarChart3 className="h-3 w-3" /> Mockup</> : <><Play className="h-3 w-3" /> Content</>}
+          </button>
+        ))}
+      </div>
+      {ytTab === 'mockup' ? (
+        <div className="grid grid-cols-2 gap-3">
+          {ytContent.map((v, i) => <YTCard key={i} {...v} />)}
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-3">
+          {realYTContent.map((v) => <RealYTCard key={v.videoId} {...v} />)}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const ServiceVisual = ({ visual }: {visual: string;}) => {
   if (visual === 'social') return (
     <div
@@ -303,11 +371,7 @@ const ServiceVisual = ({ visual }: {visual: string;}) => {
       </div>
     </div>);
 
-  if (visual === 'youtube') return (
-    <div className="grid grid-cols-2 gap-3">
-      {ytContent.map((v, i) => <YTCard key={i} {...v} />)}
-    </div>);
-
+  if (visual === 'youtube') return <YouTubeVisual />;
   if (visual === 'ai') return <AIAvatarMock />;
   if (visual === 'perf') return <PerfMock />;
   return null;
