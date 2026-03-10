@@ -328,38 +328,11 @@ const influencers = [
 /* ═══════════════════════════════════════════════════════════
    SERVICE VISUAL (shared renderer)
 ═══════════════════════════════════════════════════════════ */
-const YouTubeVisual = () => {
-  const [ytTab, setYtTab] = useState<'mockup' | 'content'>('mockup');
-  return (
-    <div>
-      {/* Sub-tabs */}
-      <div className="flex gap-2 mb-4">
-        {(['mockup', 'content'] as const).map((t) => (
-          <button
-            key={t}
-            onClick={() => setYtTab(t)}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
-              ytTab === t
-                ? 'bg-primary text-primary-foreground shadow-sm'
-                : 'bg-muted border border-border text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            {t === 'mockup' ? <><BarChart3 className="h-3 w-3" /> Mockup</> : <><Play className="h-3 w-3" /> Content</>}
-          </button>
-        ))}
-      </div>
-      {ytTab === 'mockup' ? (
-        <div className="grid grid-cols-2 gap-3">
-          {ytContent.map((v, i) => <YTCard key={i} {...v} />)}
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 gap-3">
-          {realYTContent.map((v) => <RealYTCard key={v.videoId} {...v} />)}
-        </div>
-      )}
-    </div>
-  );
-};
+const YouTubeVisual = () => (
+  <div className="grid grid-cols-2 gap-3">
+    {realYTContent.map((v) => <RealYTCard key={v.videoId} {...v} />)}
+  </div>
+);
 
 const ServiceVisual = ({ visual }: {visual: string;}) => {
   if (visual === 'social') return (
