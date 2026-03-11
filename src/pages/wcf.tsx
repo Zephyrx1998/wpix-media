@@ -46,7 +46,7 @@ const WCF = () => {
       { id: 2, title: "Social Reel 2", videoUrl: "https://drive.google.com/file/d/16TvLUnbxQU_RvBxeQxBVtz25H4wRWcVq/preview" },
       { id: 3, title: "Social Reel 3", videoUrl: "https://drive.google.com/file/d/14D1f4yAgvV8JU3jCHpXA61cZru9Upacu/preview" },
       { id: 4, title: "Social Reel 4", videoUrl: "https://drive.google.com/file/d/1akRnZVu9xW5yOpmikyMISXF0VZrRCB14/preview" },
-      { id: 5, title: "Social Reel 5", videoUrl: "https://drive.google.com/file/d/1cCKNn9JorWYb1PjC4LFykJ-w37QFrLUX/preview" },
+      { id: 5, title: "Social Reel 5", videoUrl: "https://drive.google.com/file/d/1DjFJIEGI1DnpkmwTEh8Cio52H6PQKFAT/preview" },
       { id: 6, title: "Social Reel 6", videoUrl: "https://drive.google.com/file/d/1cCKNn9JorWYb1PjC4LFykJ-w37QFrLUX/preview" },
     ],
     "Ad Film/TVC": [
@@ -61,7 +61,7 @@ const WCF = () => {
       { id: 1, title: "UGC 1", videoUrl: "https://drive.google.com/file/d/18aci0v-zVaYk-8VP5_A1hJ4O2cNn3dbv/preview" },
       { id: 2, title: "UGC 2", videoUrl: "https://drive.google.com/file/d/1T7kwssyvYFVIb7fu00sJLOYZ93RS2x3C/preview" },
       { id: 3, title: "UGC 3", videoUrl: "https://drive.google.com/file/d/1K4E2hf6tdKiabEa0xsOh6zASmXMTionI/preview" },
-      { id: 4, title: "Social Reel 5", videoUrl: "https://drive.google.com/file/d/1cCKNn9JorWYb1PjC4LFykJ-w37QFrLUX/preview" },
+      { id: 4, title: "Social Reel 5", videoUrl: "https://drive.google.com/file/d/1DjFJIEGI1DnpkmwTEh8Cio52H6PQKFAT/preview" },
       { id: 5, title: "Social Reel 6", videoUrl: "https://drive.google.com/file/d/1cCKNn9JorWYb1PjC4LFykJ-w37QFrLUX/preview" },
     ],
     "Corporate": [
