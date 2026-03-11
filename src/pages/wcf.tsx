@@ -62,7 +62,7 @@ const WCF = () => {
       { id: 2, title: "UGC 2", videoUrl: "https://drive.google.com/file/d/1T7kwssyvYFVIb7fu00sJLOYZ93RS2x3C/preview" },
       { id: 3, title: "UGC 3", videoUrl: "https://drive.google.com/file/d/1K4E2hf6tdKiabEa0xsOh6zASmXMTionI/preview" },
       { id: 4, title: "UGC 4", videoUrl: "https://drive.google.com/file/d/1DjFJIEGI1DnpkmwTEh8Cio52H6PQKFAT/preview" },
-      { id: 5, title: "Social Reel 6", videoUrl: "https://drive.google.com/file/d/1cCKNn9JorWYb1PjC4LFykJ-w37QFrLUX/preview" },
+      { id: 5, title: "UGC 5", videoUrl: "https://drive.google.com/file/d/1cCKNn9JorWYb1PjC4LFykJ-w37QFrLUX/preview" },
     ],
     "Corporate": [
       { id: 1, title: "Corporate Film", videoUrl: "https://drive.google.com/file/d/1_X8Uc9l2SZbMQ_gndBGcVk12gaLHf0hO/preview" },
