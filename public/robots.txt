@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin-login
+Disallow: /admin-leads
 
-Sitemap: https://wpixmedia.com/sitemap.xml
+Sitemap: https://www.wpixmedia.com/sitemap.xml
