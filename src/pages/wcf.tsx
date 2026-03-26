@@ -129,15 +129,11 @@ const WCF = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>WCF by WPIX | Film Production Agency India - TVCs, Ad Films & Corporate Video</title>
-        <meta name="description" content="TVCs, ad films, corporate videos, social reels, and UGC content production for brands across India. Full production from concept to delivery." />
-        <link rel="canonical" href="https://www.wpixmedia.com/wcf" />
-        <meta property="og:title" content="WCF by WPIX | Film Production Agency India - TVCs, Ad Films & Corporate Video" />
-        <meta property="og:description" content="TVCs, ad films, corporate videos, social reels, and UGC content production for brands across India. Full production from concept to delivery." />
-        <meta property="og:url" content="https://www.wpixmedia.com/wcf" />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SEOHead
+        title="WCF by WPIX | Film Production Agency India - TVCs, Ad Films & Corporate Video"
+        description="TVCs, ad films, corporate videos, social reels, and UGC content production for brands across India. Full production from concept to delivery."
+        canonical="https://www.wpixmedia.com/wcf"
+      />
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
         <div className="container mx-auto px-4 py-4">

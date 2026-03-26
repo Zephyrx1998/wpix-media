@@ -548,15 +548,11 @@ const DesktopVYBE = () => {
 
   return (
     <div className="min-h-screen bg-background relative">
-      <Helmet>
-        <title>VYBE by WPIX | Social Media Content & Growth Agency India</title>
-        <meta name="description" content="Reels, Shorts, Brand IP, AI-UGC and performance ads. 6.8× ROAS and 500K+ reach for brands across India. By WPIX Media, New Delhi." />
-        <link rel="canonical" href="https://www.wpixmedia.com/vybe" />
-        <meta property="og:title" content="VYBE by WPIX | Social Media Content & Growth Agency India" />
-        <meta property="og:description" content="Reels, Shorts, Brand IP, AI-UGC and performance ads. 6.8× ROAS and 500K+ reach for brands across India. By WPIX Media, New Delhi." />
-        <meta property="og:url" content="https://www.wpixmedia.com/vybe" />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SEOHead
+        title="VYBE by WPIX | Social Media Content & Growth Agency India"
+        description="Reels, Shorts, Brand IP, AI-UGC and performance ads. 6.8× ROAS and 500K+ reach for brands across India. By WPIX Media, New Delhi."
+        canonical="https://www.wpixmedia.com/vybe"
+      />
       <VybeBackground />
       {/* ── HERO ─────────────────────────────────────────── */}
       <section className="relative flex items-center pt-32 pb-20 overflow-hidden">
