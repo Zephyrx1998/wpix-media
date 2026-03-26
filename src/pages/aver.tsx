@@ -58,6 +58,15 @@ const AVER = () => {
     company: "Tech Innovation"
   }];
   return <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>AVER by WPIX | 360° VR Tours - Real Estate, Hotels & Retail India</title>
+        <meta name="description" content="Immersive 360° virtual tours for real estate, hotels, and retail brands. Let buyers and guests explore your space before they step inside." />
+        <link rel="canonical" href="https://www.wpixmedia.com/aver" />
+        <meta property="og:title" content="AVER by WPIX | 360° VR Tours - Real Estate, Hotels & Retail India" />
+        <meta property="og:description" content="Immersive 360° virtual tours for real estate, hotels, and retail brands. Let buyers and guests explore your space before they step inside." />
+        <meta property="og:url" content="https://www.wpixmedia.com/aver" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-background via-accent/10 to-background overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.1),transparent_50%)]"></div>

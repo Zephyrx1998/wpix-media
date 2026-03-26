@@ -110,6 +110,15 @@ const SevenDC = () => {
     company: "Fashion Forward"
   }];
   return <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>7DC by WPIX | Brand Design Agency New Delhi - Logo, UI/UX & Identity</title>
+        <meta name="description" content="Logo design, UI/UX, packaging, and social kits for startups and brands across India. Full-stack brand design by WPIX Media." />
+        <link rel="canonical" href="https://www.wpixmedia.com/7dc" />
+        <meta property="og:title" content="7DC by WPIX | Brand Design Agency New Delhi - Logo, UI/UX & Identity" />
+        <meta property="og:description" content="Logo design, UI/UX, packaging, and social kits for startups and brands across India. Full-stack brand design by WPIX Media." />
+        <meta property="og:url" content="https://www.wpixmedia.com/7dc" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
         
