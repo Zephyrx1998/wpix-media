@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEOHead from '@/components/SEOHead';
 import { ArrowRight, Globe, Eye, Camera, Users, Star, Phone, Mail, Play } from 'lucide-react';
 import AVERPricingSection from '@/components/AVERPricingSection';
 import { Button } from '@/components/ui/button';
