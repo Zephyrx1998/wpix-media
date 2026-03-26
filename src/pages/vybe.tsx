@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
   TrendingUp, Instagram, Youtube, BarChart3, Users, Zap, ArrowRight,
   Bot, Sparkles, Play, ChevronRight, Brain, Target, CheckCircle2 } from
