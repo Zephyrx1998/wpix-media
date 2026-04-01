@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Allow: *.js
+Allow: *.css
 Disallow: /admin-login
 Disallow: /admin-leads
 
