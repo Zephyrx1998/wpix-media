@@ -133,6 +133,14 @@ const WCF = () => {
         title="WCF by WPIX | Film Production Agency India - TVCs, Ad Films & Corporate Video"
         description="TVCs, ad films, corporate videos, social reels, and UGC content production for brands across India. Full production from concept to delivery."
         canonical="https://www.wpixmedia.com/wcf"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.wpixmedia.com/" },
+            { "@type": "ListItem", "position": 2, "name": "WCF", "item": "https://www.wpixmedia.com/wcf" }
+          ]
+        }}
       />
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">

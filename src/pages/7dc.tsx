@@ -114,6 +114,14 @@ const SevenDC = () => {
         title="7DC by WPIX | Brand Design Agency New Delhi - Logo, UI/UX & Identity"
         description="Logo design, UI/UX, packaging, and social kits for startups and brands across India. Full-stack brand design by WPIX Media."
         canonical="https://www.wpixmedia.com/7dc"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.wpixmedia.com/" },
+            { "@type": "ListItem", "position": 2, "name": "7DC", "item": "https://www.wpixmedia.com/7dc" }
+          ]
+        }}
       />
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">

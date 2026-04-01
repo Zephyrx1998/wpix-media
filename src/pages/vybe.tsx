@@ -552,6 +552,14 @@ const DesktopVYBE = () => {
         title="VYBE by WPIX | Social Media Content & Growth Agency India"
         description="Reels, Shorts, Brand IP, AI-UGC and performance ads. 6.8× ROAS and 500K+ reach for brands across India. By WPIX Media, New Delhi."
         canonical="https://www.wpixmedia.com/vybe"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.wpixmedia.com/" },
+            { "@type": "ListItem", "position": 2, "name": "VYBE", "item": "https://www.wpixmedia.com/vybe" }
+          ]
+        }}
       />
       <VybeBackground />
       {/* ── HERO ─────────────────────────────────────────── */}

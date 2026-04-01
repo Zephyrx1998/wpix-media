@@ -62,6 +62,14 @@ const AVER = () => {
         title="AVER by WPIX | 360° VR Tours - Real Estate, Hotels & Retail India"
         description="Immersive 360° virtual tours for real estate, hotels, and retail brands. Let buyers and guests explore your space before they step inside."
         canonical="https://www.wpixmedia.com/aver"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.wpixmedia.com/" },
+            { "@type": "ListItem", "position": 2, "name": "AVER", "item": "https://www.wpixmedia.com/aver" }
+          ]
+        }}
       />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-background via-accent/10 to-background overflow-hidden">
