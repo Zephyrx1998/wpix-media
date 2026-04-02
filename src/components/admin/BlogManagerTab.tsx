@@ -11,10 +11,11 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { format } from "date-fns";
-import { Plus, FileText, Pencil, Trash2, Image, Eye, Edit3 } from "lucide-react";
+import { Plus, FileText, Pencil, Trash2, Image, Eye, Edit3, Link2, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { RichTextEditor } from "./RichTextEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
 
 interface BlogPost {
   id: string;
@@ -28,6 +29,8 @@ interface BlogPost {
   published_at: string | null;
   created_at: string;
   updated_at: string;
+  blog_type: string;
+  external_url: string | null;
 }
 
 const generateSlug = (title: string) => {
@@ -45,6 +48,9 @@ export const BlogManagerTab = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [editorMode, setEditorMode] = useState<"write" | "preview">("write");
+  const [blogType, setBlogType] = useState<"native" | "external">("native");
+  const [linkedinUrl, setLinkedinUrl] = useState("");
+  const [isFetchingMeta, setIsFetchingMeta] = useState(false);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -53,6 +59,7 @@ export const BlogManagerTab = () => {
     excerpt: "",
     tags: "",
     is_published: false,
+    cover_image_url: "",
   });
 
   useEffect(() => {
@@ -67,7 +74,7 @@ export const BlogManagerTab = () => {
         .order("created_at", { ascending: false });
 
       if (error) throw error;
-      setPosts(data || []);
+      setPosts((data as BlogPost[]) || []);
     } catch (error) {
       console.error("Error fetching blog posts:", error);
       toast({
@@ -87,40 +94,81 @@ export const BlogManagerTab = () => {
       excerpt: "",
       tags: "",
       is_published: false,
+      cover_image_url: "",
     });
     setImageFile(null);
     setEditingPost(null);
     setEditorMode("write");
+    setBlogType("native");
+    setLinkedinUrl("");
   };
 
   const openEditDialog = (post: BlogPost) => {
     setEditingPost(post);
+    setBlogType((post.blog_type as "native" | "external") || "native");
+    setLinkedinUrl(post.external_url || "");
     setFormData({
       title: post.title,
       content: post.content,
       excerpt: post.excerpt || "",
       tags: post.tags?.join(", ") || "",
       is_published: post.is_published,
+      cover_image_url: post.cover_image_url || "",
     });
     setIsDialogOpen(true);
   };
 
-  const handleSubmit = async () => {
-    if (!formData.title || !formData.content) {
+  const fetchLinkedInMeta = async () => {
+    if (!linkedinUrl.trim()) {
+      toast({ title: "Error", description: "Please enter a LinkedIn URL", variant: "destructive" });
+      return;
+    }
+
+    setIsFetchingMeta(true);
+    try {
+      // Try fetching OG metadata via a simple proxy approach
+      // Since we can't directly scrape LinkedIn, we extract what we can
+      const url = new URL(linkedinUrl.trim());
+      
+      // Basic validation that it's a LinkedIn URL
+      if (!url.hostname.includes("linkedin.com")) {
+        toast({ title: "Invalid URL", description: "Please enter a valid LinkedIn URL", variant: "destructive" });
+        setIsFetchingMeta(false);
+        return;
+      }
+
       toast({
-        title: "Validation Error",
-        description: "Title and content are required",
-        variant: "destructive",
+        title: "LinkedIn URL accepted",
+        description: "Please fill in the title, excerpt, and cover image manually. LinkedIn restricts automated metadata fetching.",
       });
+    } catch {
+      toast({ title: "Invalid URL", description: "Please enter a valid URL", variant: "destructive" });
+    } finally {
+      setIsFetchingMeta(false);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (!formData.title) {
+      toast({ title: "Validation Error", description: "Title is required", variant: "destructive" });
+      return;
+    }
+
+    if (blogType === "native" && !formData.content) {
+      toast({ title: "Validation Error", description: "Content is required for native posts", variant: "destructive" });
+      return;
+    }
+
+    if (blogType === "external" && !linkedinUrl.trim()) {
+      toast({ title: "Validation Error", description: "LinkedIn URL is required", variant: "destructive" });
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      let coverImageUrl = editingPost?.cover_image_url || null;
+      let coverImageUrl = editingPost?.cover_image_url || formData.cover_image_url || null;
 
-      // Upload image if provided
       if (imageFile) {
         const fileExt = imageFile.name.split(".").pop();
         const fileName = `${Date.now()}.${fileExt}`;
@@ -143,15 +191,17 @@ export const BlogManagerTab = () => {
         .map((tag) => tag.trim())
         .filter(Boolean);
 
-      const postData = {
+      const postData: Record<string, unknown> = {
         title: formData.title,
         slug: editingPost ? editingPost.slug : slug,
-        content: formData.content,
+        content: blogType === "external" ? (formData.excerpt || formData.title) : formData.content,
         excerpt: formData.excerpt || null,
         tags: tags.length > 0 ? tags : null,
         cover_image_url: coverImageUrl,
         is_published: formData.is_published,
         published_at: formData.is_published ? new Date().toISOString() : null,
+        blog_type: blogType,
+        external_url: blogType === "external" ? linkedinUrl.trim() : null,
       };
 
       if (editingPost) {
@@ -163,7 +213,7 @@ export const BlogManagerTab = () => {
         if (error) throw error;
         toast({ title: "Success", description: "Blog post updated successfully" });
       } else {
-        const { error } = await supabase.from("blog_posts").insert(postData);
+        const { error } = await supabase.from("blog_posts").insert(postData as any);
         if (error) throw error;
         toast({ title: "Success", description: "Blog post created successfully" });
       }
@@ -232,6 +282,53 @@ export const BlogManagerTab = () => {
               <DialogTitle>{editingPost ? "Edit Blog Post" : "Create New Blog Post"}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4 py-4">
+              {/* Blog Type Selector */}
+              <div className="space-y-2">
+                <Label>Post Type</Label>
+                <div className="flex gap-2">
+                  <Button
+                    type="button"
+                    variant={blogType === "native" ? "default" : "outline"}
+                    className="flex-1 gap-2"
+                    onClick={() => setBlogType("native")}
+                  >
+                    <Edit3 className="h-4 w-4" />
+                    Native Post
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={blogType === "external" ? "default" : "outline"}
+                    className="flex-1 gap-2"
+                    onClick={() => setBlogType("external")}
+                  >
+                    <Link2 className="h-4 w-4" />
+                    Import from LinkedIn
+                  </Button>
+                </div>
+              </div>
+
+              {/* LinkedIn URL input for external type */}
+              {blogType === "external" && (
+                <div className="space-y-2">
+                  <Label htmlFor="linkedin-url">LinkedIn Article URL *</Label>
+                  <div className="flex gap-2">
+                    <Input
+                      id="linkedin-url"
+                      value={linkedinUrl}
+                      onChange={(e) => setLinkedinUrl(e.target.value)}
+                      placeholder="https://www.linkedin.com/pulse/..."
+                      className="flex-1"
+                    />
+                    <Button type="button" variant="outline" onClick={fetchLinkedInMeta} disabled={isFetchingMeta}>
+                      {isFetchingMeta ? "Checking..." : "Validate"}
+                    </Button>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Paste the LinkedIn article URL. Fill in title, excerpt, and cover image below.
+                  </p>
+                </div>
+              )}
+
               <div className="space-y-2">
                 <Label htmlFor="title">Title *</Label>
                 <Input
@@ -250,41 +347,59 @@ export const BlogManagerTab = () => {
                   placeholder="Short description (optional)"
                 />
               </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label>Content *</Label>
-                  <Tabs value={editorMode} onValueChange={(v) => setEditorMode(v as "write" | "preview")} className="h-8">
-                    <TabsList className="h-8 p-0.5">
-                      <TabsTrigger value="write" className="h-7 px-3 text-xs gap-1.5">
-                        <Edit3 className="h-3 w-3" />
-                        Write
-                      </TabsTrigger>
-                      <TabsTrigger value="preview" className="h-7 px-3 text-xs gap-1.5">
-                        <Eye className="h-3 w-3" />
-                        Preview
-                      </TabsTrigger>
-                    </TabsList>
-                  </Tabs>
-                </div>
-                {editorMode === "write" ? (
-                  <RichTextEditor
-                    content={formData.content}
-                    onChange={(content) => setFormData({ ...formData, content })}
-                    placeholder="Start writing your blog content..."
-                  />
-                ) : (
-                  <div className="border rounded-lg p-6 min-h-[300px] bg-white">
-                    {formData.content ? (
-                      <article 
-                        className="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-base prose-p:leading-relaxed prose-a:text-primary prose-a:underline prose-blockquote:border-l-4 prose-blockquote:border-muted-foreground prose-blockquote:pl-4 prose-blockquote:italic"
-                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(formData.content) }}
-                      />
-                    ) : (
-                      <p className="text-muted-foreground italic">No content to preview. Start writing in the Write tab.</p>
-                    )}
+
+              {/* Content editor only for native posts */}
+              {blogType === "native" && (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <Label>Content *</Label>
+                    <Tabs value={editorMode} onValueChange={(v) => setEditorMode(v as "write" | "preview")} className="h-8">
+                      <TabsList className="h-8 p-0.5">
+                        <TabsTrigger value="write" className="h-7 px-3 text-xs gap-1.5">
+                          <Edit3 className="h-3 w-3" />
+                          Write
+                        </TabsTrigger>
+                        <TabsTrigger value="preview" className="h-7 px-3 text-xs gap-1.5">
+                          <Eye className="h-3 w-3" />
+                          Preview
+                        </TabsTrigger>
+                      </TabsList>
+                    </Tabs>
                   </div>
-                )}
-              </div>
+                  {editorMode === "write" ? (
+                    <RichTextEditor
+                      content={formData.content}
+                      onChange={(content) => setFormData({ ...formData, content })}
+                      placeholder="Start writing your blog content..."
+                    />
+                  ) : (
+                    <div className="border rounded-lg p-6 min-h-[300px] bg-white">
+                      {formData.content ? (
+                        <article 
+                          className="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-base prose-p:leading-relaxed prose-a:text-primary prose-a:underline prose-blockquote:border-l-4 prose-blockquote:border-muted-foreground prose-blockquote:pl-4 prose-blockquote:italic"
+                          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(formData.content) }}
+                        />
+                      ) : (
+                        <p className="text-muted-foreground italic">No content to preview. Start writing in the Write tab.</p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Cover image - for external, also allow URL input */}
+              {blogType === "external" && (
+                <div className="space-y-2">
+                  <Label htmlFor="cover-url">Cover Image URL</Label>
+                  <Input
+                    id="cover-url"
+                    value={formData.cover_image_url}
+                    onChange={(e) => setFormData({ ...formData, cover_image_url: e.target.value })}
+                    placeholder="https://... (paste image URL)"
+                  />
+                </div>
+              )}
+
               <div className="space-y-2">
                 <Label htmlFor="tags">Tags (comma-separated)</Label>
                 <Input
@@ -295,7 +410,7 @@ export const BlogManagerTab = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cover">Cover Image</Label>
+                <Label htmlFor="cover">{blogType === "external" ? "Or upload cover image" : "Cover Image"}</Label>
                 <div className="flex items-center gap-4">
                   <Input
                     id="cover"
@@ -304,9 +419,9 @@ export const BlogManagerTab = () => {
                     onChange={(e) => setImageFile(e.target.files?.[0] || null)}
                     className="flex-1"
                   />
-                  {editingPost?.cover_image_url && (
+                  {(editingPost?.cover_image_url || formData.cover_image_url) && (
                     <img 
-                      src={editingPost.cover_image_url} 
+                      src={editingPost?.cover_image_url || formData.cover_image_url} 
                       alt="Current cover" 
                       className="h-12 w-12 object-cover rounded"
                     />
@@ -348,6 +463,7 @@ export const BlogManagerTab = () => {
                   <TableRow>
                     <TableHead>Cover</TableHead>
                     <TableHead>Title</TableHead>
+                    <TableHead>Type</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Tags</TableHead>
                     <TableHead>Created</TableHead>
@@ -370,7 +486,21 @@ export const BlogManagerTab = () => {
                           </div>
                         )}
                       </TableCell>
-                      <TableCell className="font-medium">{post.title}</TableCell>
+                      <TableCell className="font-medium">
+                        <div className="flex items-center gap-2">
+                          {post.title}
+                          {post.blog_type === "external" && post.external_url && (
+                            <a href={post.external_url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                              <ExternalLink className="h-3 w-3" />
+                            </a>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={post.blog_type === "external" ? "outline" : "secondary"} className="text-xs">
+                          {post.blog_type === "external" ? "LinkedIn" : "Native"}
+                        </Badge>
+                      </TableCell>
                       <TableCell>
                         <Badge variant={post.is_published ? "default" : "secondary"}>
                           {post.is_published ? "Published" : "Draft"}
