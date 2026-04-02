@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import DOMPurify from "dompurify";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -276,7 +277,7 @@ export const BlogManagerTab = () => {
                     {formData.content ? (
                       <article 
                         className="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-base prose-p:leading-relaxed prose-a:text-primary prose-a:underline prose-blockquote:border-l-4 prose-blockquote:border-muted-foreground prose-blockquote:pl-4 prose-blockquote:italic"
-                        dangerouslySetInnerHTML={{ __html: formData.content }}
+                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(formData.content) }}
                       />
                     ) : (
                       <p className="text-muted-foreground italic">No content to preview. Start writing in the Write tab.</p>
