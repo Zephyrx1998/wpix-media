@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
+import DOMPurify from "dompurify";
 
 interface BlogPost {
   id: string;
