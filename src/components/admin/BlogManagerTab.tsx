@@ -213,7 +213,7 @@ export const BlogManagerTab = () => {
         if (error) throw error;
         toast({ title: "Success", description: "Blog post updated successfully" });
       } else {
-        const { error } = await supabase.from("blog_posts").insert(postData);
+        const { error } = await supabase.from("blog_posts").insert(postData as any);
         if (error) throw error;
         toast({ title: "Success", description: "Blog post created successfully" });
       }
