@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ArrowRight, Clock } from "lucide-react";
+import { Calendar, ArrowRight, Clock, ExternalLink } from "lucide-react";
 import { format } from "date-fns";
 import { ScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -20,6 +20,8 @@ interface BlogPost {
   published_at: string | null;
   created_at: string;
   view_count: number;
+  blog_type: string;
+  external_url: string | null;
 }
 
 const Blog = () => {
@@ -39,7 +41,7 @@ const Blog = () => {
         .order("published_at", { ascending: false });
 
       if (error) throw error;
-      setPosts(data || []);
+      setPosts((data as BlogPost[]) || []);
     } catch (error) {
       console.error("Error fetching blog posts:", error);
     } finally {
@@ -51,6 +53,85 @@ const Blog = () => {
     const wordsPerMinute = 200;
     const words = content.split(/\s+/).length;
     return Math.ceil(words / wordsPerMinute);
+  };
+
+  const renderPostCard = (post: BlogPost) => {
+    const isExternal = post.blog_type === "external" && post.external_url;
+
+    const cardContent = (
+      <Card className="glass-card h-full group hover:shadow-medium transition-all duration-300 overflow-hidden">
+        {post.cover_image_url ? (
+          <div className="aspect-video overflow-hidden">
+            <img 
+              src={post.cover_image_url} 
+              alt={post.title}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        ) : (
+          <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/20 flex items-center justify-center">
+            <span className="text-4xl font-bold text-primary/30">
+              {post.title.charAt(0)}
+            </span>
+          </div>
+        )}
+        <CardContent className="p-6">
+          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
+            <span className="flex items-center gap-1">
+              <Calendar className="h-4 w-4" />
+              {format(new Date(post.published_at || post.created_at), "MMM dd, yyyy")}
+            </span>
+            {!isExternal && (
+              <span className="flex items-center gap-1">
+                <Clock className="h-4 w-4" />
+                {getReadingTime(post.content)} min read
+              </span>
+            )}
+          </div>
+          <h2 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+            {post.title}
+          </h2>
+          {post.excerpt && (
+            <p className="text-muted-foreground mb-4 line-clamp-2">
+              {post.excerpt}
+            </p>
+          )}
+          {post.tags && post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {post.tags.slice(0, 3).map((tag) => (
+                <Badge key={tag} variant="outline" className="text-xs">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
+          <span className="inline-flex items-center text-primary font-medium group-hover:gap-2 transition-all">
+            {isExternal ? "Read on LinkedIn" : "Read More"}
+            {isExternal ? (
+              <ExternalLink className="h-4 w-4 ml-1" />
+            ) : (
+              <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+            )}
+          </span>
+        </CardContent>
+      </Card>
+    );
+
+    if (isExternal) {
+      return (
+        <a href={post.external_url!} target="_blank" rel="noopener noreferrer">
+          {cardContent}
+        </a>
+      );
+    }
+
+    return (
+      <Link to={`/blog/${post.slug}`}>
+        {cardContent}
+      </Link>
+    );
   };
 
   return (
@@ -91,60 +172,7 @@ const Blog = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post, index) => (
                 <ScrollReveal key={post.id} animation="fade-up" delay={index * 100}>
-                  <Link to={`/blog/${post.slug}`}>
-                    <Card className="glass-card h-full group hover:shadow-medium transition-all duration-300 overflow-hidden">
-                      {post.cover_image_url ? (
-                        <div className="aspect-video overflow-hidden">
-                          <img 
-                            src={post.cover_image_url} 
-                            alt={post.title}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                      ) : (
-                        <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/20 flex items-center justify-center">
-                          <span className="text-4xl font-bold text-primary/30">
-                            {post.title.charAt(0)}
-                          </span>
-                        </div>
-                      )}
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4" />
-                            {format(new Date(post.published_at || post.created_at), "MMM dd, yyyy")}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
-                            {getReadingTime(post.content)} min read
-                          </span>
-                        </div>
-                        <h2 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                          {post.title}
-                        </h2>
-                        {post.excerpt && (
-                          <p className="text-muted-foreground mb-4 line-clamp-2">
-                            {post.excerpt}
-                          </p>
-                        )}
-                        {post.tags && post.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {post.tags.slice(0, 3).map((tag) => (
-                              <Badge key={tag} variant="outline" className="text-xs">
-                                {tag}
-                              </Badge>
-                            ))}
-                          </div>
-                        )}
-                        <span className="inline-flex items-center text-primary font-medium group-hover:gap-2 transition-all">
-                          Read More
-                          <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                        </span>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                  {renderPostCard(post)}
                 </ScrollReveal>
               ))}
             </div>
