@@ -39,10 +39,18 @@ const BlogPost = () => {
   useEffect(() => {
     if (post?.id) {
       const trackView = async () => {
-        try {
-          await supabase.rpc('increment_blog_view', { post_id: post.id });
-        } catch (error) {
-          console.debug('View tracking error:', error);
+        const viewKey = `blog-view-${post.id}`;
+        const lastView = localStorage.getItem(viewKey);
+        const now = Date.now();
+        
+        // Only track once per 24 hours per post
+        if (!lastView || now - parseInt(lastView) > 86400000) {
+          try {
+            await supabase.rpc('increment_blog_view', { post_id: post.id });
+            localStorage.setItem(viewKey, now.toString());
+          } catch (error) {
+            console.debug('View tracking error:', error);
+          }
         }
       };
       trackView();
