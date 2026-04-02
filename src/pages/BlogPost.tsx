@@ -174,7 +174,10 @@ const BlogPost = () => {
             {/* Content */}
             <div 
               className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-foreground/80 prose-strong:text-foreground prose-a:text-primary prose-blockquote:border-primary prose-blockquote:text-muted-foreground"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content, {
+                ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'a', 'blockquote', 'img', 'span', 'div', 'pre', 'code', 'u', 's', 'sub', 'sup', 'table', 'thead', 'tbody', 'tr', 'th', 'td', 'hr'],
+                ALLOWED_ATTR: ['href', 'target', 'rel', 'src', 'alt', 'class', 'style', 'width', 'height']
+              }) }}
             />
 
             {/* Footer */}
