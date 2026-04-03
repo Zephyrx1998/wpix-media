@@ -85,7 +85,7 @@ Deno.serve(async (req) => {
         data: {
           title: title ? decodeHtmlEntities(title) : null,
           description: description ? decodeHtmlEntities(description) : null,
-          image: image || null,
+          image: image ? decodeHtmlEntities(image) : null,
         },
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
