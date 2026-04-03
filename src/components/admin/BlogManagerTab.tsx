@@ -342,11 +342,11 @@ export const BlogManagerTab = () => {
                       className="flex-1"
                     />
                     <Button type="button" variant="outline" onClick={fetchLinkedInMeta} disabled={isFetchingMeta}>
-                      {isFetchingMeta ? "Checking..." : "Validate"}
+                      {isFetchingMeta ? "Fetching..." : "Fetch Metadata"}
                     </Button>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Paste the LinkedIn article URL. Fill in title, excerpt, and cover image below.
+                    Paste the LinkedIn article URL and click "Fetch Metadata" to auto-fill title, excerpt, and thumbnail.
                   </p>
                 </div>
               )}
