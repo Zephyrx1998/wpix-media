@@ -126,23 +126,45 @@ export const BlogManagerTab = () => {
 
     setIsFetchingMeta(true);
     try {
-      // Try fetching OG metadata via a simple proxy approach
-      // Since we can't directly scrape LinkedIn, we extract what we can
       const url = new URL(linkedinUrl.trim());
-      
-      // Basic validation that it's a LinkedIn URL
       if (!url.hostname.includes("linkedin.com")) {
         toast({ title: "Invalid URL", description: "Please enter a valid LinkedIn URL", variant: "destructive" });
         setIsFetchingMeta(false);
         return;
       }
 
-      toast({
-        title: "LinkedIn URL accepted",
-        description: "Please fill in the title, excerpt, and cover image manually. LinkedIn restricts automated metadata fetching.",
+      const { data, error } = await supabase.functions.invoke("fetch-link-meta", {
+        body: { url: linkedinUrl.trim() },
       });
-    } catch {
-      toast({ title: "Invalid URL", description: "Please enter a valid URL", variant: "destructive" });
+
+      if (error) throw error;
+
+      if (data?.success && data?.data) {
+        const meta = data.data;
+        setFormData((prev) => ({
+          ...prev,
+          title: meta.title || prev.title,
+          excerpt: meta.description || prev.excerpt,
+          cover_image_url: meta.image || prev.cover_image_url,
+        }));
+        toast({
+          title: "Metadata fetched!",
+          description: "Title, excerpt, and thumbnail have been auto-filled from LinkedIn.",
+        });
+      } else {
+        toast({
+          title: "Could not fetch metadata",
+          description: "Please fill in title, excerpt, and cover image manually.",
+          variant: "destructive",
+        });
+      }
+    } catch (err) {
+      console.error("Error fetching LinkedIn metadata:", err);
+      toast({
+        title: "Could not fetch metadata",
+        description: "Please fill in the fields manually.",
+        variant: "destructive",
+      });
     } finally {
       setIsFetchingMeta(false);
     }
@@ -320,11 +342,11 @@ export const BlogManagerTab = () => {
                       className="flex-1"
                     />
                     <Button type="button" variant="outline" onClick={fetchLinkedInMeta} disabled={isFetchingMeta}>
-                      {isFetchingMeta ? "Checking..." : "Validate"}
+                      {isFetchingMeta ? "Fetching..." : "Fetch Metadata"}
                     </Button>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Paste the LinkedIn article URL. Fill in title, excerpt, and cover image below.
+                    Paste the LinkedIn article URL and click "Fetch Metadata" to auto-fill title, excerpt, and thumbnail.
                   </p>
                 </div>
               )}
