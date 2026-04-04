@@ -103,16 +103,6 @@ const Navigation = () => {
                 Back to Home
               </Link>
             )}
-            <Link 
-              to="/ai-toolkit"
-              className={`px-3 py-1.5 rounded-lg transition-all duration-300 text-sm lg:text-base ${
-                location.pathname === '/ai-toolkit' 
-                  ? 'bg-primary text-primary-foreground shadow-[var(--glass-shadow)]' 
-                  : 'text-primary hover:bg-[hsl(var(--glass-bg))] hover:backdrop-blur-md'
-              }`}
-            >
-              AI Toolkit
-            </Link>
             <Button
               variant="ghost"
               size="icon"
@@ -241,24 +231,6 @@ const Navigation = () => {
                       </motion.div>
                     )}
 
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.25 }}
-                    >
-                      <Link 
-                        to="/ai-toolkit"
-                        className={`flex items-center justify-between w-full p-4 rounded-xl text-left transition-colors touch-manipulation ${
-                          location.pathname === '/ai-toolkit' 
-                            ? 'bg-primary/10 text-primary font-medium' 
-                            : 'text-foreground hover:bg-accent'
-                        }`}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <span className="text-base font-medium">AI Toolkit ✨</span>
-                        <ChevronRight className="h-5 w-5 text-muted-foreground" />
-                      </Link>
-                    </motion.div>
                   </div>
 
                   {/* Theme Toggle */}
