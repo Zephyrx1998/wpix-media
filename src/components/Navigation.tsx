@@ -103,16 +103,6 @@ const Navigation = () => {
                 Back to Home
               </Link>
             )}
-            <Link 
-              to="/ai-toolkit"
-              className={`px-3 py-1.5 rounded-lg transition-all duration-300 text-sm lg:text-base ${
-                location.pathname === '/ai-toolkit' 
-                  ? 'bg-primary text-primary-foreground shadow-[var(--glass-shadow)]' 
-                  : 'text-primary hover:bg-[hsl(var(--glass-bg))] hover:backdrop-blur-md'
-              }`}
-            >
-              AI Toolkit
-            </Link>
             <Button
               variant="ghost"
               size="icon"
