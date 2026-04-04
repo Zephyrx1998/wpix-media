@@ -40,16 +40,6 @@ const AnimatedRoutes = () => {
           }
         />
         <Route
-          path="/ai-toolkit"
-          element={
-            <Suspense fallback={<LazyFallback />}>
-              <PageTransition>
-                <AIToolkit />
-              </PageTransition>
-            </Suspense>
-          }
-        />
-        <Route
           path="/wcf"
           element={
             <Suspense fallback={<LazyFallback />}>
