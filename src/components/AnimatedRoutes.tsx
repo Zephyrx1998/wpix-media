@@ -7,7 +7,7 @@ import PageTransition from "./PageTransition";
 import Index from "../pages/Index";
 
 // Lazy load all other pages
-const AIToolkit = lazy(() => import("../pages/AIToolkit"));
+
 const WCF = lazy(() => import("../pages/wcf"));
 const SevenDC = lazy(() => import("../pages/7dc"));
 const AVER = lazy(() => import("../pages/aver"));
