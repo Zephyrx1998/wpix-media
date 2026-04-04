@@ -91,14 +91,6 @@ const Footer = () => {
                     +91 82496 95463
                   </span>
                 </a>
-                <a 
-                  href="tel:+919454560032" 
-                  className="flex items-center gap-2 sm:gap-3 ml-5 sm:ml-7 touch-manipulation"
-                >
-                  <span className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors">
-                    +91 94545 60032
-                  </span>
-                </a>
               </div>
               {/* Social Media */}
               <div className="flex items-center gap-2 sm:gap-3 pt-2">
