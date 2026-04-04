@@ -60,9 +60,6 @@ const ContactSection = () => {
                       <a href="tel:+918249695463" className="text-primary hover:text-primary-dark transition-colors block text-sm sm:text-base touch-manipulation">
                         +91 82496 95463 <span className="text-xs text-muted-foreground">(Primary)</span>
                       </a>
-                      <a href="tel:+919454560032" className="text-primary hover:text-primary-dark transition-colors block text-sm sm:text-base touch-manipulation">
-                        +91 94545 60032
-                      </a>
                     </div>
                   </div>
                 </div>

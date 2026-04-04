@@ -160,7 +160,7 @@ We operate through 4 powerful verticals:
 • VYBE (Visibility Yield Brand Engagement) – Social Media & Performance Marketing
 
 Location: New Delhi and Bhubaneswar, India (serving clients globally)
-Contact: bd@wpixmedia.com | +91 82496 95463 | +91 94545 60032
+Contact: bd@wpixmedia.com | +91 82496 95463
 
 ---
 
