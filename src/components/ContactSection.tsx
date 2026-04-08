@@ -147,9 +147,9 @@ const ContactSection = () => {
                     variant="glass" 
                     size="lg" 
                     className="w-full h-12 sm:h-14 text-sm sm:text-base touch-manipulation"
-                    onClick={() => window.open('tel:+918249695463', '_blank')}
+                    onClick={() => window.location.href = '/book'}
                   >
-                    Call Now for Free Consultation
+                    Book a Free Consultation
                   </Button>
                 </div>
               </div>
