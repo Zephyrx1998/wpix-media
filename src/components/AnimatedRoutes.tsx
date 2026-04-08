@@ -18,6 +18,7 @@ const BlogPost = lazy(() => import("../pages/BlogPost"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const AdminLeads = lazy(() => import("../pages/AdminLeads"));
 const AdminLogin = lazy(() => import("../pages/AdminLogin"));
+const Book = lazy(() => import("../pages/Book"));
 
 const LazyFallback = () => (
   <div className="flex items-center justify-center min-h-screen bg-background">
