@@ -513,7 +513,7 @@ const MobileVYBE = () => {
             <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">That Converts?</span>
           </h2>
           <p className="text-sm text-muted-foreground mb-8">Let VYBE design your engagement and growth system.</p>
-          <Button variant="hero" size="lg" onClick={() => window.location.href = '/#contact'}
+          <Button variant="hero" size="lg" onClick={() => window.location.href = '/book'}
           className="w-full h-14 text-base font-semibold rounded-2xl active:scale-[0.98] transition-transform">
             Book a Discovery Call <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
@@ -723,7 +723,7 @@ const DesktopVYBE = () => {
             <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">That Converts?</span>
           </h2>
           <p className="text-lg text-muted-foreground mb-10">Let VYBE design your engagement and growth system.</p>
-          <Button variant="hero" size="lg" onClick={() => window.location.href = '/#contact'}
+          <Button variant="hero" size="lg" onClick={() => window.location.href = '/book'}
           className="h-16 px-12 text-lg font-semibold rounded-2xl hover:scale-[1.02] transition-transform">
             Book a Discovery Call <ArrowRight className="ml-3 h-5 w-5" />
           </Button>

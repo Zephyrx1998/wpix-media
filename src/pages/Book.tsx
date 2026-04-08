@@ -20,6 +20,7 @@ const Book = () => {
       <SEOHead
         title="Book a Call | WPIX Media"
         description="Schedule a free consultation with WPIX Media. Let's discuss your project and how we can help."
+        canonical="https://wpixmedia.com/book"
       />
       <Navigation />
       <main className="min-h-screen bg-background pt-20 pb-12">

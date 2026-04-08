@@ -131,6 +131,16 @@ const AnimatedRoutes = () => {
           }
         />
         <Route
+          path="/book"
+          element={
+            <Suspense fallback={<LazyFallback />}>
+              <PageTransition>
+                <Book />
+              </PageTransition>
+            </Suspense>
+          }
+        />
+        <Route
           path="*"
           element={
             <Suspense fallback={<LazyFallback />}>
